@@ -1,0 +1,155 @@
+.tf-trainers-section {
+  background-color: var(--bg-dark);
+}
+
+.tf-trainers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+.tf-trainer-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-smooth);
+}
+
+.tf-trainer-card:hover {
+  border-color: var(--border-focus);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6);
+}
+
+.tf-trainer-photo-wrap {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  background-color: var(--bg-surface-elevated);
+}
+
+.tf-trainer-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(15%) contrast(1.05);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+}
+
+.tf-trainer-card:hover .tf-trainer-img {
+  transform: scale(1.04);
+  filter: grayscale(0%) contrast(1.05);
+}
+
+.tf-trainer-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 12, 16, 0) 50%,
+    rgba(18, 21, 29, 0.95) 100%
+  );
+}
+
+.tf-trainer-exp-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(10, 12, 16, 0.85);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border-focus);
+  color: var(--text-white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+}
+
+.tf-trainer-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.tf-trainer-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 0.25rem;
+}
+
+.tf-trainer-role {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 0.85rem;
+  line-height: 1.35;
+}
+
+.tf-trainer-specialty {
+  font-size: 0.875rem;
+  color: #FFFFFF;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.tf-trainer-specialty strong {
+  color: #FFFFFF;
+  display: block;
+  font-size: 0.775rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+
+.tf-trainer-certs {
+  font-size: 0.8rem;
+  color: #E2E8F0;
+  background-color: var(--bg-surface-elevated);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--border-dark);
+  margin-top: auto;
+  margin-bottom: 1rem;
+}
+
+.tf-trainer-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-white);
+  border: 1px solid var(--border-dark);
+  padding: 0.55rem;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  transition: all var(--transition-fast);
+}
+
+.tf-trainer-btn:hover {
+  background-color: var(--bg-surface-elevated);
+  border-color: var(--accent);
+  color: #FFFFFF;
+}
+
+@media (max-width: 1024px) {
+  .tf-trainers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .tf-trainers-grid {
+    grid-template-columns: 1fr;
+  }
+  .tf-trainer-photo-wrap {
+    height: 300px;
+  }
+}

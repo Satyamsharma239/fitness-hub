@@ -1,0 +1,222 @@
+.tf-programs-section {
+  background-color: var(--bg-dark);
+}
+
+.tf-programs-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.tf-program-tab {
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--bg-surface);
+  color: var(--text-body);
+  border: 1px solid var(--border-dark);
+  transition: all var(--transition-fast);
+}
+
+.tf-program-tab:hover {
+  color: var(--text-white);
+  border-color: var(--border-focus);
+}
+
+.tf-program-tab.active {
+  background-color: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(229, 9, 20, 0.35);
+}
+
+/* Program Card Grid */
+.tf-programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Two wide cards + three standard cards layout for visual rhythm! */
+.tf-programs-grid .tf-program-card:nth-child(1),
+.tf-programs-grid .tf-program-card:nth-child(2) {
+  grid-column: span 1.5;
+}
+
+@media (min-width: 1025px) {
+  .tf-programs-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .tf-programs-grid .tf-program-card:nth-child(1),
+  .tf-programs-grid .tf-program-card:nth-child(2) {
+    grid-column: span 3;
+  }
+  .tf-programs-grid .tf-program-card:nth-child(3),
+  .tf-programs-grid .tf-program-card:nth-child(4),
+  .tf-programs-grid .tf-program-card:nth-child(5) {
+    grid-column: span 2;
+  }
+}
+
+.tf-program-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-smooth);
+}
+
+.tf-program-card:hover {
+  border-color: var(--border-focus);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5);
+}
+
+.tf-program-media {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background-color: var(--bg-surface-elevated);
+}
+
+.tf-program-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tf-program-card:hover .tf-program-img {
+  transform: scale(1.05);
+}
+
+.tf-program-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 12, 16, 0.1) 0%,
+    rgba(18, 21, 29, 0.95) 100%
+  );
+}
+
+.tf-program-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background-color: rgba(10, 12, 16, 0.85);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  border: 1px solid rgba(229, 9, 20, 0.45);
+}
+
+.tf-program-body {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.tf-program-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 0.4rem;
+}
+
+.tf-program-subtitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+
+.tf-program-desc {
+  font-size: 0.95rem;
+  color: #FFFFFF;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.tf-program-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.tf-program-highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: #FFFFFF;
+}
+
+.tf-program-check-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  flex-shrink: 0;
+}
+
+.tf-program-suitability {
+  font-size: 0.825rem;
+  color: #E2E8F0;
+  border-top: 1px solid var(--border-dark);
+  padding-top: 1rem;
+  margin-top: auto;
+  margin-bottom: 1.25rem;
+}
+
+.tf-program-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tf-program-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tf-program-link-btn:hover {
+  color: var(--accent);
+  gap: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .tf-programs-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .tf-programs-grid .tf-program-card:nth-child(1),
+  .tf-programs-grid .tf-program-card:nth-child(2),
+  .tf-programs-grid .tf-program-card:nth-child(3),
+  .tf-programs-grid .tf-program-card:nth-child(4),
+  .tf-programs-grid .tf-program-card:nth-child(5) {
+    grid-column: span 1;
+  }
+}
