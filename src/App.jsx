@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -7,15 +7,27 @@ import TrialModal from './components/TrialModal';
 import WhatsAppIcon from './components/WhatsAppIcon';
 import useScrollReveal from './hooks/useScrollReveal';
 import { GYM_INFO } from './data/gymData';
-
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import TrainersPage from './pages/TrainersPage';
-import MembershipsPage from './pages/MembershipsPage';
-import ContactPage from './pages/ContactPage';
+
+function HashScrollHandler() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.replace('#', '');
+      const element = document.getElementById(targetId);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      }
+    }
+  }, [location]);
+
+  return null;
+}
 
 function AppContent() {
-  const location = useLocation();
   const [trialModalOpen, setTrialModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState('General Facility Walkthrough & Trial');
 
@@ -35,18 +47,19 @@ function AppContent() {
   return (
     <div className="tf-app">
       <Navbar onOpenTrial={openTrial} />
+      <HashScrollHandler />
 
-      <main id="main-content" key={location.pathname} className="tf-page-enter">
-        <Routes location={location}>
+      <main id="main-content" className="tf-page-enter">
+        <Routes>
           <Route path="/" element={<HomePage onOpenTrial={openTrial} />} />
-          <Route path="/about" element={<AboutPage onOpenTrial={openTrial} />} />
-          <Route path="/memberships" element={<MembershipsPage onOpenTrial={openTrial} />} />
-          <Route path="/trainers" element={<TrainersPage onOpenTrial={openTrial} />} />
-          <Route path="/contact" element={<ContactPage />} />
-
-          <Route path="/programs" element={<Navigate to="/memberships" replace />} />
-          <Route path="/schedule" element={<Navigate to="/memberships" replace />} />
-          <Route path="/gallery" element={<Navigate to="/about" replace />} />
+          <Route path="/about" element={<Navigate to="/#about" replace />} />
+          <Route path="/memberships" element={<Navigate to="/#memberships" replace />} />
+          <Route path="/pricing" element={<Navigate to="/#memberships" replace />} />
+          <Route path="/trainers" element={<Navigate to="/#trainers" replace />} />
+          <Route path="/contact" element={<Navigate to="/#contact" replace />} />
+          <Route path="/programs" element={<Navigate to="/#zones" replace />} />
+          <Route path="/schedule" element={<Navigate to="/#memberships" replace />} />
+          <Route path="/gallery" element={<Navigate to="/#zones" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

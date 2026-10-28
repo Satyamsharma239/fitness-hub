@@ -1,34 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  MapPin,
-  Clock,
   ShieldCheck,
   CheckCircle2,
-  Phone,
   ChevronRight
 } from "lucide-react";
 import Hero from "../components/Hero";
 import MarqueeTicker from "../components/MarqueeTicker";
+import TrainersSection from "../components/TrainersSection";
 import WhyChooseUs from "../components/WhyChooseUs";
 import MembershipSection from "../components/MembershipSection";
 import InstagramFeed from "../components/InstagramFeed";
 import TestimonialsSection from "../components/TestimonialsSection";
+import ContactSection from "../components/ContactSection";
 import FAQSection from "../components/FAQSection";
 import WhatsAppIcon from "../components/WhatsAppIcon";
 import { GYM_INFO, TRAINING_ZONES } from "../data/gymData";
 import "./HomePage.css";
 
 export default function HomePage({ onOpenTrial }) {
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    const el = document.getElementById("contact");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="tf-home-page">
-      
       <Hero onOpenTrial={onOpenTrial} />
 
       <MarqueeTicker />
 
-      <section className="tf-section tf-intro-editorial">
+      <section id="about" className="tf-section tf-intro-editorial">
         <div className="tf-container">
           <div className="tf-intro-editorial-grid">
             <div className="tf-intro-editorial-text">
@@ -73,9 +76,13 @@ export default function HomePage({ onOpenTrial }) {
                   <ArrowRight size={16} />
                 </button>
 
-                <Link to="/about" className="tf-btn tf-btn-secondary">
-                  <span>Explore Club Story</span>
-                </Link>
+                <a
+                  href="#contact"
+                  className="tf-btn tf-btn-secondary"
+                  onClick={scrollToContact}
+                >
+                  <span>Locate On Map</span>
+                </a>
               </div>
             </div>
 
@@ -119,7 +126,7 @@ export default function HomePage({ onOpenTrial }) {
         </div>
       </section>
 
-      <section className="tf-section tf-zones-section">
+      <section id="zones" className="tf-section tf-zones-section">
         <div className="tf-container">
           <div className="tf-section-header center">
             <span className="tf-eyebrow">
@@ -171,132 +178,17 @@ export default function HomePage({ onOpenTrial }) {
         </div>
       </section>
 
-      <WhyChooseUs onOpenTrial={onOpenTrial} />
+      <TrainersSection onOpenTrial={onOpenTrial} />
 
       <MembershipSection onOpenTrial={onOpenTrial} />
+
+      <WhyChooseUs onOpenTrial={onOpenTrial} />
 
       <InstagramFeed />
 
       <TestimonialsSection />
 
-      <section className="tf-section tf-location-section">
-        <div className="tf-container">
-          <div className="tf-location-grid">
-            <div className="tf-location-card">
-              <span className="tf-eyebrow">
-                05 / KURLA LOCATION
-              </span>
-              <h2 className="tf-section-title">
-                EASY TO REACH. <br />
-                <span className="accent">IMPOSSIBLE TO SKIP.</span>
-              </h2>
-
-              <p className="tf-location-sub">
-                Conveniently situated in Nehru Nagar, Kurla, just 3-4 minutes walking distance from Kurla Railway Station.
-              </p>
-
-              <div className="tf-location-details-list">
-                <div className="tf-loc-item">
-                  <div className="tf-loc-icon"><MapPin size={18} /></div>
-                  <div>
-                    <strong>Full Address</strong>
-                    <p>{GYM_INFO.contact.fullAddress}</p>
-                  </div>
-                </div>
-
-                <div className="tf-loc-item">
-                  <div className="tf-loc-icon"><Clock size={18} /></div>
-                  <div>
-                    <strong>Operating Hours</strong>
-                    <p>{GYM_INFO.contact.hoursDaily}</p>
-                    <p className="tf-location-ladies-time">{GYM_INFO.contact.hoursLadiesOnly}</p>
-                    <p>{GYM_INFO.contact.hoursSunday}</p>
-                  </div>
-                </div>
-
-                <div className="tf-loc-item">
-                  <div className="tf-loc-icon"><Phone size={18} /></div>
-                  <div>
-                    <strong>Direct Calling & WhatsApp</strong>
-                    <p>
-                      <a href={`tel:${GYM_INFO.contact.phoneRaw}`} className="tf-location-phone-link">
-                        {GYM_INFO.contact.phone}
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="tf-location-actions">
-                <a
-                  href={GYM_INFO.contact.mapsUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="tf-btn tf-btn-primary"
-                >
-                  <MapPin size={16} />
-                  <span>Open in Google Maps</span>
-                </a>
-                <a
-                  href={GYM_INFO.contact.whatsappLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="tf-btn tf-btn-secondary"
-                >
-                  <WhatsAppIcon size={16} />
-                  <span>WhatsApp Reception</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="tf-location-map-wrap">
-              <div className="tf-map-visual-card">
-                <div className="tf-map-header">
-                  <div className="tf-map-live-dot" />
-                  <span>NEHRU NAGAR • KURLA CLUB</span>
-                </div>
-
-                <div className="tf-transit-pointers">
-                  <div className="tf-transit-step">
-                    <span className="tf-step-badge">1</span>
-                    <div>
-                      <strong>From Kurla Railway Station (East):</strong>
-                      <p>Exit towards Nehru Nagar side. Walk 3-4 minutes along SG Barve Marg directly to Serene Shelter building.</p>
-                    </div>
-                  </div>
-
-                  <div className="tf-transit-step">
-                    <span className="tf-step-badge">2</span>
-                    <div>
-                      <strong>From Nehru Nagar Bus Depot:</strong>
-                      <p>Under 2 minutes walking distance. Head towards Mass Building, B Wing.</p>
-                    </div>
-                  </div>
-
-                  <div className="tf-transit-step">
-                    <span className="tf-step-badge">3</span>
-                    <div>
-                      <strong>Floor & Entrance:</strong>
-                      <p>Take stairs or lift to the 1st Floor. Front desk reception is immediately welcoming at the entrance.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="tf-map-actions">
-                  <a
-                    href={GYM_INFO.contact.mapsUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="tf-btn tf-btn-primary tf-map-actions-btn"
-                  >
-                    <span>Launch GPS Directions (Google Maps)</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ContactSection />
 
       <FAQSection />
 

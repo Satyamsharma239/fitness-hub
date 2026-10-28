@@ -12,7 +12,7 @@ import "./Hero.css";
 
 export default function Hero({ onOpenTrial }) {
   return (
-    <section className="tf-hero-section">
+    <section id="hero" className="tf-hero-section">
       <div className="tf-hero-backdrop-glow" aria-hidden="true" />
 
       <div className="tf-container">

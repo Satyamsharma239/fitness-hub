@@ -6,7 +6,7 @@ import "./InstagramFeed.css";
 
 export default function InstagramFeed() {
   return (
-    <section className="tf-section tf-ig-section">
+    <section id="instagram" className="tf-section tf-ig-section">
       <div className="tf-container">
         <div className="tf-section-header center">
           <span className="tf-eyebrow">

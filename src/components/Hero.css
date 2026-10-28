@@ -200,9 +200,23 @@
   }
   .tf-hero-cta-group .tf-btn {
     width: 100%;
+    justify-content: center;
   }
   .tf-hero-corner-tag {
     font-size: 10px;
     padding: 4px 10px;
+  }
+  .tf-hero-bottom-bar {
+    padding: 14px 16px;
+    gap: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .tf-bottom-action {
+    width: 100%;
+  }
+  .tf-bottom-action .tf-btn {
+    width: 100%;
+    justify-content: center;
   }
 }

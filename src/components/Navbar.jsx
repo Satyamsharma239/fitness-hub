@@ -1,23 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
 import { ArrowRight, Menu, X, Phone, Flame } from "lucide-react";
 import WhatsAppIcon from "./WhatsAppIcon";
 import logoImg from "../assets/fitnesshub_logo.jpg";
 import { GYM_INFO } from "../data/gymData";
 import "./Navbar.css";
 
-const NAV_LINKS = [
-  { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-  { label: "Plans & Pricing", path: "/memberships" },
-  { label: "Trainers", path: "/trainers" },
-  { label: "Contact & Location", path: "/contact" },
+const NAV_ITEMS = [
+  { label: "About", target: "about" },
+  { label: "Training Floor", target: "zones" },
+  { label: "Coaches", target: "trainers" },
+  { label: "Plans & Pricing", target: "memberships" },
+  { label: "Why Us", target: "why-us" },
+  { label: "Location & Contact", target: "contact" },
+];
+
+const DRAWER_ITEMS = [
+  { label: "Home", target: "hero" },
+  { label: "About The Hub", target: "about" },
+  { label: "Training Floor & Zones", target: "zones" },
+  { label: "Certified Coaches", target: "trainers" },
+  { label: "Plans & Transparent Rates", target: "memberships" },
+  { label: "Why Lifters Choose Us", target: "why-us" },
+  { label: "Member Reviews (4.8★)", target: "testimonials" },
+  { label: "Kurla Location, Map & Visit", target: "contact" },
 ];
 
 export default function Navbar({ onOpenTrial }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [statusMessage, setStatusMessage] = useState("GYM OPEN NOW • 6:00 AM – 12:00 AM");
+  const [desktopStatus, setDesktopStatus] = useState("OPEN NOW UNTIL 12:00 AM MIDNIGHT");
+  const [mobileStatus, setMobileStatus] = useState("OPEN • 6 AM – 12 AM");
   const [isOpenNow, setIsOpenNow] = useState(true);
 
   const closeMenu = () => setMenuOpen(false);
@@ -25,12 +37,12 @@ export default function Navbar({ onOpenTrial }) {
   useEffect(() => {
     const checkOpenStatus = () => {
       const now = new Date();
-      const istOffset = 5.5 * 60; 
+      const istOffset = 5.5 * 60;
       const utcTime = now.getTime() + now.getTimezoneOffset() * 60000;
       const istTime = new Date(utcTime + istOffset * 60000);
       const hours = istTime.getHours();
       const minutes = istTime.getMinutes();
-      const day = istTime.getDay(); 
+      const day = istTime.getDay();
       const timeInMinutes = hours * 60 + minutes;
 
       if (day === 0) {
@@ -39,9 +51,11 @@ export default function Navbar({ onOpenTrial }) {
         const isSunOpen = timeInMinutes >= sunOpen && timeInMinutes < sunClose;
         setIsOpenNow(isSunOpen);
         if (isSunOpen) {
-          setStatusMessage("SUNDAY SESSION OPEN NOW (UNTIL 10 PM)");
+          setDesktopStatus("SUNDAY SESSION OPEN NOW (UNTIL 10 PM)");
+          setMobileStatus("SUNDAY (UNTIL 10 PM)");
         } else {
-          setStatusMessage("OPENS SUNDAY AT 6:00 PM • NEHRU NAGAR");
+          setDesktopStatus("OPENS SUNDAY AT 6:00 PM • NEHRU NAGAR");
+          setMobileStatus("OPENS SUN 6:00 PM");
         }
       } else {
         const openTime = 6 * 60;
@@ -52,11 +66,14 @@ export default function Navbar({ onOpenTrial }) {
         const isLadiesBatch = timeInMinutes >= 14 * 60 && timeInMinutes < 16 * 60;
 
         if (isLadiesBatch) {
-          setStatusMessage("🌸 LADIES ONLY BATCH ACTIVE NOW (2 PM – 4 PM)");
+          setDesktopStatus("🌸 LADIES ONLY BATCH ACTIVE NOW (2 PM – 4 PM)");
+          setMobileStatus("🌸 LADIES BATCH (2-4 PM)");
         } else if (isDailyOpen) {
-          setStatusMessage("OPEN NOW UNTIL 12:00 AM MIDNIGHT");
+          setDesktopStatus("OPEN NOW UNTIL 12:00 AM MIDNIGHT");
+          setMobileStatus("OPEN • 6 AM – 12 AM");
         } else {
-          setStatusMessage("OPENS AT 6:00 AM • NEHRU NAGAR KURLA");
+          setDesktopStatus("OPENS AT 6:00 AM • NEHRU NAGAR KURLA");
+          setMobileStatus("OPENS 6:00 AM");
         }
       }
     };
@@ -87,6 +104,18 @@ export default function Navbar({ onOpenTrial }) {
     };
   }, [menuOpen]);
 
+  const scrollToTarget = (e, targetId) => {
+    e.preventDefault();
+    closeMenu();
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", `#${targetId}`);
+    } else {
+      window.location.href = `/#${targetId}`;
+    }
+  };
+
   return (
     <>
       <div className="tf-topbar">
@@ -94,7 +123,8 @@ export default function Navbar({ onOpenTrial }) {
           <div className="tf-topbar-left">
             <span className="tf-topbar-badge">
               <span className={`tf-status-dot ${isOpenNow ? "open" : "closed"}`}></span>
-              {statusMessage}
+              <span className="tf-status-text-desktop">{desktopStatus}</span>
+              <span className="tf-status-text-mobile">{mobileStatus}</span>
             </span>
             <span className="tf-topbar-location">
               📍 First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar, Kurla
@@ -102,9 +132,9 @@ export default function Navbar({ onOpenTrial }) {
           </div>
 
           <div className="tf-topbar-right">
-            <a href={`tel:${GYM_INFO.contact.phone}`} className="tf-topbar-link">
+            <a href={`tel:${GYM_INFO.contact.phoneRaw}`} className="tf-topbar-link tf-topbar-phone">
               <Phone size={12} />
-              <span>{GYM_INFO.contact.phoneDisplay}</span>
+              <span>{GYM_INFO.contact.phone}</span>
             </a>
             <a
               href={GYM_INFO.socials.instagram}
@@ -120,7 +150,12 @@ export default function Navbar({ onOpenTrial }) {
 
       <header className={`tf-navbar ${isScrolled ? "scrolled" : ""}`}>
         <div className="tf-container tf-navbar-inner">
-          <Link to="/" className="tf-nav-brand" aria-label="The Fitness Hub Kurla Home">
+          <a
+            href="#hero"
+            className="tf-nav-brand"
+            aria-label="The Fitness Hub Kurla Home"
+            onClick={(e) => scrollToTarget(e, "hero")}
+          >
             <div className="tf-nav-logo-box">
               <img src={logoImg} alt="The Fitness Hub Logo" className="tf-nav-logo" />
             </div>
@@ -128,22 +163,21 @@ export default function Navbar({ onOpenTrial }) {
               <span className="tf-nav-brand-title">
                 THE FITNESS <span className="accent">HUB</span>
               </span>
-              <span className="tf-nav-brand-sub">KURLA &bull; GET FIT. GET STRONG.</span>
+              <span className="tf-nav-brand-sub tf-nav-brand-sub-desktop">KURLA &bull; GET FIT. GET STRONG.</span>
+              <span className="tf-nav-brand-sub tf-nav-brand-sub-mobile">KURLA &bull; NEHRU NAGAR</span>
             </div>
-          </Link>
+          </a>
 
           <nav className="tf-nav-menu" aria-label="Main menu">
-            {NAV_LINKS.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                end={link.path === "/"}
-                className={({ isActive }) =>
-                  `tf-nav-link ${isActive ? "active" : ""}`
-                }
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.target}
+                href={`#${item.target}`}
+                className="tf-nav-link"
+                onClick={(e) => scrollToTarget(e, item.target)}
               >
-                {link.label}
-              </NavLink>
+                {item.label}
+              </a>
             ))}
           </nav>
 
@@ -154,7 +188,8 @@ export default function Navbar({ onOpenTrial }) {
               onClick={onOpenTrial}
             >
               <Flame size={14} />
-              <span>Book Club Visit</span>
+              <span className="tf-nav-cta-text-desktop">Book Club Visit</span>
+              <span className="tf-nav-cta-text-mobile">Book Visit</span>
             </button>
 
             <button
@@ -163,7 +198,7 @@ export default function Navbar({ onOpenTrial }) {
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               onClick={() => setMenuOpen(!menuOpen)}
             >
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+              {menuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -177,7 +212,7 @@ export default function Navbar({ onOpenTrial }) {
               <span className="tf-nav-brand-title">
                 THE FITNESS <span className="accent">HUB</span>
               </span>
-              <span className="tf-nav-brand-sub">KURLA</span>
+              <span className="tf-nav-brand-sub">KURLA &bull; NEHRU NAGAR</span>
             </div>
             <button
               type="button"
@@ -185,30 +220,27 @@ export default function Navbar({ onOpenTrial }) {
               onClick={closeMenu}
               aria-label="Close menu"
             >
-              <X size={22} />
+              <X size={20} />
             </button>
           </div>
 
           <div className="tf-drawer-status">
             <span className={`tf-status-dot ${isOpenNow ? "open" : "closed"}`}></span>
-            <span>{statusMessage}</span>
+            <span>{desktopStatus}</span>
           </div>
 
           <nav className="tf-drawer-nav">
-            {NAV_LINKS.map((link, idx) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                end={link.path === "/"}
-                className={({ isActive }) =>
-                  `tf-drawer-link ${isActive ? "active" : ""}`
-                }
-                onClick={closeMenu}
+            {DRAWER_ITEMS.map((item, idx) => (
+              <a
+                key={item.target}
+                href={`#${item.target}`}
+                className="tf-drawer-link"
+                onClick={(e) => scrollToTarget(e, item.target)}
               >
                 <span className="tf-drawer-link-idx">0{idx + 1}</span>
-                <span className="tf-drawer-link-text">{link.label}</span>
-                <ArrowRight size={16} className="tf-drawer-link-arrow" />
-              </NavLink>
+                <span className="tf-drawer-link-text">{item.label}</span>
+                <ArrowRight size={15} className="tf-drawer-link-arrow" />
+              </a>
             ))}
           </nav>
 
