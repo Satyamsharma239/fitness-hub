@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ShieldCheck,
@@ -19,12 +20,6 @@ import { GYM_INFO, TRAINING_ZONES } from "../data/gymData";
 import "./HomePage.css";
 
 export default function HomePage({ onOpenTrial }) {
-  const scrollToContact = (e) => {
-    e.preventDefault();
-    const el = document.getElementById("contact");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div className="tf-home-page">
       <Hero onOpenTrial={onOpenTrial} />
@@ -76,13 +71,13 @@ export default function HomePage({ onOpenTrial }) {
                   <ArrowRight size={16} />
                 </button>
 
-                <a
-                  href="#contact"
+                <Link
+                  to="/about"
                   className="tf-btn tf-btn-secondary"
-                  onClick={scrollToContact}
                 >
-                  <span>Locate On Map</span>
-                </a>
+                  <span>Read Full Story</span>
+                  <ArrowRight size={16} />
+                </Link>
               </div>
             </div>
 
@@ -174,6 +169,16 @@ export default function HomePage({ onOpenTrial }) {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div style={{ textAlign: "center", marginTop: "36px" }}>
+            <Link
+              to="/programs"
+              className="tf-btn tf-btn-secondary tf-btn-lg"
+            >
+              <span>Explore Complete Zone Breakdown & Equipment</span>
+              <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>

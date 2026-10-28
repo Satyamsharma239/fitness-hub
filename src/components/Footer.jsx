@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUp, Phone, MapPin, Clock, Flame } from 'lucide-react';
 import InstagramIcon from './InstagramIcon';
 import WhatsAppIcon from './WhatsAppIcon';
@@ -36,15 +37,6 @@ export default function Footer({ onOpenTrial }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const scrollToAnchor = (e, targetId) => {
-    e.preventDefault();
-    const el = document.getElementById(targetId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', `#${targetId}`);
-    }
-  };
-
   return (
     <footer className="tf-footer">
       <div className="tf-container">
@@ -70,11 +62,10 @@ export default function Footer({ onOpenTrial }) {
         <div className="tf-footer-grid">
           
           <div className="tf-footer-brand">
-            <a
-              href="#hero"
+            <Link
+              to="/"
               className="tf-brand-link"
               aria-label="The Fitness Hub Kurla Home"
-              onClick={(e) => scrollToAnchor(e, 'hero')}
             >
               <img src={logoImg} alt="The Fitness Hub Logo" className="tf-brand-logo-img" />
               <div className="tf-brand-text-col">
@@ -83,7 +74,7 @@ export default function Footer({ onOpenTrial }) {
                 </span>
                 <span className="tf-brand-subtext">KURLA &bull; GET FIT. GET STRONG.</span>
               </div>
-            </a>
+            </Link>
 
             <p className="tf-footer-brand-desc">
               First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar, Kurla. Offering daily 18-hour training (6 AM – 12 AM), dedicated Ladies Only batch (2 PM – 4 PM), Olympic power racks, and certified 1-on-1 personal coaching.
@@ -119,12 +110,12 @@ export default function Footer({ onOpenTrial }) {
           <div className="tf-footer-col">
             <h4>Club Navigation</h4>
             <ul className="tf-footer-links">
-              <li><a href="#hero" onClick={(e) => scrollToAnchor(e, 'hero')}>Home</a></li>
-              <li><a href="#about" onClick={(e) => scrollToAnchor(e, 'about')}>About Fitness Hub</a></li>
-              <li><a href="#zones" onClick={(e) => scrollToAnchor(e, 'zones')}>Training Floor & Zones</a></li>
-              <li><a href="#trainers" onClick={(e) => scrollToAnchor(e, 'trainers')}>Certified Coaches</a></li>
-              <li><a href="#memberships" onClick={(e) => scrollToAnchor(e, 'memberships')}>Membership Plans & PT</a></li>
-              <li><a href="#contact" onClick={(e) => scrollToAnchor(e, 'contact')}>Contact & Location</a></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/about">About Fitness Hub</Link></li>
+              <li><Link to="/programs">Training Floor & Zones</Link></li>
+              <li><Link to="/trainers">Certified Coaches</Link></li>
+              <li><Link to="/memberships">Membership Plans & PT</Link></li>
+              <li><Link to="/contact">Contact & Location</Link></li>
             </ul>
           </div>
 

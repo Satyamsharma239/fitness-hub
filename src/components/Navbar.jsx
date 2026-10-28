@@ -1,28 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { ArrowRight, Menu, X, Phone, Flame } from "lucide-react";
 import WhatsAppIcon from "./WhatsAppIcon";
 import logoImg from "../assets/fitnesshub_logo.jpg";
 import { GYM_INFO } from "../data/gymData";
 import "./Navbar.css";
 
-const NAV_ITEMS = [
-  { label: "About", target: "about" },
-  { label: "Training Floor", target: "zones" },
-  { label: "Coaches", target: "trainers" },
-  { label: "Plans & Pricing", target: "memberships" },
-  { label: "Why Us", target: "why-us" },
-  { label: "Location & Contact", target: "contact" },
-];
-
-const DRAWER_ITEMS = [
-  { label: "Home", target: "hero" },
-  { label: "About The Hub", target: "about" },
-  { label: "Training Floor & Zones", target: "zones" },
-  { label: "Certified Coaches", target: "trainers" },
-  { label: "Plans & Transparent Rates", target: "memberships" },
-  { label: "Why Lifters Choose Us", target: "why-us" },
-  { label: "Member Reviews (4.8★)", target: "testimonials" },
-  { label: "Kurla Location, Map & Visit", target: "contact" },
+const NAV_PAGES = [
+  { label: "Home", path: "/" },
+  { label: "About", path: "/about" },
+  { label: "Training Floor", path: "/programs" },
+  { label: "Coaches", path: "/trainers" },
+  { label: "Plans & Pricing", path: "/memberships" },
+  { label: "Contact & Location", path: "/contact" },
 ];
 
 export default function Navbar({ onOpenTrial }) {
@@ -52,7 +42,7 @@ export default function Navbar({ onOpenTrial }) {
         setIsOpenNow(isSunOpen);
         if (isSunOpen) {
           setDesktopStatus("SUNDAY SESSION OPEN NOW (UNTIL 10 PM)");
-          setMobileStatus("SUNDAY (UNTIL 10 PM)");
+          setMobileStatus("SUN OPEN (UNTIL 10 PM)");
         } else {
           setDesktopStatus("OPENS SUNDAY AT 6:00 PM • NEHRU NAGAR");
           setMobileStatus("OPENS SUN 6:00 PM");
@@ -104,18 +94,6 @@ export default function Navbar({ onOpenTrial }) {
     };
   }, [menuOpen]);
 
-  const scrollToTarget = (e, targetId) => {
-    e.preventDefault();
-    closeMenu();
-    const el = document.getElementById(targetId);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-      window.history.pushState(null, "", `#${targetId}`);
-    } else {
-      window.location.href = `/#${targetId}`;
-    }
-  };
-
   return (
     <>
       <div className="tf-topbar">
@@ -150,11 +128,11 @@ export default function Navbar({ onOpenTrial }) {
 
       <header className={`tf-navbar ${isScrolled ? "scrolled" : ""}`}>
         <div className="tf-container tf-navbar-inner">
-          <a
-            href="#hero"
+          <Link
+            to="/"
             className="tf-nav-brand"
             aria-label="The Fitness Hub Kurla Home"
-            onClick={(e) => scrollToTarget(e, "hero")}
+            onClick={closeMenu}
           >
             <div className="tf-nav-logo-box">
               <img src={logoImg} alt="The Fitness Hub Logo" className="tf-nav-logo" />
@@ -166,18 +144,20 @@ export default function Navbar({ onOpenTrial }) {
               <span className="tf-nav-brand-sub tf-nav-brand-sub-desktop">KURLA &bull; GET FIT. GET STRONG.</span>
               <span className="tf-nav-brand-sub tf-nav-brand-sub-mobile">KURLA &bull; NEHRU NAGAR</span>
             </div>
-          </a>
+          </Link>
 
           <nav className="tf-nav-menu" aria-label="Main menu">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.target}
-                href={`#${item.target}`}
-                className="tf-nav-link"
-                onClick={(e) => scrollToTarget(e, item.target)}
+            {NAV_PAGES.map((page) => (
+              <NavLink
+                key={page.path}
+                to={page.path}
+                end={page.path === "/"}
+                className={({ isActive }) =>
+                  `tf-nav-link ${isActive ? "active" : ""}`
+                }
               >
-                {item.label}
-              </a>
+                {page.label}
+              </NavLink>
             ))}
           </nav>
 
@@ -188,9 +168,26 @@ export default function Navbar({ onOpenTrial }) {
               onClick={onOpenTrial}
             >
               <Flame size={14} />
-              <span className="tf-nav-cta-text-desktop">Book Club Visit</span>
-              <span className="tf-nav-cta-text-mobile">Book Visit</span>
+              <span>Book Free Visit</span>
             </button>
+
+            <a
+              href={`tel:${GYM_INFO.contact.phoneRaw}`}
+              className="tf-nav-quick-btn"
+              aria-label={`Call ${GYM_INFO.contact.phone}`}
+            >
+              <Phone size={15} />
+            </a>
+
+            <a
+              href={GYM_INFO.contact.whatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              className="tf-nav-quick-btn wa"
+              aria-label="WhatsApp Front Desk"
+            >
+              <WhatsAppIcon size={16} />
+            </a>
 
             <button
               type="button"
@@ -230,17 +227,20 @@ export default function Navbar({ onOpenTrial }) {
           </div>
 
           <nav className="tf-drawer-nav">
-            {DRAWER_ITEMS.map((item, idx) => (
-              <a
-                key={item.target}
-                href={`#${item.target}`}
-                className="tf-drawer-link"
-                onClick={(e) => scrollToTarget(e, item.target)}
+            {NAV_PAGES.map((page, idx) => (
+              <NavLink
+                key={page.path}
+                to={page.path}
+                end={page.path === "/"}
+                className={({ isActive }) =>
+                  `tf-drawer-link ${isActive ? "active" : ""}`
+                }
+                onClick={closeMenu}
               >
                 <span className="tf-drawer-link-idx">0{idx + 1}</span>
-                <span className="tf-drawer-link-text">{item.label}</span>
+                <span className="tf-drawer-link-text">{page.label}</span>
                 <ArrowRight size={15} className="tf-drawer-link-arrow" />
-              </a>
+              </NavLink>
             ))}
           </nav>
 
