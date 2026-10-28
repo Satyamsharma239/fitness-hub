@@ -1,22 +1,44 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-/**
- * Custom hook to manage scroll-triggered reveal animations across all pages.
- * Re-scans DOM on route change and handles IntersectionObserver with prefers-reduced-motion fallback.
- */
+const REVEAL_SELECTORS = [
+  ".tf-section-header",
+  ".tf-intro-editorial-text",
+  ".tf-intro-editorial-visuals",
+  ".tf-zone-card",
+  ".tf-program-card",
+  ".tf-why-card",
+  ".tf-why-ribbon",
+  ".tf-pricing-card",
+  ".tf-visit-guarantee-box",
+  ".tf-testimonial-card",
+  ".tf-ig-card",
+  ".tf-location-card",
+  ".tf-map-visual-card",
+  ".tf-accordion-item",
+  ".tf-final-cta-box",
+  ".tf-pillar-card",
+  ".tf-about-story-text",
+  ".tf-about-story-media",
+  ".tf-about-visit-box",
+  ".tf-trainer-card",
+  ".tf-coaching-guarantee-banner",
+  ".tf-schedule-wrapper",
+  ".tf-schedule-notice",
+  ".tf-gallery-item",
+  ".tf-contact-block",
+  ".tf-form-card"
+].join(", ");
+
 export default function useScrollReveal() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Respect user's motion preferences
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const motionPreference = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
 
-    const selector = '.tf-reveal, .tf-reveal-left, .tf-reveal-right, .tf-reveal-scale, .tf-stagger';
-    const elements = document.querySelectorAll(selector);
-
-    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-      elements.forEach((el) => el.classList.add('revealed'));
+    if (motionPreference.matches || typeof window === "undefined" || !("IntersectionObserver" in window)) {
       return;
     }
 
@@ -24,24 +46,21 @@ export default function useScrollReveal() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
+            entry.target.classList.add("tf-revealed");
             observer.unobserve(entry.target);
           }
         });
       },
       {
         threshold: 0.08,
-        rootMargin: '0px 0px -30px 0px',
+        rootMargin: "0px 0px -40px 0px",
       }
     );
 
-    // Initial check: if already in view, reveal without delay
+    const elements = document.querySelectorAll(REVEAL_SELECTORS);
     elements.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (inView) {
-        el.classList.add('revealed');
-      } else {
+      if (!el.classList.contains("tf-revealed")) {
+        el.classList.add("tf-reveal-init");
         observer.observe(el);
       }
     });

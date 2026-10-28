@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Phone, MapPin, Clock, Flame } from 'lucide-react';
+import InstagramIcon from './InstagramIcon';
 import { GYM_INFO } from '../data/gymData';
 import logoImg from '../assets/fitnesshub_logo.jpg';
 import './Footer.css';
 
 const CURRENT_YEAR = new Date().getFullYear();
 
-export default function Footer() {
+export default function Footer({ onOpenTrial }) {
+  const [isOpenNow, setIsOpenNow] = useState(true);
+
+  useEffect(() => {
+    const checkOpenStatus = () => {
+      const now = new Date();
+      const istOffset = 5.5 * 60;
+      const utcTime = now.getTime() + now.getTimezoneOffset() * 60000;
+      const istTime = new Date(utcTime + istOffset * 60000);
+      const hours = istTime.getHours();
+      const minutes = istTime.getMinutes();
+      const day = istTime.getDay();
+      const timeInMinutes = hours * 60 + minutes;
+
+      if (day === 0) {
+        setIsOpenNow(timeInMinutes >= 18 * 60 && timeInMinutes < 22 * 60);
+      } else {
+        setIsOpenNow(timeInMinutes >= 6 * 60 && timeInMinutes < 24 * 60);
+      }
+    };
+
+    checkOpenStatus();
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -15,107 +39,132 @@ export default function Footer() {
   return (
     <footer className="tf-footer">
       <div className="tf-container">
+        {/* Pre-footer VIP Trial CTA Bar */}
+        <div className="tf-footer-cta-strip">
+          <div className="tf-footer-cta-text">
+            <span className="tf-badge">Complimentary Guest Pass</span>
+            <h3>Ready to experience Kurla’s premier strength & fitness facility?</h3>
+            <p>Claim your free club walkthrough & workout session. Meet our certified trainers with zero sales pressure.</p>
+          </div>
+          <div className="tf-footer-cta-action">
+            <button
+              type="button"
+              className="tf-btn tf-btn-primary tf-btn-lg"
+              onClick={onOpenTrial}
+            >
+              <Flame size={16} />
+              <span>Book Free Club Visit</span>
+            </button>
+          </div>
+        </div>
+
         <div className="tf-footer-grid">
           {/* Brand Column */}
           <div className="tf-footer-brand">
-            <Link to="/" className="tf-brand-link" aria-label="The Fitness Hub Home" style={{ display: 'inline-flex' }}>
+            <Link to="/" className="tf-brand-link" aria-label="The Fitness Hub Kurla Home">
               <img src={logoImg} alt="The Fitness Hub Logo" className="tf-brand-logo-img" />
               <div className="tf-brand-text-col">
                 <span className="tf-brand-text">
-                  FITNESS<span>HUB</span>
+                  THE FITNESS <span className="accent">HUB</span>
                 </span>
-                <span className="tf-brand-subtext">BY AVM FITNESS GROUP</span>
+                <span className="tf-brand-subtext">KURLA &bull; GET FIT. GET STRONG.</span>
               </div>
             </Link>
-            <p>
-              Nehru Nagar, Kurla East's premier strength training and physical transformation club by AVM Fitness Group. Dedicated to serious fitness, certified coaching, and real athletic results.
+
+            <p className="tf-footer-brand-desc">
+              First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar, Kurla. Offering daily 18-hour training (6 AM – 12 AM), dedicated Ladies Only batch (2 PM – 4 PM), Olympic power racks, and certified 1-on-1 personal coaching.
             </p>
+
+            <div className="tf-footer-status-pill">
+              <span className={`tf-status-dot ${isOpenNow ? 'open' : 'closed'}`} />
+              <span>{isOpenNow ? 'Gym Open Now until 12:00 AM' : 'Gym Opens at 6:00 AM'}</span>
+            </div>
+
             <div className="tf-footer-socials">
-              <a href={GYM_INFO.socials.instagram} target="_blank" rel="noreferrer" className="tf-social-icon" aria-label="The Fitness Hub Instagram">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                </svg>
+              <a
+                href={GYM_INFO.socials.instagram}
+                target="_blank"
+                rel="noreferrer"
+                className="tf-social-icon ig"
+                aria-label="The Fitness Hub Instagram @fitnesshubkurla"
+              >
+                <InstagramIcon size={18} />
               </a>
-              <a href={GYM_INFO.socials.facebook} target="_blank" rel="noreferrer" className="tf-social-icon" aria-label="The Fitness Hub Facebook">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                </svg>
-              </a>
-              <a href={GYM_INFO.socials.youtube} target="_blank" rel="noreferrer" className="tf-social-icon" aria-label="The Fitness Hub YouTube">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path>
-                  <polygon points="10 15 15 12 10 9 10 15"></polygon>
-                </svg>
-              </a>
-              <a href={GYM_INFO.socials.linkedin} target="_blank" rel="noreferrer" className="tf-social-icon" aria-label="The Fitness Hub LinkedIn">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect width="4" height="12" x="2" y="9"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
+              <a
+                href={GYM_INFO.contact.whatsappLink}
+                target="_blank"
+                rel="noreferrer"
+                className="tf-social-icon wa"
+                aria-label="The Fitness Hub WhatsApp Desk"
+              >
+                <Phone size={18} />
               </a>
             </div>
           </div>
 
           {/* Quick Nav Links */}
           <div className="tf-footer-col">
-            <h4>Quick Navigation</h4>
+            <h4>Club Navigation</h4>
             <ul className="tf-footer-links">
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About Fitness Hub</Link></li>
-              <li><Link to="/programs">Training Disciplines</Link></li>
-              <li><Link to="/trainers">Meet the Coaches</Link></li>
-              <li><Link to="/memberships">Membership Plans</Link></li>
-              <li><Link to="/schedule">Weekly Schedule</Link></li>
-              <li><Link to="/gallery">Club Gallery</Link></li>
+              <li><Link to="/memberships">Membership Plans (GST Included)</Link></li>
+              <li><Link to="/memberships">Personal Training (Alternate Days)</Link></li>
+              <li><Link to="/trainers">Certified Coaches</Link></li>
               <li><Link to="/contact">Contact & Location</Link></li>
             </ul>
           </div>
 
-          {/* Programs Links */}
+          {/* Membership Rates */}
           <div className="tf-footer-col">
-            <h4>Disciplines</h4>
+            <h4>Plans (GST Included)</h4>
             <ul className="tf-footer-links">
-              <li><Link to="/programs">Heavy Strength & Hypertrophy</Link></li>
-              <li><Link to="/programs">1-on-1 Personal Coaching</Link></li>
-              <li><Link to="/programs">Fat-Loss & Conditioning</Link></li>
-              <li><Link to="/programs">Functional Agility & Turf</Link></li>
-              <li><Link to="/programs">Group Core Sessions</Link></li>
-              <li><Link to="/schedule">Class Timetable</Link></li>
+              <li><Link to="/memberships">1 Month – ₹3,500</Link></li>
+              <li><Link to="/memberships">3 Months – ₹6,000</Link></li>
+              <li><Link to="/memberships">6 Months – ₹8,000</Link></li>
+              <li><Link to="/memberships">Annual – ₹12,000 (₹1,000/mo)</Link></li>
+              <li><Link to="/memberships">Annual Couples – ₹10,000 / person</Link></li>
+              <li><Link to="/memberships">PT Gold / Diamond / Platinum</Link></li>
             </ul>
           </div>
 
           {/* Contact Summary */}
           <div className="tf-footer-col">
-            <h4>Kurla East Club Desk</h4>
-            <p style={{ fontSize: '0.875rem', marginBottom: '0.35rem', color: 'var(--text-white)' }}>
-              {GYM_INFO.contact.building}
-            </p>
-            <p style={{ fontSize: '0.825rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-              {GYM_INFO.contact.landmark}, {GYM_INFO.contact.city} – {GYM_INFO.contact.pincode}
-            </p>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-white)', fontWeight: 700, marginBottom: '0.25rem' }}>
-              <a href={`tel:${GYM_INFO.contact.phone}`} style={{ color: 'var(--text-white)' }}>
+            <h4>Kurla Reception Desk</h4>
+            <div className="tf-footer-contact-item">
+              <MapPin size={16} className="accent" />
+              <span>First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar, Kurla, Mumbai – 400024</span>
+            </div>
+
+            <div className="tf-footer-contact-item">
+              <Clock size={16} className="accent" />
+              <span>Daily: 6:00 AM – 12:00 AM &bull; Ladies: 2–4 PM &bull; Sun: 6–10 PM</span>
+            </div>
+
+            <div className="tf-footer-contact-item">
+              <Phone size={16} className="accent" />
+              <a href={`tel:${GYM_INFO.contact.phoneRaw}`} style={{ color: '#ffffff', fontWeight: 700 }}>
                 {GYM_INFO.contact.phone}
               </a>
-            </p>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
-              {GYM_INFO.contact.hoursWeekday}
-            </p>
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            </div>
+
+            <div style={{ marginTop: '16px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
               <a
                 href={GYM_INFO.contact.whatsappLink}
                 target="_blank"
                 rel="noreferrer"
                 className="tf-btn tf-btn-primary tf-btn-sm"
               >
-                <span>WhatsApp</span>
+                <span>WhatsApp Desk</span>
               </a>
-              <Link to="/contact" className="tf-btn tf-btn-secondary tf-btn-sm">
-                <span>Contact Desk</span>
-              </Link>
+              <a
+                href={GYM_INFO.contact.mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="tf-btn tf-btn-secondary tf-btn-sm"
+              >
+                <span>Google Maps</span>
+              </a>
             </div>
           </div>
         </div>
@@ -123,7 +172,7 @@ export default function Footer() {
         {/* Footer Bottom Bar */}
         <div className="tf-footer-bottom">
           <p>
-            &copy; {CURRENT_YEAR} The Fitness Hub by AVM Fitness Group. All rights reserved. Built with React + Vite.
+            &copy; {CURRENT_YEAR} The Fitness Hub — Kurla. All rights reserved. Nehru Nagar, Kurla, Mumbai – 400024.
           </p>
 
           <button
@@ -132,7 +181,7 @@ export default function Footer() {
             onClick={scrollToTop}
             aria-label="Back to top of page"
           >
-            <span>Top</span>
+            <span>Back to Top</span>
             <ArrowUp size={14} />
           </button>
         </div>

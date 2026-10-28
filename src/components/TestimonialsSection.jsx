@@ -1,6 +1,5 @@
-import React from 'react';
-import { Quote, MessageSquare } from 'lucide-react';
-import { TESTIMONIALS_SAMPLE } from '../data/gymData';
+import { Star, MessageSquare } from 'lucide-react';
+import { TESTIMONIALS } from '../data/gymData';
 import './TestimonialsSection.css';
 
 export default function TestimonialsSection() {
@@ -10,37 +9,56 @@ export default function TestimonialsSection() {
         <div className="tf-section-header center">
           <span className="tf-eyebrow">
             <MessageSquare size={14} />
-            Member Experience
+            Member Success Stories
           </span>
           <h2 className="tf-section-title">
-            What Training Here Feels Like
+            Real People. <span className="accent">Real Transformations.</span>
           </h2>
           <p className="tf-section-subtitle">
-            Community feedback reflecting our focus on coaching standard, equipment availability, and facility culture.
+            Read authentic reviews from our dedicated lifting community in Nehru Nagar, Kurla. Over 500+ successful transformations guided by our certified coaching team.
           </p>
+
+          <div className="tf-rating-banner">
+            <div className="tf-stars">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={18} fill="#f59e0b" color="#f59e0b" />
+              ))}
+            </div>
+            <span className="tf-rating-text">
+              <strong>4.8 / 5.0 Rating</strong> based on 180+ Google Reviews & Kurla Member Feedbacks
+            </span>
+          </div>
         </div>
 
-        {/* Testimonials Sample Layout */}
+        {/* Testimonials Grid */}
         <div className="tf-testimonials-grid">
-          {TESTIMONIALS_SAMPLE.map((item) => (
+          {TESTIMONIALS.map((item) => (
             <div key={item.id} className="tf-testimonial-card">
-              <Quote size={28} className="tf-quote-icon" />
+              <div className="tf-testimonial-top">
+                <div className="tf-stars">
+                  {[...Array(item.rating)].map((_, i) => (
+                    <Star key={i} size={15} fill="#f59e0b" color="#f59e0b" />
+                  ))}
+                </div>
+                <span className="tf-testimonial-result-tag">{item.result}</span>
+              </div>
 
               <p className="tf-testimonial-quote">
                 "{item.quote}"
               </p>
 
-              <div className="tf-testimonial-meta">
-                <span className="tf-member-role">{item.rolePlaceholder}</span>
-                <span className="tf-member-tenure">{item.tenurePlaceholder}</span>
-                <span className="tf-member-focus-pill">{item.focus}</span>
+              <div className="tf-testimonial-author">
+                <div className="tf-author-avatar">
+                  {item.name.charAt(0)}
+                </div>
+                <div>
+                  <h4 className="tf-author-name">{item.name}</h4>
+                  <span className="tf-author-meta">{item.role} &bull; {item.tenure}</span>
+                </div>
+                <span className="tf-author-focus">{item.focus}</span>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="tf-testimonial-placeholder-tag">
-          <strong>Client Notice:</strong> Verified member testimonials and photographic case studies will be inserted here upon client submission.
         </div>
       </div>
     </section>

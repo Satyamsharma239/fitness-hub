@@ -6,7 +6,10 @@ import {
   Clock,
   Send,
   CheckCircle2,
-  ShieldCheck
+  ShieldCheck,
+  Copy,
+  Check,
+  ExternalLink
 } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import { GYM_INFO } from '../data/gymData';
@@ -21,26 +24,32 @@ export default function ContactPage() {
     name: '',
     email: '',
     phone: '',
-    topic: topicParam || 'Free Trial Pass',
+    topic: topicParam || 'General Club Walkthrough & Trial',
     timeSlot: 'Morning (06:00 - 10:00)',
     message: ''
   });
 
-  const [prevTopic, setPrevTopic] = useState(topicParam);
-  if (topicParam !== prevTopic) {
-    setPrevTopic(topicParam);
-    if (topicParam) {
-      setFormData((prev) => ({ ...prev, topic: topicParam }));
-    }
-  }
+  const [copiedPhone, setCopiedPhone] = useState(false);
+  const [copiedAddress, setCopiedAddress] = useState(false);
 
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submissionPayload, setSubmissionPayload] = useState(null);
 
+  const copyToClipboard = (text, type) => {
+    navigator.clipboard.writeText(text);
+    if (type === 'phone') {
+      setCopiedPhone(true);
+      setTimeout(() => setCopiedPhone(false), 2000);
+    } else {
+      setCopiedAddress(true);
+      setTimeout(() => setCopiedAddress(false), 2000);
+    }
+  };
+
   const validate = () => {
     const errs = {};
-    if (!formData.name.trim()) errs.name = 'Full name is required';
+    if (!formData.name.trim()) errs.name = 'Please provide your full name';
     if (!formData.email.trim()) {
       errs.email = 'Email address is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
@@ -48,7 +57,7 @@ export default function ContactPage() {
     }
     if (!formData.phone.trim()) {
       errs.phone = 'Contact number is required';
-    } else if (formData.phone.trim().length < 7) {
+    } else if (formData.phone.trim().length < 8) {
       errs.phone = 'Please enter a valid phone number';
     }
     return errs;
@@ -72,7 +81,7 @@ export default function ContactPage() {
       name: '',
       email: '',
       phone: '',
-      topic: 'Free Trial Pass',
+      topic: 'General Club Walkthrough & Trial',
       timeSlot: 'Morning (06:00 - 10:00)',
       message: ''
     });
@@ -83,13 +92,13 @@ export default function ContactPage() {
   return (
     <div className="tf-contact-page-wrap">
       <PageHero
-        eyebrow="Get in Touch"
-        title="Contact Desk & Location"
-        subtitle="Book your complimentary trial, enquire about membership arrangements, or arrange a private facility walkthrough with a senior coach."
+        eyebrow="Contact Desk & Location"
+        title="REACH THE FITNESS HUB IN KURLA"
+        subtitle="First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar, Kurla. Book your complimentary club walkthrough, consult on personal training, or drop in anytime."
         breadcrumb={[{ label: 'Contact', link: null }]}
       />
 
-      <div className="tf-container" style={{ marginTop: '4rem' }}>
+      <div className="tf-container" style={{ marginTop: '3.5rem' }}>
         <div className="tf-contact-grid">
           {/* Left Column: Direct Contact & Facility Details */}
           <div className="tf-contact-info-col">
@@ -99,48 +108,63 @@ export default function ContactPage() {
                 <div className="tf-contact-block-icon">
                   <MapPin size={20} />
                 </div>
-                <h3>Gym Address (Kurla East)</h3>
+                <h3>Gym Address (Kurla)</h3>
               </div>
               <div className="tf-contact-details">
                 <p><strong>{GYM_INFO.contact.building}</strong></p>
                 <p>{GYM_INFO.contact.landmark}</p>
                 <p>{GYM_INFO.contact.city} – {GYM_INFO.contact.pincode}</p>
                 <span className="tf-contact-note-badge">
-                  📍 Just 3–5 minutes walk from Kurla Railway Station (East) & SG Barve Marg.
+                  📍 Just 3–4 minutes walk from Kurla Railway Station (East) & Nehru Nagar Bus Depot.
                 </span>
-                <div style={{ marginTop: '0.85rem' }}>
+
+                <div style={{ marginTop: '1rem', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                   <a
-                    href="https://maps.google.com/?q=Serene+Shelter+Mass+Building+Nehru+Nagar+Kurla+East+Mumbai+400024"
+                    href={GYM_INFO.contact.mapsUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="tf-btn tf-btn-secondary tf-btn-sm"
-                    style={{ display: 'inline-flex', width: 'auto' }}
+                    className="tf-btn tf-btn-primary tf-btn-sm"
                   >
-                    <MapPin size={14} />
+                    <ExternalLink size={14} />
                     <span>Open in Google Maps</span>
                   </a>
+
+                  <button
+                    type="button"
+                    className="tf-btn tf-btn-secondary tf-btn-sm"
+                    onClick={() => copyToClipboard(GYM_INFO.contact.fullAddress, 'address')}
+                  >
+                    {copiedAddress ? <Check size={14} /> : <Copy size={14} />}
+                    <span>{copiedAddress ? 'Address Copied!' : 'Copy Address'}</span>
+                  </button>
                 </div>
               </div>
             </div>
 
-            {/* Training Hours */}
+            {/* Operating Hours */}
             <div className="tf-contact-block">
               <div className="tf-contact-block-header">
                 <div className="tf-contact-block-icon">
                   <Clock size={20} />
                 </div>
-                <h3>Gym Timings (7 Days Open)</h3>
+                <h3>Official Operating Timings</h3>
               </div>
               <ul className="tf-hours-list">
                 <li className="tf-hours-item">
-                  <span>{GYM_INFO.contact.hoursWeekday}</span>
+                  <span>Daily General Access:</span>
+                  <strong style={{ color: '#ffffff' }}>6:00 AM – 12:00 AM (Midnight)</strong>
                 </li>
                 <li className="tf-hours-item">
-                  <span>{GYM_INFO.contact.hoursSunday}</span>
+                  <span>Ladies Only Batch:</span>
+                  <strong style={{ color: 'var(--accent)' }}>2:00 PM – 4:00 PM</strong>
+                </li>
+                <li className="tf-hours-item">
+                  <span>Sunday Evening Session:</span>
+                  <strong style={{ color: '#ffffff' }}>6:00 PM – 10:00 PM</strong>
                 </li>
               </ul>
-              <span className="tf-contact-note-badge" style={{ color: '#FFFFFF', marginTop: '0.65rem' }}>
-                ⚡ Extended 17.5 hours open daily for early morning & late night workouts.
+              <span className="tf-contact-note-badge" style={{ color: '#34d399', marginTop: '0.65rem' }}>
+                ⚡ 18 hours open daily for early bird lifters, shift workers & late-night athletes.
               </span>
             </div>
 
@@ -150,17 +174,28 @@ export default function ContactPage() {
                 <div className="tf-contact-block-icon">
                   <Phone size={20} />
                 </div>
-                <h3>Phone & WhatsApp Desk</h3>
+                <h3>Reception & WhatsApp Desk</h3>
               </div>
               <div className="tf-contact-details">
-                <p>
-                  Calling: <a href={`tel:${GYM_INFO.contact.phone}`} style={{ color: 'var(--text-white)', fontWeight: 700 }}>{GYM_INFO.contact.phone}</a>
+                <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span>Calling: <strong style={{ color: '#ffffff' }}>{GYM_INFO.contact.phone}</strong></span>
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard(GYM_INFO.contact.phoneRaw, 'phone')}
+                    style={{ color: 'var(--accent)', fontSize: '11px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                  >
+                    {copiedPhone ? <Check size={12} /> : <Copy size={12} />}
+                    {copiedPhone ? 'Copied' : 'Copy'}
+                  </button>
                 </p>
                 <p>
-                  Instagram: <a href={GYM_INFO.socials.instagram} target="_blank" rel="noreferrer" style={{ color: 'var(--text-white)', fontWeight: 700 }}>{GYM_INFO.socials.instagramHandle}</a>
+                  WhatsApp: <strong style={{ color: '#ffffff' }}>{GYM_INFO.contact.phone}</strong>
                 </p>
                 <p>
-                  Email: <span style={{ color: 'var(--text-white)' }}>{GYM_INFO.contact.email}</span>
+                  Instagram: <a href={GYM_INFO.socials.instagram} target="_blank" rel="noreferrer" style={{ color: '#ff5b62', fontWeight: 700 }}>{GYM_INFO.socials.instagramHandle}</a>
+                </p>
+                <p>
+                  Email: <span style={{ color: '#ffffff' }}>{GYM_INFO.contact.email}</span>
                 </p>
                 <div style={{ marginTop: '1rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                   <a
@@ -169,40 +204,21 @@ export default function ContactPage() {
                     rel="noreferrer"
                     className="tf-btn tf-btn-primary tf-btn-sm"
                   >
-                    <span>Chat on WhatsApp</span>
+                    <span>Instant WhatsApp Chat</span>
                   </a>
                   <a
-                    href={`tel:${GYM_INFO.contact.phone}`}
+                    href={`tel:${GYM_INFO.contact.phoneRaw}`}
                     className="tf-btn tf-btn-secondary tf-btn-sm"
                   >
                     <Phone size={14} />
-                    <span>Call Gym Now</span>
+                    <span>Call 81088 84757</span>
                   </a>
                 </div>
-              </div>
-            </div>
-
-            {/* Map Visual Indicator */}
-            <div className="tf-map-placeholder">
-              <div className="tf-map-inner">
-                <div className="tf-map-pin-icon">
-                  <MapPin size={22} />
-                </div>
-                <h4>The Fitness Hub (Kurla East)</h4>
-                <p>{GYM_INFO.contact.fullAddress}</p>
-                <a
-                  href="https://maps.google.com/?q=Serene+Shelter+Mass+Building+Nehru+Nagar+Kurla+East+Mumbai+400024"
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ color: '#FFFFFF', fontSize: '0.8rem', fontWeight: 700, textDecoration: 'underline', marginTop: '0.25rem' }}
-                >
-                  View Directions on Map &rarr;
-                </a>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Full Page Validated Form (NO POPUP!) */}
+          {/* Right Column: Full Validated Form */}
           <div className="tf-form-card">
             {!submitted ? (
               <>
@@ -211,9 +227,9 @@ export default function ContactPage() {
                     <ShieldCheck size={16} />
                     <span>Free Trial & Membership Desk</span>
                   </div>
-                  <h3>Send an Inquiry or Book Trial</h3>
+                  <h3>Book Free Visit or Inquire</h3>
                   <p>
-                    Please fill out your details below. Our coaching team will reach out to schedule your preferred orientation or answer questions.
+                    Submit your contact details and our team will confirm your preferred timing slot via WhatsApp.
                   </p>
                 </div>
 
@@ -226,7 +242,7 @@ export default function ContactPage() {
                       id="name"
                       type="text"
                       className={`tf-form-input ${errors.name ? 'error' : ''}`}
-                      placeholder="e.g. Jordan Smith"
+                      placeholder="e.g. Rahul Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       aria-required="true"
@@ -245,7 +261,7 @@ export default function ContactPage() {
                         id="email"
                         type="email"
                         className={`tf-form-input ${errors.email ? 'error' : ''}`}
-                        placeholder="jordan@example.com"
+                        placeholder="rahul@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         aria-required="true"
@@ -257,13 +273,13 @@ export default function ContactPage() {
 
                     <div className="tf-form-group">
                       <label htmlFor="phone" className="tf-form-label">
-                        Phone Number *
+                        Contact / WhatsApp Number *
                       </label>
                       <input
                         id="phone"
                         type="tel"
                         className={`tf-form-input ${errors.phone ? 'error' : ''}`}
-                        placeholder="+1 (555) 000-0000"
+                        placeholder="+91 98765 43210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         aria-required="true"
@@ -277,7 +293,7 @@ export default function ContactPage() {
                   <div className="tf-form-row-2">
                     <div className="tf-form-group">
                       <label htmlFor="topic" className="tf-form-label">
-                        Area of Interest
+                        Plan or Inquiry Interest
                       </label>
                       <select
                         id="topic"
@@ -285,15 +301,16 @@ export default function ContactPage() {
                         value={formData.topic}
                         onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
                       >
-                        <option value="Free Trial Pass">Free Trial Pass (First Session Free)</option>
-                        <option value="Titan Basic Membership">Titan Basic Membership</option>
-                        <option value="Titan All-Access Membership">Titan All-Access Membership</option>
-                        <option value="Titan Performance 1-on-1">1-on-1 Personal Coaching</option>
-                        <option value="Strength & Powerlifting Program">Strength & Powerlifting</option>
-                        <option value="Functional Athletic Fitness">Functional Athletic Fitness</option>
-                        <option value="Titan Squad Group Classes">Titan Squad Group Classes</option>
-                        <option value="Coach Consultation">Consultation with a Coach</option>
-                        <option value="General Facility Inquiry">General Facility Inquiry</option>
+                        <option value="General Club Walkthrough & Trial">General Club Walkthrough & Trial</option>
+                        <option value="Standard 1 Month (₹3,500)">Standard 1 Month (₹3,500)</option>
+                        <option value="Standard 3 Months (₹6,000)">Standard 3 Months (₹6,000)</option>
+                        <option value="Standard 6 Months (₹8,000)">Standard 6 Months (₹8,000)</option>
+                        <option value="Standard Annual (₹12,000)">Standard Annual (₹12,000 - ₹1,000/mo)</option>
+                        <option value="Annual Couples Package (₹10,000/person)">Annual Couples Package (₹10,000/person)</option>
+                        <option value="Personal Training: Gold (₹6,000/mo)">Personal Training: Gold (₹6,000/mo)</option>
+                        <option value="Personal Training: Diamond (₹8,000/mo)">Personal Training: Diamond (₹8,000/mo)</option>
+                        <option value="Personal Training: Platinum (₹11,000/mo)">Personal Training: Platinum (₹11,000/mo)</option>
+                        <option value="Ladies Only Batch (2:00 PM – 4:00 PM)">Ladies Only Batch (2:00 PM – 4:00 PM)</option>
                       </select>
                     </div>
 
@@ -307,27 +324,27 @@ export default function ContactPage() {
                         value={formData.timeSlot}
                         onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value })}
                       >
-                        <option value="Early Morning (05:30 - 08:30)">Early Morning (05:30 - 08:30)</option>
-                        <option value="Morning (08:30 - 12:00)">Morning (08:30 - 12:00)</option>
-                        <option value="Lunch Express (12:00 - 14:00)">Lunch Express (12:00 - 14:00)</option>
-                        <option value="Late Afternoon (14:00 - 17:30)">Late Afternoon (14:00 - 17:30)</option>
-                        <option value="Peak Evening (17:30 - 21:00)">Peak Evening (17:30 - 21:00)</option>
+                        <option value="Early Morning (06:00 - 09:00)">Early Morning (06:00 - 09:00)</option>
+                        <option value="Morning (09:00 - 12:00)">Morning (09:00 - 12:00)</option>
+                        <option value="Ladies Only Batch (14:00 - 16:00)">Ladies Only Batch (14:00 - 16:00)</option>
+                        <option value="Evening (16:00 - 20:00)">Evening (16:00 - 20:00)</option>
+                        <option value="Late Night (20:00 - 00:00 Midnight)">Late Night (20:00 - 00:00 Midnight)</option>
                       </select>
                     </div>
                   </div>
 
                   <div className="tf-form-group">
                     <label htmlFor="message" className="tf-form-label">
-                      Training History or Specific Inquiries (Optional)
+                      Fitness Goals or Past Injuries (Optional)
                     </label>
                     <textarea
                       id="message"
-                      rows={4}
+                      rows={3}
                       className="tf-form-textarea"
-                      placeholder="Tell us about your fitness goals or any movement limitations we should know about..."
+                      placeholder="Tell us about your fitness target or any specific questions you have..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    ></textarea>
+                    />
                   </div>
 
                   <button
@@ -336,14 +353,8 @@ export default function ContactPage() {
                     style={{ width: '100%' }}
                   >
                     <Send size={16} />
-                    <span>Submit Enquiry & Book Trial</span>
+                    <span>Submit & Book Visit</span>
                   </button>
-
-                  <div style={{ marginTop: '0.85rem', textAlign: 'center' }}>
-                    <small style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>
-                      Client-ready demo form with live client-side validation.
-                    </small>
-                  </div>
                 </form>
               </>
             ) : (
@@ -351,27 +362,75 @@ export default function ContactPage() {
                 <div className="tf-success-icon-wrap">
                   <CheckCircle2 size={32} />
                 </div>
-                <h4>Enquiry Successfully Submitted</h4>
+                <h4>Visit Request Confirmed!</h4>
                 <p>
-                  Thank you, <strong>{submissionPayload.name}</strong>! Your request has been recorded. In production, this form routes directly to the gym's management CRM or front desk inbox.
+                  Thank you, <strong>{submissionPayload.name}</strong>! Your inquiry for <strong>{submissionPayload.topic}</strong> has been logged. Our reception team will reach out via WhatsApp at <strong>{submissionPayload.phone}</strong>.
                 </p>
 
                 <div className="tf-success-summary">
-                  <div><strong>Selected Topic:</strong> {submissionPayload.topic}</div>
                   <div><strong>Preferred Slot:</strong> {submissionPayload.timeSlot}</div>
-                  <div><strong>Email:</strong> {submissionPayload.email}</div>
-                  <div><strong>Phone:</strong> {submissionPayload.phone}</div>
+                  <div><strong>Location:</strong> First Floor, Serene Shelter, Mass Building, Nehru Nagar, Kurla</div>
+                  <div><strong>Timings:</strong> Daily 6:00 AM – 12:00 AM Midnight</div>
                 </div>
 
                 <button
                   type="button"
                   className="tf-btn tf-btn-secondary"
                   onClick={handleReset}
+                  style={{ width: '100%' }}
                 >
-                  <span>Submit Another Enquiry</span>
+                  <span>Submit Another Request</span>
                 </button>
               </div>
             )}
+          </div>
+        </div>
+
+        {/* Live Google Maps Embed Container */}
+        <div style={{ marginTop: '3.5rem' }}>
+          <div style={{
+            background: 'var(--bg-surface)',
+            border: '1px solid var(--border-dark)',
+            borderRadius: 'var(--radius-md)',
+            overflow: 'hidden',
+            padding: '24px'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
+              <div>
+                <span className="tf-eyebrow" style={{ marginBottom: '6px' }}>Verified Location</span>
+                <h3 style={{ fontSize: '20px', color: '#ffffff' }}>The Fitness Hub Kurla on Google Maps</h3>
+                <p style={{ fontSize: '13px', color: 'var(--text-muted)' }}>First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar, Kurla, Mumbai – 400024</p>
+              </div>
+              <a
+                href={GYM_INFO.contact.mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="tf-btn tf-btn-primary tf-btn-sm"
+              >
+                <ExternalLink size={14} />
+                <span>Open in Google Maps App</span>
+              </a>
+            </div>
+
+            <div style={{
+              position: 'relative',
+              width: '100%',
+              height: '380px',
+              borderRadius: 'var(--radius-sm)',
+              overflow: 'hidden',
+              border: '1px solid var(--border-dark)'
+            }}>
+              <iframe
+                title="The Fitness Hub Kurla Location Map"
+                src="https://maps.google.com/maps?q=Serene+Shelter+Mass+Building+B+Wing+Nehru+Nagar+Kurla+Mumbai+400024&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </div>
         </div>
       </div>

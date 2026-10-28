@@ -6,8 +6,8 @@ export default function TrialModal({ isOpen, onClose }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [goal, setGoal] = useState('Strength & Power');
-  const [sessionType, setSessionType] = useState('Open Gym & Movement Assessment');
+  const [goal, setGoal] = useState('General Facility Walkthrough & Trial');
+  const [sessionType, setSessionType] = useState('Facility Walkthrough & Movement Screen');
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -42,8 +42,8 @@ export default function TrialModal({ isOpen, onClose }) {
     if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errs.email = 'Please provide a valid email';
     }
-    if (!phone.trim() || phone.trim().length < 7) {
-      errs.phone = 'Please provide a contact number';
+    if (!phone.trim() || phone.trim().length < 8) {
+      errs.phone = 'Please provide your WhatsApp or phone number';
     }
     return errs;
   };
@@ -75,18 +75,18 @@ export default function TrialModal({ isOpen, onClose }) {
           <>
             <div className="tf-modal-badge">
               <ShieldCheck size={14} />
-              <span>Complimentary Guest Pass</span>
+              <span>The Fitness Hub • Kurla</span>
             </div>
 
-            <h3 className="tf-modal-title">Book Your Free Trial</h3>
+            <h3 className="tf-modal-title">Schedule Club Visit & Trial</h3>
             <p className="tf-modal-desc">
-              Experience the equipment, meet our coaches, and receive a free movement screen with zero sales pressure.
+              Tour our air-conditioned facility in Nehru Nagar, Kurla. Check out our Olympic weights, meet our certified coaches, and discuss the membership or personal training plan that fits your goals.
             </p>
 
             <div className="tf-modal-perks">
-              <span className="tf-modal-perk-tag">&bull; Full Gym Access</span>
+              <span className="tf-modal-perk-tag">&bull; 100% Free Facility Tour</span>
               <span className="tf-modal-perk-tag">&bull; 1-on-1 Movement Screen</span>
-              <span className="tf-modal-perk-tag">&bull; Zero Commitment</span>
+              <span className="tf-modal-perk-tag">&bull; Zero Sales Pressure</span>
             </div>
 
             <form onSubmit={handleSubmit} noValidate>
@@ -95,7 +95,7 @@ export default function TrialModal({ isOpen, onClose }) {
                 <input
                   type="text"
                   className={`tf-form-input ${errors.name ? 'error' : ''}`}
-                  placeholder="e.g. Jordan Miller"
+                  placeholder="e.g. Rahul Sharma"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -108,7 +108,7 @@ export default function TrialModal({ isOpen, onClose }) {
                   <input
                     type="email"
                     className={`tf-form-input ${errors.email ? 'error' : ''}`}
-                    placeholder="jordan@example.com"
+                    placeholder="rahul@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -116,11 +116,11 @@ export default function TrialModal({ isOpen, onClose }) {
                 </div>
 
                 <div className="tf-form-group">
-                  <label className="tf-form-label">Phone Number *</label>
+                  <label className="tf-form-label">Phone / WhatsApp *</label>
                   <input
                     type="tel"
                     className={`tf-form-input ${errors.phone ? 'error' : ''}`}
-                    placeholder="+1 (555) 000-0000"
+                    placeholder="+91 98765 43210"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                   />
@@ -129,30 +129,35 @@ export default function TrialModal({ isOpen, onClose }) {
               </div>
 
               <div className="tf-form-group">
-                <label className="tf-form-label">Primary Training Goal</label>
+                <label className="tf-form-label">Plan or Service Interest</label>
                 <select
                   className="tf-form-select"
                   value={goal}
                   onChange={(e) => setGoal(e.target.value)}
                 >
-                  <option value="Strength & Power">Strength & Powerlifting</option>
-                  <option value="Functional Conditioning">Functional Conditioning & Stamina</option>
-                  <option value="Fat Loss & Muscle Building">Fat Loss & Muscle Building</option>
-                  <option value="Injury Rehab & Mobility">Injury Rehab & Mobility</option>
-                  <option value="General Health">General Athletic Health</option>
+                  <option value="General Facility Walkthrough & Trial">General Facility Walkthrough & Trial</option>
+                  <option value="Standard 1 Month (₹3,500)">Standard 1 Month (₹3,500)</option>
+                  <option value="Standard 3 Months (₹6,000)">Standard 3 Months (₹6,000)</option>
+                  <option value="Standard 6 Months (₹8,000)">Standard 6 Months (₹8,000)</option>
+                  <option value="Standard Annual (₹12,000)">Standard Annual (₹12,000)</option>
+                  <option value="Annual Couples Package (₹10,000/person)">Annual Couples Package (₹10,000/person)</option>
+                  <option value="Personal Training: Gold (₹6,000/mo)">Personal Training: Gold (₹6,000/mo)</option>
+                  <option value="Personal Training: Diamond (₹8,000/mo)">Personal Training: Diamond (₹8,000/mo)</option>
+                  <option value="Personal Training: Platinum (₹11,000/mo)">Personal Training: Platinum (₹11,000/mo)</option>
+                  <option value="Ladies Only Batch (2:00 PM – 4:00 PM)">Ladies Only Batch (2:00 PM – 4:00 PM)</option>
                 </select>
               </div>
 
               <div className="tf-form-group">
-                <label className="tf-form-label">Preferred Session Type</label>
+                <label className="tf-form-label">Visit Type</label>
                 <select
                   className="tf-form-select"
                   value={sessionType}
                   onChange={(e) => setSessionType(e.target.value)}
                 >
-                  <option value="Open Gym & Movement Assessment">Open Gym + Coach Movement Screen</option>
-                  <option value="Titan Squad Group Class Trial">Titan Squad Group Class Trial</option>
-                  <option value="1-on-1 Coach Consultation">1-on-1 Coach Consultation</option>
+                  <option value="Facility Walkthrough & Movement Screen">Facility Walkthrough & Movement Screen</option>
+                  <option value="Complimentary 1-Day Workout Pass">Complimentary 1-Day Workout Pass</option>
+                  <option value="Personal Trainer Consultation">Personal Trainer Consultation</option>
                 </select>
               </div>
 
@@ -162,7 +167,7 @@ export default function TrialModal({ isOpen, onClose }) {
                 style={{ width: '100%', marginTop: '0.5rem' }}
               >
                 <Send size={16} />
-                <span>Confirm Trial Booking</span>
+                <span>Confirm Visit Request</span>
               </button>
             </form>
           </>
@@ -171,14 +176,14 @@ export default function TrialModal({ isOpen, onClose }) {
             <div className="tf-success-icon-wrap">
               <CheckCircle2 size={32} />
             </div>
-            <h4>Trial Pass Reserved!</h4>
+            <h4>Visit Request Received!</h4>
             <p>
-              Your guest trial request for <strong>{name}</strong> ({sessionType}) has been confirmed in the demo system.
+              Thank you, <strong>{name}</strong>! Your request for <strong>{sessionType}</strong> at our Nehru Nagar, Kurla facility has been logged. Our reception desk will message you on WhatsApp (<strong>{phone}</strong>) to confirm your visit.
             </p>
             <div className="tf-success-summary">
-              <div><strong>Email:</strong> {email}</div>
-              <div><strong>Phone:</strong> {phone}</div>
-              <div><strong>Focus Goal:</strong> {goal}</div>
+              <div><strong>Location:</strong> First Floor, Serene Shelter, Mass Building, Nehru Nagar, Kurla</div>
+              <div><strong>Timings:</strong> Daily 6:00 AM – 12:00 AM &bull; Ladies 2:00 PM – 4:00 PM</div>
+              <div><strong>Selected Interest:</strong> {goal}</div>
             </div>
             <button
               type="button"

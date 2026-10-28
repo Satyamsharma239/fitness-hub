@@ -1,590 +1,353 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Target,
-  Dumbbell,
-  Users,
+  MapPin,
   Clock,
-  Camera,
-  Check,
   ShieldCheck,
-  Award,
-  Shield,
+  CheckCircle2,
+  Phone,
   Compass,
-  HelpCircle,
-  ChevronDown,
-  Quote
-} from 'lucide-react';
-import Hero from '../components/Hero';
-import {
-  PROGRAMS,
-  TRAINERS,
-  MEMBERSHIP_PLANS,
-  SCHEDULE_CLASSES,
-  GALLERY_ITEMS,
-  TESTIMONIALS_SAMPLE,
-  FAQS,
-  WHY_CHOOSE_US
-} from '../data/gymData';
-import '../components/IntroSection.css';
-import '../components/ProgramsSection.css';
-import '../components/WhyChooseUs.css';
-import '../components/TrainersSection.css';
-import '../components/MembershipSection.css';
-import '../components/ScheduleSection.css';
-import '../components/GallerySection.css';
-import '../components/TestimonialsSection.css';
-import '../components/FAQSection.css';
-import '../components/ContactSection.css';
+  Sparkles,
+  ChevronRight
+} from "lucide-react";
+import Hero from "../components/Hero";
+import MarqueeTicker from "../components/MarqueeTicker";
+import WhyChooseUs from "../components/WhyChooseUs";
+import MembershipSection from "../components/MembershipSection";
+import InstagramFeed from "../components/InstagramFeed";
+import TestimonialsSection from "../components/TestimonialsSection";
+import FAQSection from "../components/FAQSection";
+import { GYM_INFO, TRAINING_ZONES } from "../data/gymData";
+import "./HomePage.css";
 
-export default function HomePage() {
-  const [openFaq, setOpenFaq] = useState(0);
-
-  const toggleFaq = (idx) => {
-    setOpenFaq(openFaq === idx ? -1 : idx);
-  };
-
-  const getWhyIcon = (id) => {
-    switch (id) {
-      case 'coaching':
-        return <Award size={24} />;
-      case 'environment':
-        return <Shield size={24} />;
-      case 'equipment':
-        return <Compass size={24} />;
-      case 'beginners':
-        return <Users size={24} />;
-      default:
-        return <Award size={24} />;
-    }
-  };
-
+export default function HomePage({ onOpenTrial }) {
   return (
     <div className="tf-home-page">
-      {/* 1. Hero Section */}
-      <Hero />
+      {/* 1. Flagship Hero with Typing Animation & Hero Image */}
+      <Hero onOpenTrial={onOpenTrial} />
 
-      {/* 2. Short About Teaser */}
-      <section className="tf-section tf-intro">
+      {/* 2. High-Energy Marquee Ticker */}
+      <MarqueeTicker />
+
+      {/* 3. The Club Story / Introduction */}
+      <section className="tf-section tf-intro-editorial">
         <div className="tf-container">
-          <div className="tf-intro-grid">
-            <div className="tf-intro-visual tf-reveal-left">
-              <div className="tf-intro-img-main">
-                <img
-                  src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=900&q=80"
-                  alt="The Fitness Hub Training Area"
-                  loading="lazy"
-                />
-              </div>
-              <div className="tf-intro-side-col">
-                <div className="tf-intro-img-sub">
-                  <img
-                    src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80"
-                    alt="Turf and Conditioning Track"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="tf-intro-callout-box">
-                  <span className="tf-callout-number">100%</span>
-                  <span className="tf-callout-label">
-                    Evidence-based progression, zero predatory lock-in contracts
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="tf-intro-content tf-reveal-right">
+          <div className="tf-intro-editorial-grid">
+            <div className="tf-intro-editorial-text">
               <span className="tf-eyebrow">
-                <Target size={14} />
-                About The Fitness Hub
+                <Compass size={13} />
+                About The Fitness Hub — Kurla
               </span>
               <h2 className="tf-section-title">
-                Cutting Through the Confusion of Modern Fitness
+                BUILT FOR DISCIPLINE. <br />
+                <span className="accent">ENGINEERED FOR RESULTS.</span>
               </h2>
+
               <p className="tf-intro-lead">
-                We engineered a space built strictly for progressive strength, functional conditioning, and real member development.
-              </p>
-              <p className="tf-intro-body">
-                No waiting around for benches, no broken cables left for months, and no aggressive supplement sales pitches. Whether you're lifting for the first time or peaking your physique, The Fitness Hub gives you the hardware and coaching to succeed.
+                First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar, Kurla.
               </p>
 
-              <div className="tf-intro-list" style={{ marginBottom: '2rem' }}>
-                <div className="tf-intro-list-item">
-                  <div className="tf-intro-check">
-                    <Check size={14} strokeWidth={3} />
-                  </div>
-                  <div className="tf-intro-item-text">
-                    <h4>Periodized Progression Over Random Workouts</h4>
-                    <p>Structured lifting cycles designed to build durable strength without burnout.</p>
-                  </div>
+              <p className="tf-intro-p">
+                We believe your workout environment dictates your consistency. From our heavy free-weight bays and Olympic power racks to our commercial cardio fleet and dedicated Ladies Only training hours, every station is maintained for uninterrupted, focused lifting in a clean, fully air-conditioned space.
+              </p>
+
+              <div className="tf-intro-checklist">
+                <div className="tf-intro-check-row">
+                  <CheckCircle2 size={18} className="tf-check-accent" />
+                  <span><strong>18-Hour Daily Flexibility:</strong> Open daily 6:00 AM to 12:00 AM Midnight (Sunday 6:00 PM – 10:00 PM) to accommodate busy schedules.</span>
                 </div>
-
-                <div className="tf-intro-list-item">
-                  <div className="tf-intro-check">
-                    <Check size={14} strokeWidth={3} />
-                  </div>
-                  <div className="tf-intro-item-text">
-                    <h4>Experienced Floor Coaches On Every Shift</h4>
-                    <p>Qualified trainers ready to check form, cue technique, and ensure safe lifting.</p>
-                  </div>
+                <div className="tf-intro-check-row">
+                  <CheckCircle2 size={18} className="tf-check-accent" />
+                  <span><strong>Dedicated Ladies Only Batch:</strong> Daily 2:00 PM – 4:00 PM reserved exclusively for female members with certified female trainer guidance.</span>
+                </div>
+                <div className="tf-intro-check-row">
+                  <CheckCircle2 size={18} className="tf-check-accent" />
+                  <span><strong>Alternate-Day 1-on-1 PT:</strong> Structured Gold (₹6k), Diamond (₹8k), and Platinum (₹11k) coaching tiers.</span>
                 </div>
               </div>
 
-              <div>
-                <Link to="/about" className="tf-btn tf-btn-secondary">
-                  <span>Learn More About Us</span>
+              <div className="tf-intro-actions">
+                <button
+                  type="button"
+                  className="tf-btn tf-btn-primary"
+                  onClick={onOpenTrial}
+                >
+                  <span>Schedule Club Visit</span>
                   <ArrowRight size={16} />
+                </button>
+
+                <Link to="/about" className="tf-btn tf-btn-secondary">
+                  <span>Explore Club Story</span>
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* 3. Featured Disciplines Preview (3 core programs) */}
-      <section className="tf-section tf-programs-section">
-        <div className="tf-container">
-          <div className="tf-reveal" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '3rem', flexWrap: 'wrap', gap: '1.5rem' }}>
-            <div>
-              <span className="tf-eyebrow">
-                <Dumbbell size={14} />
-                Training Disciplines
-              </span>
-              <h2 className="tf-section-title" style={{ marginBottom: '0.5rem' }}>
-                Core Training Pathways
-              </h2>
-              <p className="tf-section-subtitle">
-                Explore our scientifically programmed disciplines designed for sustainable progression.
-              </p>
-            </div>
-            <Link to="/programs" className="tf-btn tf-btn-outline-white tf-btn-sm">
-              <span>View All 5 Disciplines</span>
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          <div className="tf-grid-3 tf-stagger">
-            {PROGRAMS.slice(0, 3).map((program) => (
-              <div key={program.id} className="tf-program-card">
-                <div className="tf-program-media">
-                  <img
-                    src={program.image}
-                    alt={program.title}
-                    className="tf-program-img"
-                    loading="lazy"
-                  />
-                  <div className="tf-program-media-overlay"></div>
-                  <span className="tf-program-badge">{program.badge}</span>
-                </div>
-
-                <div className="tf-program-body">
-                  <h3 className="tf-program-title">{program.title}</h3>
-                  <span className="tf-program-subtitle">{program.subtitle}</span>
-                  <p className="tf-program-desc">{program.description}</p>
-
-                  <div className="tf-program-suitability">
-                    <strong>Ideal for:</strong> {program.suitableFor}
-                  </div>
-
-                  <div className="tf-program-footer">
-                    <Link
-                      to={`/contact?topic=Program Inquiry: ${encodeURIComponent(program.title)}`}
-                      className="tf-program-link-btn"
-                    >
-                      <span>Inquire About This Program</span>
-                      <ArrowRight size={14} />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Why Choose Us (Editorial Light Contrast) */}
-      <section className="tf-section tf-why-section">
-        <div className="tf-container">
-          <div className="tf-section-header center tf-reveal">
-            <span className="tf-eyebrow dark">The Fitness Hub Standard</span>
-            <h2 className="tf-section-title">
-              Built For Serious Training
-            </h2>
-            <p className="tf-section-subtitle">
-              We removed the clutter, the long queues, and gimmicks to give you a focused training ground.
-            </p>
-          </div>
-
-          <div className="tf-why-grid tf-stagger">
-            {WHY_CHOOSE_US.map((item) => (
-              <div key={item.id} className="tf-why-card">
-                <div className="tf-why-card-top">
-                  <div className="tf-why-icon-box">
-                    {getWhyIcon(item.id)}
-                  </div>
-                  <span className="tf-why-tag">{item.tag}</span>
-                </div>
-
-                <h3 className="tf-why-title">{item.title}</h3>
-                <p className="tf-why-desc">{item.description}</p>
-
-                <ul className="tf-why-points">
-                  {item.points.slice(0, 2).map((pt, idx) => (
-                    <li key={idx} className="tf-why-point-item">
-                      <span className="tf-why-point-bullet"></span>
-                      <span>{pt}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="tf-why-ribbon tf-reveal-scale">
-            <div className="tf-ribbon-text">
-              <h3>Experience the facility firsthand with a free guest pass.</h3>
-              <p>Tour the platforms, inspect the hardware, and meet our senior coaches.</p>
-            </div>
-            <Link to="/contact?topic=Free Trial Pass" className="tf-btn tf-btn-primary">
-              <span>Book Your Free Trial</span>
-              <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Coach Spotlight Preview (Top 2 Trainers) */}
-      <section className="tf-section tf-trainers-section">
-        <div className="tf-container">
-          <div className="tf-reveal" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '3rem', flexWrap: 'wrap', gap: '1.5rem' }}>
-            <div>
-              <span className="tf-eyebrow">
-                <Users size={14} />
-                Coaching Staff
-              </span>
-              <h2 className="tf-section-title" style={{ marginBottom: '0.5rem' }}>
-                Meet Our Lead Coaches
-              </h2>
-              <p className="tf-section-subtitle">
-                Accredited strength & conditioning specialists with proven athletic backgrounds.
-              </p>
-            </div>
-            <Link to="/trainers" className="tf-btn tf-btn-outline-white tf-btn-sm">
-              <span>Meet Full Coaching Staff</span>
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          <div className="tf-grid-2 tf-stagger">
-            {TRAINERS.slice(0, 2).map((trainer) => (
-              <div key={trainer.id} className="tf-trainer-card">
-                <div className="tf-trainer-photo-wrap" style={{ height: '360px' }}>
-                  <img
-                    src={trainer.image}
-                    alt={trainer.name}
-                    className="tf-trainer-img"
-                    loading="lazy"
-                  />
-                  <div className="tf-trainer-photo-overlay"></div>
-                  <span className="tf-trainer-exp-badge">{trainer.experience}</span>
-                </div>
-
-                <div className="tf-trainer-body">
-                  <h3 className="tf-trainer-name">{trainer.name}</h3>
-                  <span className="tf-trainer-role">{trainer.role}</span>
-
-                  <div className="tf-trainer-specialty">
-                    <strong>Specialty:</strong> {trainer.specialty}
-                  </div>
-
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-body)', marginBottom: '1.25rem', lineHeight: 1.5 }}>
-                    {trainer.bio}
-                  </p>
-
-                  <Link
-                    to={`/contact?topic=Coach Consultation: ${encodeURIComponent(trainer.name)}`}
-                    className="tf-trainer-btn"
-                  >
-                    <span>Request Consult with Coach {trainer.name.split(' ')[0]}</span>
-                    <ArrowRight size={14} />
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Membership Overview */}
-      <section className="tf-section tf-membership-section">
-        <div className="tf-container">
-          <div className="tf-reveal" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '3rem', flexWrap: 'wrap', gap: '1.5rem' }}>
-            <div>
-              <span className="tf-eyebrow">
-                <ShieldCheck size={14} />
-                Memberships & Access
-              </span>
-              <h2 className="tf-section-title" style={{ marginBottom: '0.5rem' }}>
-                Flexible Membership Tiers
-              </h2>
-              <p className="tf-section-subtitle">
-                Clear options with no hidden fees or predatory cancellation clauses.
-              </p>
-            </div>
-            <Link to="/memberships" className="tf-btn tf-btn-outline-white tf-btn-sm">
-              <span>Compare All 3 Tiers</span>
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          <div className="tf-pricing-grid tf-stagger">
-            {MEMBERSHIP_PLANS.map((plan) => (
-              <div
-                key={plan.id}
-                className={`tf-pricing-card ${plan.highlighted ? 'featured' : ''}`}
-              >
-                {plan.highlighted && (
-                  <div className="tf-featured-badge">
-                    {plan.badge}
-                  </div>
-                )}
-
-                <div className="tf-pricing-header">
-                  {!plan.highlighted && (
-                    <span className="tf-plan-badge-inline">{plan.badge}</span>
-                  )}
-                  <h3 className="tf-plan-name">{plan.name}</h3>
-                  <p className="tf-plan-ideal">{plan.idealFor}</p>
-                </div>
-
-                <div className="tf-pricing-value-box">
-                  <div className="tf-price-display">{plan.pricePlaceholder}</div>
-                  <div className="tf-price-subtext">
-                    {plan.pricingNote} &bull; {plan.period}
-                  </div>
-                </div>
-
-                <ul className="tf-pricing-features">
-                  {plan.features.slice(0, 4).map((feature, idx) => (
-                    <li key={idx} className="tf-feature-item">
-                      <span className="tf-feature-icon">
-                        <Check size={12} strokeWidth={3} />
-                      </span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="tf-pricing-footer">
-                  <Link
-                    to={`/contact?topic=Membership Inquiry: ${encodeURIComponent(plan.name)}`}
-                    className={`tf-btn ${
-                      plan.highlighted ? 'tf-btn-primary' : 'tf-btn-secondary'
-                    }`}
-                  >
-                    <span>{plan.ctaText}</span>
-                    <ArrowRight size={16} />
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Schedule Teaser */}
-      <section className="tf-section tf-schedule-section">
-        <div className="tf-container">
-          <div className="tf-reveal" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '3rem', flexWrap: 'wrap', gap: '1.5rem' }}>
-            <div>
-              <span className="tf-eyebrow">
-                <Clock size={14} />
-                Timetable Preview
-              </span>
-              <h2 className="tf-section-title" style={{ marginBottom: '0.5rem' }}>
-                Today's Highlight Classes
-              </h2>
-              <p className="tf-section-subtitle">
-                Coach-led squad workouts with capped capacity for maximum attention.
-              </p>
-            </div>
-            <Link to="/schedule" className="tf-btn tf-btn-primary tf-btn-sm">
-              <span>View Full Weekly Schedule</span>
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          <div className="tf-schedule-wrapper tf-reveal">
-            <div className="tf-schedule-table-head">
-              <div>Session Time</div>
-              <div>Class & Focus</div>
-              <div>Coach</div>
-              <div>Level</div>
-              <div>Capacity</div>
-              <div>Action</div>
-            </div>
-
-            <div className="tf-schedule-body">
-              {SCHEDULE_CLASSES.Monday.slice(0, 3).map((item, idx) => (
-                <div key={idx} className="tf-schedule-row">
-                  <div className="tf-col-time">{item.time}</div>
-                  <div className="tf-col-class">
-                    <h4>{item.name}</h4>
-                    <span>{item.category}</span>
-                  </div>
-                  <div className="tf-col-coach">Coach {item.coach}</div>
-                  <div className="tf-col-level">{item.level}</div>
-                  <div className="tf-col-spots">{item.spots}</div>
-                  <div className="tf-col-action">
-                    <Link
-                      to={`/contact?topic=Class Reservation: Monday - ${encodeURIComponent(item.name)}`}
-                      className="tf-btn-reserve"
-                      style={{ textAlign: 'center', display: 'inline-block' }}
-                    >
-                      Reserve Spot
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Facility Gallery Preview (3 images) */}
-      <section className="tf-section tf-gallery-section">
-        <div className="tf-container">
-          <div className="tf-reveal" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '3rem', flexWrap: 'wrap', gap: '1.5rem' }}>
-            <div>
-              <span className="tf-eyebrow">
-                <Camera size={14} />
-                Club Hardware
-              </span>
-              <h2 className="tf-section-title" style={{ marginBottom: '0.5rem' }}>
-                Inside the Facility
-              </h2>
-              <p className="tf-section-subtitle">
-                Competition barbell platforms, dumbbell bays, and indoor sprint track.
-              </p>
-            </div>
-            <Link to="/gallery" className="tf-btn tf-btn-outline-white tf-btn-sm">
-              <span>Explore Full Gallery</span>
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          <div className="tf-grid-3 tf-stagger">
-            {GALLERY_ITEMS.slice(0, 3).map((item) => (
-              <div key={item.id} className="tf-gallery-item">
+            {/* Visual Collage */}
+            <div className="tf-intro-editorial-visuals">
+              <div className="tf-visual-main-box">
                 <img
-                  src={item.image}
-                  alt={item.title}
-                  className="tf-gallery-img"
+                  src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=900&q=80"
+                  alt="Training floor at The Fitness Hub Kurla"
+                  className="tf-visual-main-img"
                   loading="lazy"
                 />
-                <div className="tf-gallery-overlay">
-                  <span className="tf-gallery-category-pill">{item.category}</span>
-                  <h4 className="tf-gallery-title">{item.title}</h4>
-                  <p className="tf-gallery-desc">{item.description}</p>
+                <div className="tf-visual-floating-badge">
+                  <ShieldCheck size={18} className="accent" />
+                  <div>
+                    <strong>100% Air Conditioned Floor</strong>
+                    <span>Sanitized equipment, clean washrooms & private lockers</span>
+                  </div>
                 </div>
               </div>
-            ))}
+
+              <div className="tf-visual-sub-grid">
+                <div className="tf-visual-sub-box">
+                  <img
+                    src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80"
+                    alt="Ladies Only Batch"
+                    loading="lazy"
+                  />
+                  <span>Ladies 2 PM – 4 PM</span>
+                </div>
+                <div className="tf-visual-sub-box">
+                  <img
+                    src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80"
+                    alt="Free weight strength area"
+                    loading="lazy"
+                  />
+                  <span>Free Weights</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 9. Member Testimonials & FAQ Section */}
-      <section className="tf-section tf-testimonials-section">
+      {/* 4. Training Floor & Zones */}
+      <section className="tf-section tf-zones-section">
         <div className="tf-container">
-          <div className="tf-section-header center tf-reveal">
+          <div className="tf-section-header center">
             <span className="tf-eyebrow">
-              <Quote size={14} />
-              Community & Culture
+              <Sparkles size={13} />
+              The Training Floor
             </span>
             <h2 className="tf-section-title">
-              What Training Here Feels Like
+              Designed For Every <span className="accent">Fitness Discipline</span>
             </h2>
             <p className="tf-section-subtitle">
-              Feedback from members who value focused lifting and real coach feedback.
+              Tour our dedicated training areas before your first session. Fully equipped for hypertrophy, athletic conditioning, cardio health, and female fitness.
             </p>
           </div>
 
-          <div className="tf-grid-3 tf-stagger">
-            {TESTIMONIALS_SAMPLE.map((item) => (
-              <div key={item.id} className="tf-testimonial-card">
-                <Quote size={28} className="tf-quote-icon" />
-                <p className="tf-testimonial-quote">"{item.quote}"</p>
-                <div className="tf-testimonial-meta">
-                  <span className="tf-member-role">{item.rolePlaceholder}</span>
-                  <span className="tf-member-tenure">{item.tenurePlaceholder}</span>
-                  <span className="tf-member-focus-pill">{item.focus}</span>
+          <div className="tf-zones-grid">
+            {TRAINING_ZONES.map((zone) => (
+              <div key={zone.id} className="tf-zone-card">
+                <div className="tf-zone-media">
+                  <img
+                    src={zone.image}
+                    alt={zone.title}
+                    className="tf-zone-img"
+                    loading="lazy"
+                  />
+                  <span className="tf-zone-tag">{zone.tag}</span>
+                </div>
+                <div className="tf-zone-body">
+                  <h3>{zone.title}</h3>
+                  <p>{zone.description}</p>
+                  <ul className="tf-zone-features">
+                    {zone.features.map((feat, idx) => (
+                      <li key={idx}>
+                        <CheckCircle2 size={14} className="accent" />
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    type="button"
+                    className="tf-zone-btn"
+                    onClick={onOpenTrial}
+                  >
+                    <span>Tour this zone</span>
+                    <ChevronRight size={14} />
+                  </button>
                 </div>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Quick FAQ Accordion */}
-          <div className="tf-reveal" style={{ marginTop: '5rem', maxWidth: '820px', marginInline: 'auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+      {/* 5. Why Train Here - 4 Pillars */}
+      <WhyChooseUs onOpenTrial={onOpenTrial} />
+
+      {/* 6. Official Memberships & Personal Training (GST Included) */}
+      <MembershipSection onOpenTrial={onOpenTrial} />
+
+      {/* 7. Live Instagram Community Showcase */}
+      <InstagramFeed />
+
+      {/* 8. Member Testimonials & Ratings */}
+      <TestimonialsSection />
+
+      {/* 9. Location & Transit Directions */}
+      <section className="tf-section tf-location-section">
+        <div className="tf-container">
+          <div className="tf-location-grid">
+            <div className="tf-location-card">
               <span className="tf-eyebrow">
-                <HelpCircle size={14} />
-                Quick Answers
+                <MapPin size={13} />
+                Kurla Location
               </span>
-              <h2 className="tf-section-title" style={{ fontSize: '2rem' }}>
-                Frequently Asked Questions
+              <h2 className="tf-section-title">
+                EASY TO REACH. <br />
+                <span className="accent">IMPOSSIBLE TO SKIP.</span>
               </h2>
+
+              <p style={{ fontSize: "16px", color: "var(--text-silver)", marginBottom: "20px" }}>
+                Conveniently situated in Nehru Nagar, Kurla, just 3-4 minutes walking distance from Kurla Railway Station.
+              </p>
+
+              <div className="tf-location-details-list">
+                <div className="tf-loc-item">
+                  <div className="tf-loc-icon"><MapPin size={18} /></div>
+                  <div>
+                    <strong>Full Address</strong>
+                    <p>{GYM_INFO.contact.fullAddress}</p>
+                  </div>
+                </div>
+
+                <div className="tf-loc-item">
+                  <div className="tf-loc-icon"><Clock size={18} /></div>
+                  <div>
+                    <strong>Operating Hours</strong>
+                    <p>{GYM_INFO.contact.hoursDaily}</p>
+                    <p style={{ color: "var(--accent)", fontWeight: 700 }}>{GYM_INFO.contact.hoursLadiesOnly}</p>
+                    <p>{GYM_INFO.contact.hoursSunday}</p>
+                  </div>
+                </div>
+
+                <div className="tf-loc-item">
+                  <div className="tf-loc-icon"><Phone size={18} /></div>
+                  <div>
+                    <strong>Direct Calling & WhatsApp</strong>
+                    <p>
+                      <a href={`tel:${GYM_INFO.contact.phoneRaw}`} style={{ color: "#ffffff", fontWeight: 700 }}>
+                        {GYM_INFO.contact.phone}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "28px" }}>
+                <a
+                  href={GYM_INFO.contact.mapsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="tf-btn tf-btn-primary"
+                >
+                  <MapPin size={16} />
+                  <span>Open in Google Maps</span>
+                </a>
+                <a
+                  href={GYM_INFO.contact.whatsappLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="tf-btn tf-btn-secondary"
+                >
+                  <span>WhatsApp Reception</span>
+                </a>
+              </div>
             </div>
 
-            <div className="tf-accordion">
-              {FAQS.slice(0, 4).map((faq, index) => {
-                const isOpen = openFaq === index;
-                return (
-                  <div key={index} className={`tf-accordion-item ${isOpen ? 'open' : ''}`}>
-                    <button
-                      type="button"
-                      className="tf-accordion-trigger"
-                      aria-expanded={isOpen}
-                      onClick={() => toggleFaq(index)}
-                    >
-                      <span>{faq.q}</span>
-                      <span className="tf-accordion-icon">
-                        <ChevronDown size={18} />
-                      </span>
-                    </button>
-                    {isOpen && (
-                      <div className="tf-accordion-content">
-                        <p>{faq.a}</p>
-                      </div>
-                    )}
+            {/* Visual Transit Map Card */}
+            <div className="tf-location-map-wrap">
+              <div className="tf-map-visual-card">
+                <div className="tf-map-header">
+                  <div className="tf-map-live-dot" />
+                  <span>NEHRU NAGAR • KURLA CLUB</span>
+                </div>
+
+                <div className="tf-transit-pointers">
+                  <div className="tf-transit-step">
+                    <span className="tf-step-badge">1</span>
+                    <div>
+                      <strong>From Kurla Railway Station (East):</strong>
+                      <p>Exit towards Nehru Nagar side. Walk 3-4 minutes along SG Barve Marg directly to Serene Shelter building.</p>
+                    </div>
                   </div>
-                );
-              })}
+
+                  <div className="tf-transit-step">
+                    <span className="tf-step-badge">2</span>
+                    <div>
+                      <strong>From Nehru Nagar Bus Depot:</strong>
+                      <p>Under 2 minutes walking distance. Head towards Mass Building, B Wing.</p>
+                    </div>
+                  </div>
+
+                  <div className="tf-transit-step">
+                    <span className="tf-step-badge">3</span>
+                    <div>
+                      <strong>Floor & Entrance:</strong>
+                      <p>Take stairs or lift to the 1st Floor. Front desk reception is immediately welcoming at the entrance.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="tf-map-actions">
+                  <a
+                    href={GYM_INFO.contact.mapsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="tf-btn tf-btn-primary"
+                    style={{ width: "100%" }}
+                  >
+                    <span>Launch GPS Directions (Google Maps)</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 10. Strong Final CTA Banner -> Navigates to /contact */}
-      <section className="tf-section" style={{ paddingTop: '2rem' }}>
+      {/* 10. Visitor FAQs */}
+      <FAQSection />
+
+      {/* 11. Closing In-Person Visit Invitation */}
+      <section className="tf-section tf-final-cta-section">
         <div className="tf-container">
-          <div className="tf-final-cta-banner tf-reveal-scale">
-            <div className="tf-cta-banner-content">
-              <div className="tf-cta-banner-text">
-                <h2>Step onto the Platform. Claim Your Trial.</h2>
-                <p>
-                  Experience the equipment, test the atmosphere, and consult with a coach before deciding on membership. Zero obligation.
-                </p>
-              </div>
-              <div>
-                <Link
-                  to="/contact?topic=Free Trial Pass"
-                  className="tf-btn tf-btn-primary"
-                >
-                  <span>Book Free Trial Now</span>
-                  <ArrowRight size={18} />
-                </Link>
-              </div>
+          <div className="tf-final-cta-box">
+            <div className="tf-final-cta-glow" />
+            <span className="tf-eyebrow">
+              <ShieldCheck size={13} />
+              Join Today. Transform Tomorrow.
+            </span>
+            <h2 className="tf-final-cta-title">
+              SEE THE FACILITY. <br />
+              <span className="accent">START YOUR JOURNEY.</span>
+            </h2>
+            <p className="tf-final-cta-sub">
+              Step onto our air-conditioned training floor in Nehru Nagar, Kurla. Check out our Olympic weights, meet our certified coaches, and discuss the plan that best fits your goals.
+            </p>
+            <div className="tf-final-cta-actions">
+              <button
+                type="button"
+                className="tf-btn tf-btn-primary tf-btn-lg"
+                onClick={onOpenTrial}
+              >
+                <span>Book Free Facility Visit</span>
+                <ArrowRight size={17} />
+              </button>
+              <a
+                href={GYM_INFO.contact.whatsappLink}
+                target="_blank"
+                rel="noreferrer"
+                className="tf-btn tf-btn-secondary tf-btn-lg"
+              >
+                <span>WhatsApp Front Desk</span>
+              </a>
             </div>
           </div>
         </div>

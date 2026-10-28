@@ -1,19 +1,19 @@
 import React from 'react';
-import { Compass, Shield, Award, Users, ArrowRight } from 'lucide-react';
+import { Clock, ShieldCheck, Award, Dumbbell, ArrowRight } from 'lucide-react';
 import { WHY_CHOOSE_US } from '../data/gymData';
 import './WhyChooseUs.css';
 
 export default function WhyChooseUs({ onOpenTrial }) {
   const getIcon = (id) => {
     switch (id) {
+      case 'hours':
+        return <Clock size={24} />;
       case 'coaching':
         return <Award size={24} />;
-      case 'environment':
-        return <Shield size={24} />;
-      case 'equipment':
-        return <Compass size={24} />;
-      case 'beginners':
-        return <Users size={24} />;
+      case 'hardware':
+        return <Dumbbell size={24} />;
+      case 'value':
+        return <ShieldCheck size={24} />;
       default:
         return <Award size={24} />;
     }
@@ -23,18 +23,18 @@ export default function WhyChooseUs({ onOpenTrial }) {
     <section id="why-us" className="tf-section tf-why-section">
       <div className="tf-container">
         <div className="tf-section-header center">
-          <span className="tf-eyebrow dark">
+          <span className="tf-eyebrow">
             The Fitness Hub Standard
           </span>
           <h2 className="tf-section-title">
-            Why Lifters & Fitness Seekers Choose The Fitness Hub
+            Why Lifters Choose The Fitness Hub
           </h2>
           <p className="tf-section-subtitle">
-            Conveniently situated in Nehru Nagar, Kurla East with extended 17.5-hour operational timings, certified trainers, and an empowering air-conditioned facility.
+            Conveniently situated in Nehru Nagar, Kurla with extended 18-hour operational timings, dedicated Ladies Only hours (2 PM – 4 PM), certified trainers, and an empowering air-conditioned facility.
           </p>
         </div>
 
-        {/* 2x2 Distinct Editorial Matrix */}
+        {/* 2x2 Editorial Matrix */}
         <div className="tf-why-grid">
           {WHY_CHOOSE_US.map((item) => (
             <div key={item.id} className="tf-why-card">
@@ -60,18 +60,18 @@ export default function WhyChooseUs({ onOpenTrial }) {
           ))}
         </div>
 
-        {/* Highlight Ribbon */}
+        {/* Feature Ribbon below cards */}
         <div className="tf-why-ribbon">
           <div className="tf-ribbon-text">
             <h3>Experience the difference firsthand with zero commitment.</h3>
-            <p>Tour our barbell platforms, turf tracks, and meet the coaching staff.</p>
+            <p>Tour our barbell platforms, inspect our equipment, and meet our certified trainers.</p>
           </div>
           <button
             type="button"
             className="tf-btn tf-btn-primary"
             onClick={onOpenTrial}
           >
-            <span>Book Your Free Trial</span>
+            <span>Book Free Facility Visit</span>
             <ArrowRight size={16} />
           </button>
         </div>

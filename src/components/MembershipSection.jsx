@@ -1,85 +1,273 @@
-import React from 'react';
-import { Check, ArrowRight, Zap } from 'lucide-react';
-import { MEMBERSHIP_PLANS } from '../data/gymData';
+import React, { useState } from 'react';
+import { Check, ShieldCheck, MapPin, PhoneCall, Sparkles, Award, Users } from 'lucide-react';
+import { STANDARD_MEMBERSHIPS, PERSONAL_TRAINING_PLANS, GYM_INFO } from '../data/gymData';
 import './MembershipSection.css';
 
-export default function MembershipSection({ onSelectPlan }) {
+export default function MembershipSection({ onOpenTrial }) {
+  const [activeTab, setActiveTab] = useState('standard'); // 'standard' | 'pt'
+
+  const individualPlans = STANDARD_MEMBERSHIPS.slice(0, 4);
+  const couplePlan = STANDARD_MEMBERSHIPS[4];
+
   return (
     <section id="memberships" className="tf-section tf-membership-section">
       <div className="tf-container">
         <div className="tf-section-header center">
           <span className="tf-eyebrow">
-            <Zap size={14} />
-            Memberships & Passes
+            <ShieldCheck size={14} />
+            Official Pricing & Plans
           </span>
           <h2 className="tf-section-title">
-            Transparent Tiers. Zero Lock-In Traps.
+            Simple, Transparent Rates. <span className="accent">GST Included.</span>
           </h2>
           <p className="tf-section-subtitle">
-            Choose the level of access that aligns with your weekly routine. Every membership includes orientation, movement screens, and clean locker amenities.
+            No surprise admission charges or hidden maintenance fees. Standard membership includes 18-hour gym access, Ladies Only batch (2 PM – 4 PM), and general trainer guidance.
           </p>
         </div>
 
-        {/* 3 Distinct Tiers */}
-        <div className="tf-pricing-grid">
-          {MEMBERSHIP_PLANS.map((plan) => (
-            <div
-              key={plan.id}
-              className={`tf-pricing-card ${plan.highlighted ? 'featured' : ''}`}
-            >
-              {plan.highlighted && (
-                <div className="tf-featured-badge">
-                  {plan.badge}
-                </div>
-              )}
+        {/* Tab Switcher: Standard Access vs Personal Training */}
+        <div className="tf-plan-tab-switcher">
+          <button
+            type="button"
+            className={`tf-tab-switch-btn ${activeTab === 'standard' ? 'active' : ''}`}
+            onClick={() => setActiveTab('standard')}
+          >
+            <ShieldCheck size={16} />
+            <span>Standard Gym Access</span>
+          </button>
 
-              <div className="tf-pricing-header">
-                {!plan.highlighted && (
-                  <span className="tf-plan-badge-inline">{plan.badge}</span>
-                )}
-                <h3 className="tf-plan-name">{plan.name}</h3>
-                <p className="tf-plan-ideal">{plan.idealFor}</p>
-              </div>
+          <button
+            type="button"
+            className={`tf-tab-switch-btn ${activeTab === 'pt' ? 'active' : ''}`}
+            onClick={() => setActiveTab('pt')}
+          >
+            <Award size={16} />
+            <span>Personal Training (Alternate Days)</span>
+          </button>
+        </div>
 
-              <div className="tf-pricing-value-box">
-                <div className="tf-price-display">{plan.pricePlaceholder}</div>
-                <div className="tf-price-subtext">
-                  {plan.pricingNote} &bull; {plan.period}
-                </div>
-              </div>
-
-              <ul className="tf-pricing-features">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="tf-feature-item">
-                    <span className="tf-feature-icon">
-                      <Check size={12} strokeWidth={3} />
-                    </span>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="tf-pricing-footer">
-                <button
-                  type="button"
-                  className={`tf-btn ${
-                    plan.highlighted ? 'tf-btn-primary' : 'tf-btn-secondary'
-                  }`}
-                  onClick={() => onSelectPlan(plan.name)}
+        {/* TAB 1: STANDARD GYM ACCESS */}
+        {activeTab === 'standard' && (
+          <div className="tf-standard-plans-wrap">
+            {/* 4 Symmetrical Individual Duration Cards */}
+            <div className="tf-pricing-grid tf-pricing-grid-4col">
+              {individualPlans.map((plan) => (
+                <div
+                  key={plan.id}
+                  className={`tf-pricing-card ${plan.highlighted ? 'featured' : ''}`}
                 >
-                  <span>{plan.ctaText}</span>
-                  <ArrowRight size={16} />
-                </button>
+                  {plan.highlighted && (
+                    <div className="tf-featured-badge">
+                      <span>{plan.badge}</span>
+                    </div>
+                  )}
+
+                  <div className="tf-pricing-header">
+                    {!plan.highlighted && (
+                      <span className="tf-plan-badge-inline">{plan.badge}</span>
+                    )}
+                    <h3 className="tf-plan-name">{plan.duration}</h3>
+                    <p className="tf-plan-ideal">{plan.description}</p>
+                  </div>
+
+                  {/* Price Display */}
+                  <div className="tf-pricing-value-box">
+                    <div className="tf-plan-price-row">
+                      <span className="tf-plan-price-num">{plan.price}</span>
+                      <span className="tf-plan-gst-tag">{plan.taxNote}</span>
+                    </div>
+                    <div className="tf-price-subtext">{plan.period}</div>
+                  </div>
+
+                  <ul className="tf-pricing-features">
+                    {plan.features.map((feature, idx) => (
+                      <li key={idx} className="tf-feature-item">
+                        <span className="tf-feature-icon">
+                          <Check size={12} strokeWidth={3} />
+                        </span>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="tf-pricing-footer">
+                    <button
+                      type="button"
+                      className={`tf-btn ${plan.highlighted ? 'tf-btn-primary' : 'tf-btn-secondary'}`}
+                      style={{ width: '100%', marginBottom: '10px' }}
+                      onClick={onOpenTrial}
+                    >
+                      <MapPin size={15} />
+                      <span>{plan.ctaText}</span>
+                    </button>
+
+                    <a
+                      href={`https://wa.me/918108884757?text=Hi%20The%20Fitness%20Hub%20Kurla%2C%20I%20would%20like%20to%20enroll%20for%20the%20${encodeURIComponent(plan.duration)}%20(${encodeURIComponent(plan.price)})%20membership%20plan.`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="tf-pricing-wa-link"
+                    >
+                      <PhoneCall size={13} />
+                      <span>Inquire on WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Featured Duo Card: Annual Couple Package */}
+            {couplePlan && (
+              <div className="tf-couple-package-card">
+                <div className="tf-couple-card-left">
+                  <div className="tf-couple-badge">
+                    <Users size={14} />
+                    <span>Duo Special Package</span>
+                  </div>
+                  <h3>Train Together: Annual Couple Pass</h3>
+                  <p>
+                    {couplePlan.description} Save ₹4,000 per couple compared to individual annual passes.
+                  </p>
+                  <div className="tf-couple-perks">
+                    <span>✓ ₹10,000 per person (GST Included)</span>
+                    <span>✓ Full 365-day floor access for both</span>
+                    <span>✓ Free lockers & trainer guidance</span>
+                  </div>
+                </div>
+
+                <div className="tf-couple-card-right">
+                  <div className="tf-couple-price-box">
+                    <div className="tf-couple-price-num">{couplePlan.price}</div>
+                    <span className="tf-couple-price-lbl">Per Person • Annual Duo</span>
+                  </div>
+
+                  <div className="tf-couple-actions">
+                    <button
+                      type="button"
+                      className="tf-btn tf-btn-primary"
+                      onClick={onOpenTrial}
+                    >
+                      <MapPin size={15} />
+                      <span>Claim Couple Pass</span>
+                    </button>
+
+                    <a
+                      href="https://wa.me/918108884757?text=Hi%20The%20Fitness%20Hub%20Kurla%2C%20we%20are%20interested%20in%20the%20Annual%20Couples%20Membership%20Package%20(Rs.%2010%2C000%20per%20person)."
+                      target="_blank"
+                      rel="noreferrer"
+                      className="tf-btn tf-btn-secondary"
+                    >
+                      <PhoneCall size={14} />
+                      <span>WhatsApp Inquire</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* TAB 2: PERSONAL TRAINING (ALTERNATE DAYS) */}
+        {activeTab === 'pt' && (
+          <div>
+            <div className="tf-pt-intro-banner">
+              <Sparkles size={18} className="accent" />
+              <div>
+                <strong>All Personal Trainer Plans are Monthly on Alternate Days (3 Sessions/Week)</strong>
+                <span>Direct 1-on-1 certified coaching tailored to your physical capabilities and goals.</span>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Client Transparent Notice */}
+            <div className="tf-pricing-grid tf-pricing-grid-pt">
+              {PERSONAL_TRAINING_PLANS.map((plan) => (
+                <div
+                  key={plan.id}
+                  className={`tf-pricing-card ${plan.highlighted ? 'featured' : ''}`}
+                >
+                  {plan.highlighted && (
+                    <div className="tf-featured-badge">
+                      <span>{plan.badge}</span>
+                    </div>
+                  )}
+
+                  <div className="tf-pricing-header">
+                    {!plan.highlighted && (
+                      <span className="tf-plan-badge-inline" style={{ color: plan.color }}>
+                        {plan.badge}
+                      </span>
+                    )}
+                    <h3 className="tf-plan-name">
+                      {plan.tier} <span style={{ fontSize: '16px', fontWeight: 600, color: 'var(--text-muted)' }}>PT</span>
+                    </h3>
+                    <p className="tf-plan-ideal" style={{ fontWeight: 600, color: '#ffffff' }}>
+                      {plan.focus}
+                    </p>
+                    <p className="tf-plan-ideal">{plan.description}</p>
+                  </div>
+
+                  {/* Price Box */}
+                  <div className="tf-pricing-value-box">
+                    <div className="tf-plan-price-row">
+                      <span className="tf-plan-price-num">{plan.price}</span>
+                      <span className="tf-plan-gst-tag">Per Month</span>
+                    </div>
+                    <div className="tf-price-subtext">{plan.period}</div>
+                  </div>
+
+                  <ul className="tf-pricing-features">
+                    {plan.features.map((feature, idx) => (
+                      <li key={idx} className="tf-feature-item">
+                        <span className="tf-feature-icon">
+                          <Check size={12} strokeWidth={3} />
+                        </span>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="tf-pricing-footer">
+                    <button
+                      type="button"
+                      className={`tf-btn ${plan.highlighted ? 'tf-btn-primary' : 'tf-btn-secondary'}`}
+                      style={{ width: '100%', marginBottom: '10px' }}
+                      onClick={onOpenTrial}
+                    >
+                      <Award size={15} />
+                      <span>Book {plan.tier} Assessment</span>
+                    </button>
+
+                    <a
+                      href={`https://wa.me/918108884757?text=Hi%20The%20Fitness%20Hub%20Kurla%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(plan.tier)}%20Personal%20Training%20plan%20(${encodeURIComponent(plan.price)}%2Fmo).`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="tf-pricing-wa-link"
+                    >
+                      <PhoneCall size={13} />
+                      <span>Chat with Head Trainer</span>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Timings & Highlights Summary Callout */}
         <div className="tf-pricing-note">
-          <p>
-            * Pricing and promotional rate cards are customized per location. Please submit an enquiry to receive the current schedule of rates and student/corporate arrangements.
-          </p>
+          <div className="tf-visit-guarantee-box">
+            <div className="tf-visit-guarantee-header">
+              <ShieldCheck size={18} className="accent" />
+              <strong>The Fitness Hub Kurla Membership Highlights</strong>
+            </div>
+            <p>
+              Located at First Floor, Serene Shelter, Mass Building, Nehru Nagar, Kurla. All memberships include full air-conditioned floor access, clean lockers, and general trainer spotting.
+            </p>
+            <div className="tf-visit-perk-pills">
+              <span>Daily 6:00 AM – 12:00 AM Midnight</span>
+              <span>Ladies Only Batch: 2:00 PM – 4:00 PM</span>
+              <span>Sunday Session: 6:00 PM – 10:00 PM</span>
+              <span>Direct Reception: {GYM_INFO.contact.phone}</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

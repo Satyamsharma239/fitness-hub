@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Check, ArrowRight, Zap, ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
 import PageHero from '../components/PageHero';
-import { MEMBERSHIP_PLANS, FAQS } from '../data/gymData';
-import '../components/MembershipSection.css';
+import MembershipSection from '../components/MembershipSection';
+import { FAQS } from '../data/gymData';
 import '../components/FAQSection.css';
 
-export default function MembershipsPage() {
+export default function MembershipsPage({ onOpenTrial }) {
   const [openFaq, setOpenFaq] = useState(0);
 
   const toggleFaq = (idx) => {
@@ -16,106 +15,32 @@ export default function MembershipsPage() {
   return (
     <div className="tf-memberships-page">
       <PageHero
-        eyebrow="Memberships & Access"
-        title="Clear, Flexible Membership Tiers"
-        subtitle="No hidden activation fees. No predatory long-term lock-ins. Select the tier that matches your weekly training volume."
-        breadcrumb={[{ label: 'Memberships', link: null }]}
+        eyebrow="Official Pricing & Plans"
+        title="TRANSPARENT MEMBERSHIP & PERSONAL TRAINING RATES"
+        subtitle="GST included on all plans. Zero hidden admission fees. Daily access from 6:00 AM to 12:00 AM Midnight, Ladies Only batch (2 PM – 4 PM), and monthly personal training on alternate days."
+        breadcrumb={[{ label: 'Plans & Pricing', link: null }]}
       />
 
-      <section className="tf-section tf-membership-section">
-        <div className="tf-container">
-          <div className="tf-section-header center tf-reveal">
-            <span className="tf-eyebrow">
-              <Zap size={14} />
-              Choose Your Access Level
-            </span>
-            <h2 className="tf-section-title">
-              Designed For Progress & Freedom
-            </h2>
-            <p className="tf-section-subtitle">
-              All plans include complimentary locker access, fresh towel service, and our initial 45-minute movement and equipment orientation.
-            </p>
-          </div>
-
-          {/* Pricing Grid */}
-          <div className="tf-pricing-grid tf-stagger">
-            {MEMBERSHIP_PLANS.map((plan) => (
-              <div
-                key={plan.id}
-                className={`tf-pricing-card ${plan.highlighted ? 'featured' : ''}`}
-              >
-                {plan.highlighted && (
-                  <div className="tf-featured-badge">
-                    {plan.badge}
-                  </div>
-                )}
-
-                <div className="tf-pricing-header">
-                  {!plan.highlighted && (
-                    <span className="tf-plan-badge-inline">{plan.badge}</span>
-                  )}
-                  <h3 className="tf-plan-name">{plan.name}</h3>
-                  <p className="tf-plan-ideal">{plan.idealFor}</p>
-                </div>
-
-                <div className="tf-pricing-value-box">
-                  <div className="tf-price-display">{plan.pricePlaceholder}</div>
-                  <div className="tf-price-subtext">
-                    {plan.pricingNote} &bull; {plan.period}
-                  </div>
-                </div>
-
-                <ul className="tf-pricing-features">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="tf-feature-item">
-                      <span className="tf-feature-icon">
-                        <Check size={12} strokeWidth={3} />
-                      </span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="tf-pricing-footer">
-                  <Link
-                    to={`/contact?topic=Membership Inquiry: ${encodeURIComponent(plan.name)}`}
-                    className={`tf-btn ${
-                      plan.highlighted ? 'tf-btn-primary' : 'tf-btn-secondary'
-                    }`}
-                  >
-                    <span>{plan.ctaText}</span>
-                    <ArrowRight size={16} />
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="tf-pricing-note tf-reveal">
-            <p>
-              * All rates are customized per facility location. Contact our desk for current seasonal promotions, corporate partner discounts, and student passes.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Main Interactive Membership & PT Section */}
+      <MembershipSection onOpenTrial={onOpenTrial} />
 
       {/* Membership FAQ Accordion */}
-      <section className="tf-section tf-faq-section" style={{ borderTop: 'none' }}>
+      <section className="tf-section tf-faq-section" style={{ borderTop: '1px solid var(--border-dark)' }}>
         <div className="tf-container">
-          <div className="tf-section-header center tf-reveal">
+          <div className="tf-section-header center">
             <span className="tf-eyebrow">
               <HelpCircle size={14} />
               Membership FAQs
             </span>
             <h2 className="tf-section-title">
-              Common Questions Before Joining
+              Common Questions Before <span className="accent">Enrolling</span>
             </h2>
             <p className="tf-section-subtitle">
-              Straightforward answers about our trial process, pauses, and cancellation terms.
+              Straightforward answers about timings, Ladies Only batch, personal training, and payment details.
             </p>
           </div>
 
-          <div className="tf-reveal" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <div style={{ maxWidth: '820px', margin: '0 auto' }}>
             <div className="tf-accordion">
               {FAQS.map((faq, index) => {
                 const isOpen = openFaq === index;
@@ -132,7 +57,7 @@ export default function MembershipsPage() {
                     >
                       <span>{faq.q}</span>
                       <span className="tf-accordion-icon">
-                        <ChevronDown size={18} />
+                        <ChevronDown size={19} />
                       </span>
                     </button>
 

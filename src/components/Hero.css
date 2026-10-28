@@ -1,221 +1,321 @@
-.tf-hero {
+/*
+ * High-End Luxury Hero Section - Solid Editorial Headline
+ */
+
+.tf-hero-section {
   position: relative;
-  min-height: calc(100vh - 4.75rem);
-  display: flex;
-  align-items: center;
-  padding: 4rem 0 5rem;
-  background-color: var(--bg-dark);
+  padding-top: clamp(36px, 5vw, 64px);
+  padding-bottom: clamp(40px, 5.5vw, 68px);
   overflow: hidden;
 }
 
-.tf-hero-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 3.5rem;
-  align-items: center;
-}
-
-.tf-hero-content {
-  z-index: 2;
-}
-
-.tf-hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: rgba(229, 9, 20, 0.12);
-  border: 1px solid rgba(229, 9, 20, 0.35);
-  color: var(--accent);
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radius-pill);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-}
-
-.tf-hero-badge-dot {
-  width: 7px;
-  height: 7px;
+.tf-hero-backdrop-glow {
+  position: absolute;
+  top: -120px;
+  left: 20%;
+  width: 650px;
+  height: 650px;
   border-radius: 50%;
-  background-color: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
+  background: radial-gradient(circle, rgba(255, 30, 39, 0.16) 0%, transparent 68%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.tf-hero-title {
-  font-size: clamp(1.5rem ,4.0vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  color: #FFFFFF;
-  margin-bottom: 1.25rem;
-}
-
-.tf-hero-title span.highlight {
-  color: var(--accent);
-  display: inline-block;
-}
-
-.tf-hero-description {
-  font-size: 1.05rem;
-  line-height: 1.65;
-  color: #FFFFFF;
-  max-width: 560px;
-  margin-bottom: 2rem;
-}
-
-.tf-hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 2.75rem;
-}
-
-/* Hero Quick Highlights Ribbon */
-.tf-hero-pillars {
+.tf-hero-editorial-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  padding-top: 1.75rem;
-  border-top: 1px solid var(--border-dark);
+  grid-template-columns: 1.18fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: clamp(28px, 3.5vw, 44px);
 }
 
-.tf-hero-pillar-item {
+/* --------------------------------------------------
+   Left Text Column
+-------------------------------------------------- */
+
+.tf-hero-text-col {
   display: flex;
   flex-direction: column;
 }
 
-.tf-pillar-title {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
+.tf-hero-location-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 30, 39, 0.08);
+  border: 1px solid rgba(255, 30, 39, 0.22);
+  color: #ff686f;
+  font-size: 12px;
   font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom: 0.2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  align-self: flex-start;
 }
 
-.tf-pillar-desc {
-  font-size: 0.85rem;
-  color: #E2E8F0;
+.tf-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6vw, 80px);
+  font-weight: 900;
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: #ffffff;
 }
 
-/* Hero Media Column */
-.tf-hero-media {
+.tf-hero-title .accent {
+  color: var(--accent);
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tf-hero-subtext {
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.7;
+  color: #c4c4d6;
+  max-width: 580px;
+  margin-bottom: 30px;
+}
+
+.tf-hero-subtext strong {
+  color: #ffffff;
+}
+
+.tf-hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 34px;
+}
+
+.tf-hero-check-points {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 18px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-dark);
+}
+
+.tf-hero-point {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: #dedee8;
+  font-weight: 600;
+}
+
+.tf-hero-point .accent {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------
+   Right Hero Visual Image Column
+-------------------------------------------------- */
+
+.tf-hero-visual-col {
   position: relative;
-  z-index: 1;
 }
 
-.tf-hero-image-wrapper {
+.tf-hero-image-frame {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  border: 1px solid var(--border-dark);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-  background-color: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+  aspect-ratio: 4 / 4.3;
+  background: #000;
 }
 
-.tf-hero-image {
+.tf-hero-visual-img {
   width: 100%;
-  height: 540px;
+  height: 100%;
   object-fit: cover;
-  object-position: center 25%;
-  filter: contrast(1.05) brightness(0.95);
-  transition: transform 0.6s ease;
+  object-position: center 20%;
+  transition: transform 700ms var(--tf-ease);
 }
 
-.tf-hero-image-wrapper:hover .tf-hero-image {
-  transform: scale(1.02);
+.tf-hero-image-frame:hover .tf-hero-visual-img {
+  transform: scale(1.035);
 }
 
-.tf-hero-image-overlay {
+.tf-hero-visual-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(10, 12, 16, 0.1) 0%,
-    rgba(10, 12, 16, 0.75) 100%
+    rgba(8, 8, 10, 0.06) 0%,
+    rgba(8, 8, 10, 0.35) 55%,
+    rgba(8, 8, 10, 0.95) 100%
   );
   pointer-events: none;
 }
 
-/* Floating Card / Status Badge */
-.tf-hero-float-card {
+.tf-hero-corner-tag {
   position: absolute;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  right: 1.5rem;
-  background-color: rgba(18, 21, 29, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--border-focus);
+  top: 18px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+}
+
+.tf-hero-corner-tag svg {
+  color: var(--accent);
+}
+
+.tf-hero-floating-card {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  right: 18px;
+  background: rgba(14, 14, 20, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-md);
-  padding: 1.25rem 1.5rem;
+  padding: 14px 18px;
+}
+
+.tf-floating-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 3px;
+  letter-spacing: 0.03em;
+}
+
+.tf-floating-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.tf-hero-floating-card p {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.tf-floating-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.tf-float-info {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
+.tf-floating-pill {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #dedee8;
 }
 
-.tf-float-icon {
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: var(--radius-sm);
-  background-color: rgba(229, 9, 20, 0.15);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tf-float-text h4 {
-  font-size: 0.9375rem;
+.tf-floating-star {
+  font-size: 11px;
   font-weight: 700;
-  color: var(--text-white);
-  margin-bottom: 0.15rem;
+  color: #fbbf24;
 }
 
-.tf-float-text p {
-  font-size: 0.8rem;
-  color: var(--text-body);
+/* --------------------------------------------------
+   Bottom Quick Strip
+-------------------------------------------------- */
+
+.tf-hero-bottom-bar {
+  position: relative;
+  z-index: 2;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-@media (max-width: 1024px) {
-  .tf-hero-grid {
+.tf-bottom-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tf-bottom-item .accent {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.tf-bottom-item strong {
+  display: block;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.tf-bottom-item span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 960px) {
+  .tf-hero-editorial-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 32px;
   }
-  .tf-hero-image {
-    height: 420px;
+
+  .tf-hero-image-frame {
+    aspect-ratio: 16 / 11;
+  }
+
+  .tf-hero-check-points {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 640px) {
-  .tf-hero {
-    padding: 2.5rem 0 3.5rem;
-  }
-  .tf-hero-pillars {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  .tf-hero-float-card {
-    position: relative;
-    inset: auto;
-    margin-top: -2rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  }
-  .tf-hero-actions {
+@media (max-width: 600px) {
+  .tf-hero-cta-group {
     flex-direction: column;
-    align-items: stretch;
-  }
-  .tf-hero-actions .tf-btn {
     width: 100%;
+  }
+
+  .tf-hero-cta-group .tf-btn {
+    width: 100%;
+  }
+
+  .tf-hero-floating-card {
+    padding: 10px 14px;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .tf-hero-corner-tag {
+    display: none;
   }
 }

@@ -2,56 +2,11 @@
   background-color: var(--bg-dark);
 }
 
-/* Big Final CTA Banner */
-.tf-final-cta-banner {
-  background: linear-gradient(135deg, #161A24 0%, #0D1017 100%);
-  border: 1px solid var(--border-focus);
-  border-radius: var(--radius-lg);
-  padding: 3.5rem 3rem;
-  margin-bottom: 5rem;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-}
-
-.tf-final-cta-banner::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 100%;
-  background: radial-gradient(circle, rgba(229, 9, 20, 0.12) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.tf-cta-banner-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-}
-
-.tf-cta-banner-text h2 {
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
-  color: var(--text-white);
-  margin-bottom: 0.75rem;
-}
-
-.tf-cta-banner-text p {
-  font-size: 1.05rem;
-  color: #FFFFFF;
-  max-width: 600px;
-}
-
 /* Contact Grid */
 .tf-contact-grid {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
-  gap: 3.5rem;
+  gap: clamp(28px, 4vw, 48px);
   align-items: flex-start;
 }
 
@@ -59,45 +14,50 @@
 .tf-contact-info-col {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 24px;
 }
 
 .tf-contact-block {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-dark);
   border-radius: var(--radius-md);
-  padding: 1.75rem;
+  padding: clamp(22px, 3vw, 28px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .tf-contact-block-header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .tf-contact-block-icon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-sm);
-  background-color: rgba(229, 9, 20, 0.12);
+  background-color: rgba(255, 30, 39, 0.12);
   color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid rgba(255, 30, 39, 0.25);
+  flex-shrink: 0;
 }
 
 .tf-contact-block-header h3 {
-  font-size: 1.15rem;
+  font-size: 18px;
+  font-weight: 800;
   color: var(--text-white);
+  margin: 0;
 }
 
 .tf-contact-details {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.9375rem;
-  color: #FFFFFF;
+  gap: 8px;
+  font-size: 14px;
+  color: #dedee8;
 }
 
 .tf-hours-list {
@@ -106,16 +66,16 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
-  font-size: 0.875rem;
-  color: #FFFFFF;
+  gap: 8px;
+  font-size: 13.5px;
+  color: #dedee8;
 }
 
 .tf-hours-item {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px dashed var(--border-dark);
-  padding-bottom: 0.35rem;
+  padding-bottom: 8px;
 }
 
 .tf-hours-item:last-child {
@@ -123,10 +83,11 @@
 }
 
 .tf-contact-note-badge {
-  font-size: 0.8rem;
-  color: #E2E8F0;
-  margin-top: 0.75rem;
+  font-size: 12.5px;
+  color: #dedee8;
+  margin-top: 10px;
   display: block;
+  line-height: 1.5;
 }
 
 /* Contact Form Styling */
@@ -134,36 +95,38 @@
   background-color: var(--bg-surface);
   border: 1px solid var(--border-dark);
   border-radius: var(--radius-md);
-  padding: 2.5rem;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  padding: clamp(24px, 3.5vw, 36px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
 
 .tf-form-header {
-  margin-bottom: 1.75rem;
+  margin-bottom: 24px;
 }
 
 .tf-form-header h3 {
-  font-size: 1.5rem;
+  font-size: 24px;
+  font-weight: 800;
   color: var(--text-white);
-  margin-bottom: 0.35rem;
+  margin-bottom: 6px;
 }
 
 .tf-form-header p {
-  font-size: 0.875rem;
+  font-size: 14px;
   color: var(--text-body);
 }
 
 .tf-form-group {
-  margin-bottom: 1.25rem;
+  margin-bottom: 18px;
 }
 
 .tf-form-label {
   display: block;
-  font-size: 0.8125rem;
+  font-size: 12px;
   font-weight: 700;
-  color: var(--text-white);
-  margin-bottom: 0.45rem;
-  letter-spacing: 0.02em;
+  color: #dedee8;
+  margin-bottom: 7px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .tf-form-input,
@@ -173,8 +136,8 @@
   background-color: var(--bg-surface-elevated);
   border: 1px solid var(--border-dark);
   border-radius: var(--radius-sm);
-  padding: 0.85rem 1rem;
-  font-size: 0.9375rem;
+  padding: 12px 16px;
+  font-size: 14px;
   color: var(--text-white);
   font-family: var(--font-body);
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
@@ -185,7 +148,8 @@
 .tf-form-textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.2);
+  box-shadow: 0 0 0 3px rgba(255, 30, 39, 0.2);
+  background: #1c1c24;
 }
 
 .tf-form-input.error,
@@ -195,55 +159,56 @@
 }
 
 .tf-form-error-msg {
-  font-size: 0.75rem;
-  color: #ef4444;
-  margin-top: 0.3rem;
+  font-size: 12px;
+  color: #f87171;
+  margin-top: 5px;
   display: block;
 }
 
 .tf-form-row-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  gap: 16px;
 }
 
 .tf-form-textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 90px;
 }
 
 /* Success Confirmation Box */
 .tf-form-success {
-  background-color: rgba(229, 9, 20, 0.08);
+  background-color: rgba(255, 30, 39, 0.08);
   border: 1px solid var(--accent);
   border-radius: var(--radius-md);
-  padding: 2.25rem 2rem;
+  padding: 32px 24px;
   text-align: center;
 }
 
 .tf-success-icon-wrap {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background-color: var(--accent);
-  color: var(--accent-contrast);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.25rem auto;
+  margin: 0 auto 16px auto;
 }
 
 .tf-form-success h4 {
-  font-size: 1.35rem;
+  font-size: 22px;
+  font-weight: 800;
   color: var(--text-white);
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
 }
 
 .tf-form-success p {
-  font-size: 0.9rem;
+  font-size: 14px;
   color: var(--text-body);
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 20px;
 }
 
 .tf-success-summary {
@@ -251,10 +216,13 @@
   background-color: var(--bg-surface-elevated);
   border: 1px solid var(--border-dark);
   border-radius: var(--radius-sm);
-  padding: 1rem 1.25rem;
-  font-size: 0.8125rem;
+  padding: 16px;
+  font-size: 13px;
   color: var(--text-body);
-  margin-bottom: 1.5rem;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .tf-success-summary strong {
@@ -264,11 +232,9 @@
 @media (max-width: 960px) {
   .tf-contact-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 32px;
   }
-  .tf-final-cta-banner {
-    padding: 2.5rem 1.75rem;
-  }
+
   .tf-form-row-2 {
     grid-template-columns: 1fr;
     gap: 0;
