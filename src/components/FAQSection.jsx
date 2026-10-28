@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { HelpCircle, ChevronDown, MessageSquare } from 'lucide-react';
+import { HelpCircle, ChevronDown } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
 import { FAQS, GYM_INFO } from '../data/gymData';
 import './FAQSection.css';
 
@@ -55,7 +56,7 @@ export default function FAQSection() {
           </div>
 
           <div className="tf-faq-help-box">
-            <MessageSquare size={22} className="accent" />
+            <WhatsAppIcon size={22} />
             <div>
               <h4>Have another question not answered here?</h4>
               <p>Chat directly with our front desk on WhatsApp for instant confirmation.</p>
@@ -66,6 +67,7 @@ export default function FAQSection() {
               rel="noreferrer"
               className="tf-btn tf-btn-secondary tf-btn-sm"
             >
+              <WhatsAppIcon size={14} />
               <span>Message Reception</span>
             </a>
           </div>

@@ -10,6 +10,7 @@ import {
   Sparkles
 } from "lucide-react";
 import PageHero from "../components/PageHero";
+import WhatsAppIcon from "../components/WhatsAppIcon";
 import { GYM_INFO } from "../data/gymData";
 import "./AboutPage.css";
 
@@ -142,7 +143,7 @@ export default function AboutPage({ onOpenTrial }) {
                 We believe in total transparency. Come take an informal walkthrough, check our free-weight racks and cardio decks, and discuss our standard membership or alternate-day personal training plans.
               </p>
 
-              <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "24px" }}>
+              <div className="tf-about-action-group">
                 <button
                   type="button"
                   className="tf-btn tf-btn-primary"
@@ -157,6 +158,7 @@ export default function AboutPage({ onOpenTrial }) {
                   rel="noreferrer"
                   className="tf-btn tf-btn-secondary"
                 >
+                  <WhatsAppIcon size={16} />
                   <span>WhatsApp Front Desk</span>
                 </a>
               </div>
@@ -175,7 +177,7 @@ export default function AboutPage({ onOpenTrial }) {
                 <div>
                   <strong>Hours</strong>
                   <span>{GYM_INFO.contact.hoursDaily}</span>
-                  <span style={{ color: "var(--accent)", fontWeight: 700 }}>{GYM_INFO.contact.hoursLadiesOnly}</span>
+                  <span className="tf-loc-ladies-time">{GYM_INFO.contact.hoursLadiesOnly}</span>
                   <span>{GYM_INFO.contact.hoursSunday}</span>
                 </div>
               </div>

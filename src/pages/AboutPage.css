@@ -171,6 +171,16 @@
   color: var(--text-muted);
   line-height: 1.45;
 }
+.tf-about-action-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.tf-loc-ladies-time {
+  color: var(--accent);
+  font-weight: 700;
+}
 @media (max-width: 900px) {
   .tf-about-story-grid,
   .tf-about-visit-box {

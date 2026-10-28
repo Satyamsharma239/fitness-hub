@@ -1,6 +1,9 @@
 .tf-faq-section {
   background-color: var(--bg-dark);
 }
+.tf-faq-section-bordered {
+  border-top: 1px solid var(--border-dark);
+}
 .tf-faq-wrapper {
   max-width: 820px;
   margin: 0 auto;

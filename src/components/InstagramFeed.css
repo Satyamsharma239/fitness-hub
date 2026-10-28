@@ -1,6 +1,12 @@
 .tf-ig-section {
   background: var(--bg-dark);
 }
+.tf-ig-cta-wrap {
+  margin-top: 16px;
+}
+.tf-ig-follow-btn {
+  display: inline-flex;
+}
 .tf-ig-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

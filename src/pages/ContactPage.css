@@ -1,43 +1,110 @@
 .tf-contact-page-wrap {
   padding-bottom: 6rem;
 }
-.tf-map-placeholder {
-  margin-top: 1.75rem;
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-dark);
-  border-radius: var(--radius-md);
-  padding: 2rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+.tf-contact-main-container {
+  margin-top: 3.5rem;
 }
-.tf-map-inner {
-  height: 220px;
-  background: radial-gradient(circle at center, #1b2230 0%, #10141d 100%);
-  border-radius: var(--radius-sm);
+.tf-contact-action-row {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.tf-hours-val {
+  color: #ffffff;
+}
+.tf-hours-val.accent {
+  color: var(--accent);
+  font-weight: 700;
+}
+.tf-contact-note-badge.highlight {
+  color: #34d399;
+  margin-top: 0.65rem;
+}
+.tf-contact-phone-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tf-copy-mini-btn {
+  color: var(--accent);
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.tf-insta-link {
+  color: #ff5b62;
+  font-weight: 700;
+  text-decoration: none;
+}
+.tf-insta-link:hover {
+  text-decoration: underline;
+}
+.tf-contact-email-val {
+  color: #ffffff;
+}
+.tf-form-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.tf-btn-block {
+  width: 100%;
+  justify-content: center;
+}
+.tf-contact-success-actions {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  border: 1px dashed var(--border-focus);
+  gap: 10px;
+  margin-top: 16px;
 }
-.tf-map-pin-icon {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  background-color: var(--accent);
-  color: var(--accent-contrast);
+.tf-contact-map-section {
+  margin-top: 3.5rem;
+}
+.tf-contact-map-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  padding: 24px;
+}
+.tf-contact-map-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 25px rgba(229, 9, 20, 0.5);
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
-.tf-map-inner h4 {
-  font-size: 1.1rem;
-  color: var(--text-white);
+.tf-map-title-group h3 {
+  font-size: 20px;
+  color: #ffffff;
+  margin-top: 4px;
 }
-.tf-map-inner p {
-  font-size: 0.85rem;
-  color: #FFFFFF;
+.tf-map-title-group p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.tf-contact-map-frame {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-dark);
+}
+.tf-contact-map-iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
 }

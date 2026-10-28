@@ -1,6 +1,7 @@
 import React from "react";
-import { UserCheck, ShieldCheck, ArrowRight, Award, MessageSquare } from "lucide-react";
+import { UserCheck, ShieldCheck, ArrowRight, Award } from "lucide-react";
 import PageHero from "../components/PageHero";
+import WhatsAppIcon from "../components/WhatsAppIcon";
 import { TRAINERS } from "../data/gymData";
 import "../components/TrainersSection.css";
 
@@ -10,7 +11,7 @@ export default function TrainersPage({ onOpenTrial }) {
       <PageHero
         eyebrow="Certified Coaching Staff"
         title="EXPERIENCE, CREDENTIALS & HANDS-ON COACHING"
-        subtitle="Our trainers aren't passive floor attendants. Every coach at The Fitness Hub brings accredited certifications, biomechanical mastery, and genuine dedication to your physical transformation."
+        subtitle="Our trainers aren't passive floor attendants. Every coach at The Fitness Hub brings accredited certifications, deep practical expertise in lifting form, and genuine dedication to your physical transformation."
         breadcrumb={[{ label: "Trainers", link: null }]}
       />
 
@@ -70,10 +71,9 @@ export default function TrainersPage({ onOpenTrial }) {
                       href={`https://wa.me/918108884757?text=Hi%20The%20Fitness%20Hub%20Kurla%2C%20I%20would%20like%20to%20consult%20with%20Coach%20${encodeURIComponent(trainer.name)}%20regarding%20personal%20training.`}
                       target="_blank"
                       rel="noreferrer"
-                      className="tf-btn tf-btn-secondary tf-btn-sm"
-                      style={{ width: "100%" }}
+                      className="tf-btn tf-btn-secondary tf-btn-sm tf-trainer-wa-btn"
                     >
-                      <MessageSquare size={14} />
+                      <WhatsAppIcon size={14} />
                       <span>Inquire with Coach {trainer.name.split(" ")[0]}</span>
                     </a>
                   </div>

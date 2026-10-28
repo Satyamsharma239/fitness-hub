@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { ArrowRight, Menu, X, Phone, Flame } from "lucide-react";
+import WhatsAppIcon from "./WhatsAppIcon";
 import logoImg from "../assets/fitnesshub_logo.jpg";
 import { GYM_INFO } from "../data/gymData";
 import "./Navbar.css";
@@ -33,7 +34,6 @@ export default function Navbar({ onOpenTrial }) {
       const timeInMinutes = hours * 60 + minutes;
 
       if (day === 0) {
-        
         const sunOpen = 18 * 60;
         const sunClose = 22 * 60;
         const isSunOpen = timeInMinutes >= sunOpen && timeInMinutes < sunClose;
@@ -44,7 +44,6 @@ export default function Navbar({ onOpenTrial }) {
           setStatusMessage("OPENS SUNDAY AT 6:00 PM • NEHRU NAGAR");
         }
       } else {
-        
         const openTime = 6 * 60;
         const closeTime = 24 * 60;
         const isDailyOpen = timeInMinutes >= openTime && timeInMinutes < closeTime;
@@ -90,7 +89,6 @@ export default function Navbar({ onOpenTrial }) {
 
   return (
     <>
-      
       <div className="tf-topbar">
         <div className="tf-container tf-topbar-inner">
           <div className="tf-topbar-left">
@@ -217,8 +215,7 @@ export default function Navbar({ onOpenTrial }) {
           <div className="tf-drawer-footer">
             <button
               type="button"
-              className="tf-btn tf-btn-primary"
-              style={{ width: "100%", marginBottom: "12px" }}
+              className="tf-btn tf-btn-primary tf-drawer-btn"
               onClick={() => {
                 setMenuOpen(false);
                 if (onOpenTrial) onOpenTrial();
@@ -232,9 +229,9 @@ export default function Navbar({ onOpenTrial }) {
               href={GYM_INFO.contact.whatsappLink}
               target="_blank"
               rel="noreferrer"
-              className="tf-btn tf-btn-secondary"
-              style={{ width: "100%" }}
+              className="tf-btn tf-btn-secondary tf-drawer-wa-btn"
             >
+              <WhatsAppIcon size={14} />
               <span>WhatsApp Reception</span>
             </a>
 
@@ -242,7 +239,7 @@ export default function Navbar({ onOpenTrial }) {
               <p>First Floor, Serene Shelter, Mass Building, B Wing</p>
               <p>Nehru Nagar, Kurla, Mumbai – 400024</p>
               <p className="tf-drawer-phone">{GYM_INFO.contact.phone}</p>
-              <p style={{ marginTop: "6px", color: "var(--accent)", fontSize: "11px", fontWeight: 700 }}>
+              <p className="tf-drawer-schedule-note">
                 Daily: 6 AM – 12 AM &bull; Ladies: 2 PM – 4 PM
               </p>
             </div>

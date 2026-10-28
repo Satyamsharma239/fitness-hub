@@ -1,15 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, ShieldCheck, Send } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
 import './TrialModal.css';
 
-export default function TrialModal({ isOpen, onClose }) {
+const DEFAULT_GOALS = [
+  'General Facility Walkthrough & Trial',
+  'Standard 1 Month (₹3,500)',
+  'Standard 3 Months (₹6,000)',
+  'Standard 6 Months (₹8,000)',
+  'Standard Annual (₹12,000)',
+  'Annual Couples Package (₹10,000/person)',
+  'Personal Training: Gold (₹6,000/mo)',
+  'Personal Training: Diamond (₹8,000/mo)',
+  'Personal Training: Platinum (₹11,000/mo)',
+  'Ladies Only Batch (2:00 PM – 4:00 PM)'
+];
+
+export default function TrialModal({ isOpen, onClose, initialGoal }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [goal, setGoal] = useState('General Facility Walkthrough & Trial');
+  const [goal, setGoal] = useState(initialGoal || DEFAULT_GOALS[0]);
   const [sessionType, setSessionType] = useState('Facility Walkthrough & Movement Screen');
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+
+  const [prevInitialGoal, setPrevInitialGoal] = useState(initialGoal);
+
+  if (initialGoal !== prevInitialGoal) {
+    setPrevInitialGoal(initialGoal);
+    setGoal(initialGoal);
+  }
 
   useEffect(() => {
     if (!isOpen) return;
@@ -48,6 +69,21 @@ export default function TrialModal({ isOpen, onClose }) {
     return errs;
   };
 
+  const buildWhatsAppUrl = () => {
+    const msg = [
+      'Hi The Fitness Hub (Kurla), I would like to schedule a facility visit / trial.',
+      '',
+      `• Name: ${name.trim()}`,
+      `• Phone: ${phone.trim()}`,
+      `• Email: ${email.trim()}`,
+      `• Interested Plan: ${goal}`,
+      `• Visit Type: ${sessionType}`,
+      '',
+      'Please confirm my preferred timing slot.'
+    ].join('\n');
+    return `https://wa.me/918108884757?text=${encodeURIComponent(msg)}`;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -56,8 +92,18 @@ export default function TrialModal({ isOpen, onClose }) {
       return;
     }
     setErrors({});
+    const waUrl = buildWhatsAppUrl();
+    try {
+      window.open(waUrl, '_blank');
+    } catch {
+      void 0;
+    }
     setSubmitted(true);
   };
+
+  const goalOptions = DEFAULT_GOALS.includes(goal)
+    ? DEFAULT_GOALS
+    : [goal, ...DEFAULT_GOALS];
 
   return (
     <div className="tf-modal-backdrop" onClick={handleModalClose} role="dialog" aria-modal="true">
@@ -75,7 +121,7 @@ export default function TrialModal({ isOpen, onClose }) {
           <>
             <div className="tf-modal-badge">
               <ShieldCheck size={14} />
-              <span>The Fitness Hub • Kurla</span>
+              <span>The Fitness Hub • Nehru Nagar, Kurla</span>
             </div>
 
             <h3 className="tf-modal-title">Schedule Club Visit & Trial</h3>
@@ -135,16 +181,11 @@ export default function TrialModal({ isOpen, onClose }) {
                   value={goal}
                   onChange={(e) => setGoal(e.target.value)}
                 >
-                  <option value="General Facility Walkthrough & Trial">General Facility Walkthrough & Trial</option>
-                  <option value="Standard 1 Month (₹3,500)">Standard 1 Month (₹3,500)</option>
-                  <option value="Standard 3 Months (₹6,000)">Standard 3 Months (₹6,000)</option>
-                  <option value="Standard 6 Months (₹8,000)">Standard 6 Months (₹8,000)</option>
-                  <option value="Standard Annual (₹12,000)">Standard Annual (₹12,000)</option>
-                  <option value="Annual Couples Package (₹10,000/person)">Annual Couples Package (₹10,000/person)</option>
-                  <option value="Personal Training: Gold (₹6,000/mo)">Personal Training: Gold (₹6,000/mo)</option>
-                  <option value="Personal Training: Diamond (₹8,000/mo)">Personal Training: Diamond (₹8,000/mo)</option>
-                  <option value="Personal Training: Platinum (₹11,000/mo)">Personal Training: Platinum (₹11,000/mo)</option>
-                  <option value="Ladies Only Batch (2:00 PM – 4:00 PM)">Ladies Only Batch (2:00 PM – 4:00 PM)</option>
+                  {goalOptions.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -167,7 +208,7 @@ export default function TrialModal({ isOpen, onClose }) {
                 style={{ width: '100%', marginTop: '0.5rem' }}
               >
                 <Send size={16} />
-                <span>Confirm Visit Request</span>
+                <span>Confirm Visit & Open WhatsApp</span>
               </button>
             </form>
           </>
@@ -176,23 +217,37 @@ export default function TrialModal({ isOpen, onClose }) {
             <div className="tf-success-icon-wrap">
               <CheckCircle2 size={32} />
             </div>
-            <h4>Visit Request Received!</h4>
+            <h4>Visit Request Ready!</h4>
             <p>
-              Thank you, <strong>{name}</strong>! Your request for <strong>{sessionType}</strong> at our Nehru Nagar, Kurla facility has been logged. Our reception desk will message you on WhatsApp (<strong>{phone}</strong>) to confirm your visit.
+              Thank you, <strong>{name}</strong>! Your visit request for <strong>{sessionType}</strong> has been prepared.
             </p>
             <div className="tf-success-summary">
               <div><strong>Location:</strong> First Floor, Serene Shelter, Mass Building, Nehru Nagar, Kurla</div>
               <div><strong>Timings:</strong> Daily 6:00 AM – 12:00 AM &bull; Ladies 2:00 PM – 4:00 PM</div>
               <div><strong>Selected Interest:</strong> {goal}</div>
             </div>
-            <button
-              type="button"
-              className="tf-btn tf-btn-primary"
-              style={{ width: '100%' }}
-              onClick={handleModalClose}
-            >
-              Done
-            </button>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '16px' }}>
+              <a
+                href={buildWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tf-btn tf-btn-primary"
+                style={{ width: '100%', justifyContent: 'center' }}
+              >
+                <WhatsAppIcon size={18} />
+                <span>Send Details via WhatsApp Desk</span>
+              </a>
+
+              <button
+                type="button"
+                className="tf-btn tf-btn-secondary"
+                style={{ width: '100%', justifyContent: 'center' }}
+                onClick={handleModalClose}
+              >
+                Close
+              </button>
+            </div>
           </div>
         )}
       </div>

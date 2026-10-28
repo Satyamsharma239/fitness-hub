@@ -85,21 +85,9 @@ export default function Hero({ onOpenTrial }) {
               />
               <div className="tf-hero-visual-overlay" />
 
-              <div className="tf-hero-floating-card">
-                <div className="tf-floating-brand-row">
-                  <div className="tf-floating-dot" />
-                  <strong>THE FITNESS HUB — KURLA</strong>
-                </div>
-                <p>First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar</p>
-                <div className="tf-floating-footer">
-                  <span className="tf-floating-pill">Daily 6 AM – 12 AM</span>
-                  <span className="tf-floating-star">Ladies 2 PM – 4 PM</span>
-                </div>
-              </div>
-
               <div className="tf-hero-corner-tag">
                 <Sparkles size={13} />
-                <span>Join Today. Transform Tomorrow.</span>
+                <span>Air Conditioned • Olympic Weights</span>
               </div>
             </div>
           </div>

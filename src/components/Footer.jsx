@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUp, Phone, MapPin, Clock, Flame } from 'lucide-react';
 import InstagramIcon from './InstagramIcon';
+import WhatsAppIcon from './WhatsAppIcon';
 import { GYM_INFO } from '../data/gymData';
 import logoImg from '../assets/fitnesshub_logo.jpg';
 import './Footer.css';
@@ -97,7 +98,7 @@ export default function Footer({ onOpenTrial }) {
                 className="tf-social-icon wa"
                 aria-label="The Fitness Hub WhatsApp Desk"
               >
-                <Phone size={18} />
+                <WhatsAppIcon size={18} />
               </a>
             </div>
           </div>
@@ -140,18 +141,19 @@ export default function Footer({ onOpenTrial }) {
 
             <div className="tf-footer-contact-item">
               <Phone size={16} className="accent" />
-              <a href={`tel:${GYM_INFO.contact.phoneRaw}`} style={{ color: '#ffffff', fontWeight: 700 }}>
+              <a href={`tel:${GYM_INFO.contact.phoneRaw}`} className="tf-footer-phone-link">
                 {GYM_INFO.contact.phone}
               </a>
             </div>
 
-            <div style={{ marginTop: '16px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            <div className="tf-footer-actions">
               <a
                 href={GYM_INFO.contact.whatsappLink}
                 target="_blank"
                 rel="noreferrer"
                 className="tf-btn tf-btn-primary tf-btn-sm"
               >
+                <WhatsAppIcon size={14} />
                 <span>WhatsApp Desk</span>
               </a>
               <a

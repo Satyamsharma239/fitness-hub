@@ -110,6 +110,10 @@
 .tf-trainer-footer {
   margin-top: auto;
 }
+.tf-trainer-wa-btn {
+  width: 100%;
+  justify-content: center;
+}
 .tf-coaching-guarantee-banner {
   margin-top: 48px;
   background: linear-gradient(135deg, #181824 0%, #0d0d12 100%);

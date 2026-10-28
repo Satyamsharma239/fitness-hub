@@ -384,6 +384,29 @@
   gap: 16px;
   flex-wrap: wrap;
 }
+.tf-location-sub {
+  font-size: 16px;
+  color: var(--text-silver);
+  margin-bottom: 20px;
+}
+.tf-location-ladies-time {
+  color: var(--accent);
+  font-weight: 700;
+}
+.tf-location-phone-link {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.tf-location-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.tf-map-actions-btn {
+  width: 100%;
+}
 @media (max-width: 960px) {
   .tf-intro-editorial-grid,
   .tf-location-grid,

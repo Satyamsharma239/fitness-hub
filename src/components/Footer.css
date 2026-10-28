@@ -121,6 +121,17 @@
   flex-shrink: 0;
   margin-top: 3px;
 }
+.tf-footer-phone-link {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.tf-footer-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
 .tf-footer-bottom {
   display: flex;
   align-items: center;

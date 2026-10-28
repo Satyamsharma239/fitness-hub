@@ -12,6 +12,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import PageHero from '../components/PageHero';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 import { GYM_INFO } from '../data/gymData';
 import '../components/ContactSection.css';
 import './ContactPage.css';
@@ -63,6 +64,22 @@ export default function ContactPage() {
     return errs;
   };
 
+  const buildWhatsAppUrl = (data) => {
+    const msg = [
+      'Hi The Fitness Hub (Kurla), I am inquiring from your website.',
+      '',
+      `• Name: ${data.name.trim()}`,
+      `• Phone: ${data.phone.trim()}`,
+      `• Email: ${data.email.trim()}`,
+      `• Inquiry / Plan: ${data.topic}`,
+      `• Preferred Slot: ${data.timeSlot}`,
+      data.message?.trim() ? `• Notes / Goals: ${data.message.trim()}` : null,
+      '',
+      'Please let me know the available time for a club tour / consultation.'
+    ].filter(Boolean).join('\n');
+    return `https://wa.me/918108884757?text=${encodeURIComponent(msg)}`;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -72,7 +89,13 @@ export default function ContactPage() {
     }
 
     setErrors({});
-    setSubmissionPayload({ ...formData, timestamp: new Date().toLocaleTimeString() });
+    const payload = { ...formData, timestamp: new Date().toLocaleTimeString() };
+    setSubmissionPayload(payload);
+    try {
+      window.open(buildWhatsAppUrl(formData), '_blank');
+    } catch {
+      void 0;
+    }
     setSubmitted(true);
   };
 
@@ -98,7 +121,7 @@ export default function ContactPage() {
         breadcrumb={[{ label: 'Contact', link: null }]}
       />
 
-      <div className="tf-container" style={{ marginTop: '3.5rem' }}>
+      <div className="tf-container tf-contact-main-container">
         <div className="tf-contact-grid">
           
           <div className="tf-contact-info-col">
@@ -118,7 +141,7 @@ export default function ContactPage() {
                   📍 Just 3–4 minutes walk from Kurla Railway Station (East) & Nehru Nagar Bus Depot.
                 </span>
 
-                <div style={{ marginTop: '1rem', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <div className="tf-contact-action-row">
                   <a
                     href={GYM_INFO.contact.mapsUrl}
                     target="_blank"
@@ -151,18 +174,18 @@ export default function ContactPage() {
               <ul className="tf-hours-list">
                 <li className="tf-hours-item">
                   <span>Daily General Access:</span>
-                  <strong style={{ color: '#ffffff' }}>6:00 AM – 12:00 AM (Midnight)</strong>
+                  <strong className="tf-hours-val">6:00 AM – 12:00 AM (Midnight)</strong>
                 </li>
                 <li className="tf-hours-item">
                   <span>Ladies Only Batch:</span>
-                  <strong style={{ color: 'var(--accent)' }}>2:00 PM – 4:00 PM</strong>
+                  <strong className="tf-hours-val accent">2:00 PM – 4:00 PM</strong>
                 </li>
                 <li className="tf-hours-item">
                   <span>Sunday Evening Session:</span>
-                  <strong style={{ color: '#ffffff' }}>6:00 PM – 10:00 PM</strong>
+                  <strong className="tf-hours-val">6:00 PM – 10:00 PM</strong>
                 </li>
               </ul>
-              <span className="tf-contact-note-badge" style={{ color: '#34d399', marginTop: '0.65rem' }}>
+              <span className="tf-contact-note-badge highlight">
                 ⚡ 18 hours open daily for early bird lifters, shift workers & late-night athletes.
               </span>
             </div>
@@ -175,27 +198,27 @@ export default function ContactPage() {
                 <h3>Reception & WhatsApp Desk</h3>
               </div>
               <div className="tf-contact-details">
-                <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span>Calling: <strong style={{ color: '#ffffff' }}>{GYM_INFO.contact.phone}</strong></span>
+                <p className="tf-contact-phone-row">
+                  <span>Calling: <strong className="tf-hours-val">{GYM_INFO.contact.phone}</strong></span>
                   <button
                     type="button"
                     onClick={() => copyToClipboard(GYM_INFO.contact.phoneRaw, 'phone')}
-                    style={{ color: 'var(--accent)', fontSize: '11px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                    className="tf-copy-mini-btn"
                   >
                     {copiedPhone ? <Check size={12} /> : <Copy size={12} />}
                     {copiedPhone ? 'Copied' : 'Copy'}
                   </button>
                 </p>
                 <p>
-                  WhatsApp: <strong style={{ color: '#ffffff' }}>{GYM_INFO.contact.phone}</strong>
+                  WhatsApp: <strong className="tf-hours-val">{GYM_INFO.contact.phone}</strong>
                 </p>
                 <p>
-                  Instagram: <a href={GYM_INFO.socials.instagram} target="_blank" rel="noreferrer" style={{ color: '#ff5b62', fontWeight: 700 }}>{GYM_INFO.socials.instagramHandle}</a>
+                  Instagram: <a href={GYM_INFO.socials.instagram} target="_blank" rel="noreferrer" className="tf-insta-link">{GYM_INFO.socials.instagramHandle}</a>
                 </p>
                 <p>
-                  Email: <span style={{ color: '#ffffff' }}>{GYM_INFO.contact.email}</span>
+                  Email: <span className="tf-contact-email-val">{GYM_INFO.contact.email}</span>
                 </p>
-                <div style={{ marginTop: '1rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <div className="tf-contact-action-row">
                   <a
                     href={GYM_INFO.contact.whatsappLink}
                     target="_blank"
@@ -220,7 +243,7 @@ export default function ContactPage() {
             {!submitted ? (
               <>
                 <div className="tf-form-header">
-                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: 'var(--accent)', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                  <div className="tf-form-header-badge">
                     <ShieldCheck size={16} />
                     <span>Free Trial & Membership Desk</span>
                   </div>
@@ -346,11 +369,10 @@ export default function ContactPage() {
 
                   <button
                     type="submit"
-                    className="tf-btn tf-btn-primary"
-                    style={{ width: '100%' }}
+                    className="tf-btn tf-btn-primary tf-btn-block"
                   >
                     <Send size={16} />
-                    <span>Submit & Book Visit</span>
+                    <span>Submit & Open WhatsApp</span>
                   </button>
                 </form>
               </>
@@ -359,43 +381,48 @@ export default function ContactPage() {
                 <div className="tf-success-icon-wrap">
                   <CheckCircle2 size={32} />
                 </div>
-                <h4>Visit Request Confirmed!</h4>
+                <h4>Inquiry Prepared!</h4>
                 <p>
-                  Thank you, <strong>{submissionPayload.name}</strong>! Your inquiry for <strong>{submissionPayload.topic}</strong> has been logged. Our reception team will reach out via WhatsApp at <strong>{submissionPayload.phone}</strong>.
+                  Thank you, <strong>{submissionPayload?.name}</strong>! Your inquiry for <strong>{submissionPayload?.topic}</strong> is ready.
                 </p>
 
                 <div className="tf-success-summary">
-                  <div><strong>Preferred Slot:</strong> {submissionPayload.timeSlot}</div>
+                  <div><strong>Preferred Slot:</strong> {submissionPayload?.timeSlot}</div>
                   <div><strong>Location:</strong> First Floor, Serene Shelter, Mass Building, Nehru Nagar, Kurla</div>
                   <div><strong>Timings:</strong> Daily 6:00 AM – 12:00 AM Midnight</div>
                 </div>
 
-                <button
-                  type="button"
-                  className="tf-btn tf-btn-secondary"
-                  onClick={handleReset}
-                  style={{ width: '100%' }}
-                >
-                  <span>Submit Another Request</span>
-                </button>
+                <div className="tf-contact-success-actions">
+                  <a
+                    href={buildWhatsAppUrl(submissionPayload || formData)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="tf-btn tf-btn-primary tf-btn-block"
+                  >
+                    <WhatsAppIcon size={18} />
+                    <span>Confirm via WhatsApp Desk</span>
+                  </a>
+
+                  <button
+                    type="button"
+                    className="tf-btn tf-btn-secondary tf-btn-block"
+                    onClick={handleReset}
+                  >
+                    <span>Submit Another Request</span>
+                  </button>
+                </div>
               </div>
             )}
           </div>
         </div>
 
-        <div style={{ marginTop: '3.5rem' }}>
-          <div style={{
-            background: 'var(--bg-surface)',
-            border: '1px solid var(--border-dark)',
-            borderRadius: 'var(--radius-md)',
-            overflow: 'hidden',
-            padding: '24px'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
-              <div>
-                <span className="tf-eyebrow" style={{ marginBottom: '6px' }}>Verified Location</span>
-                <h3 style={{ fontSize: '20px', color: '#ffffff' }}>The Fitness Hub Kurla on Google Maps</h3>
-                <p style={{ fontSize: '13px', color: 'var(--text-muted)' }}>First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar, Kurla, Mumbai – 400024</p>
+        <div className="tf-contact-map-section">
+          <div className="tf-contact-map-box">
+            <div className="tf-contact-map-header">
+              <div className="tf-map-title-group">
+                <span className="tf-eyebrow">Verified Location</span>
+                <h3>The Fitness Hub Kurla on Google Maps</h3>
+                <p>First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar, Kurla, Mumbai – 400024</p>
               </div>
               <a
                 href={GYM_INFO.contact.mapsUrl}
@@ -408,20 +435,11 @@ export default function ContactPage() {
               </a>
             </div>
 
-            <div style={{
-              position: 'relative',
-              width: '100%',
-              height: '380px',
-              borderRadius: 'var(--radius-sm)',
-              overflow: 'hidden',
-              border: '1px solid var(--border-dark)'
-            }}>
+            <div className="tf-contact-map-frame">
               <iframe
                 title="The Fitness Hub Kurla Location Map"
                 src="https://maps.google.com/maps?q=Serene+Shelter+Mass+Building+B+Wing+Nehru+Nagar+Kurla+Mumbai+400024&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
+                className="tf-contact-map-iframe"
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

@@ -1,28 +1,40 @@
 import React from "react";
 
-const MARQUEE_ITEMS = [
-  "DAILY 6:00 AM – 12:00 AM MIDNIGHT",
-  "DEDICATED LADIES ONLY BATCH: 2:00 PM – 4:00 PM",
-  "PLANS FROM ₹1,000/MONTH (GST INCLUDED)",
-  "1-ON-1 PERSONAL TRAINING: GOLD • DIAMOND • PLATINUM",
-  "FIRST FLOOR, SERENE SHELTER, NEHRU NAGAR, KURLA",
-  "100% AIR CONDITIONED TRAINING ENVIRONMENT",
-  "OLYMPIC POWER RACKS & HEAVY FREE WEIGHTS",
-  "SUNDAY EVENING SESSIONS: 6:00 PM – 10:00 PM",
-  "CALL & WHATSAPP: 81088 84757"
+const CLUB_FACTS = [
+  {
+    title: "18-Hour Daily Schedule",
+    subtitle: "6:00 AM – 12:00 AM Midnight"
+  },
+  {
+    title: "Dedicated Ladies Batch",
+    subtitle: "2:00 PM – 4:00 PM Daily"
+  },
+  {
+    title: "Transparent Rates",
+    subtitle: "From ₹1,000/Mo • GST Included"
+  },
+  {
+    title: "Nehru Nagar, Kurla (E)",
+    subtitle: "3 Min from Kurla Station"
+  }
 ];
 
 export default function MarqueeTicker() {
   return (
-    <div className="tf-marquee-wrap" aria-hidden="true">
-      <div className="tf-marquee-track">
-        {MARQUEE_ITEMS.concat(MARQUEE_ITEMS).map((item, idx) => (
-          <div key={idx} className="tf-marquee-item">
-            <span className="tf-marquee-star">★</span>
-            <span>{item}</span>
-          </div>
-        ))}
+    <section className="tf-facts-strip" aria-label="Key club facts">
+      <div className="tf-container">
+        <div className="tf-facts-grid">
+          {CLUB_FACTS.map((fact, idx) => (
+            <div key={idx} className="tf-fact-item">
+              <span className="tf-fact-indicator" />
+              <div className="tf-fact-content">
+                <span className="tf-fact-headline">{fact.title}</span>
+                <span className="tf-fact-sub">{fact.subtitle}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -197,7 +197,7 @@ export const PERSONAL_TRAINING_PLANS = [
     description: "Designed for beginners who want direct trainer supervision to master correct lifting form, prevent injury, and establish strong workout habits.",
     features: [
       "Personal trainer coaching on alternate days (3 days/week)",
-      "Fundamental movement screening & posture audit",
+      "Hands-on movement check & posture assessment",
       "Hands-on exercise form correction on every rep",
       "Safe introduction to free weights, barbells & machines",
       "Direct injury prevention and joint-safe cues",
@@ -366,7 +366,7 @@ export const TRAINERS = [
     name: "Rohan Sawant",
     role: "Strength & Conditioning Specialist",
     specialty: "Fat Loss Circuits, Functional Training, Core Power",
-    bio: "Focuses on high-yield metabolic conditioning, biomechanical correction, and functional agility designed to keep busy working professionals injury-free and energized.",
+    bio: "Focuses on high-energy conditioning, proper lifting mechanics, and functional fitness designed to keep busy working professionals injury-free and energized.",
     experience: "6+ Years Experience",
     certs: "Certified Strength Specialist • BFX Academy",
     image: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=800&q=80",

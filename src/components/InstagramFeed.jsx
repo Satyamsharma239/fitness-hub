@@ -1,3 +1,4 @@
+import React from "react";
 import { Heart, ArrowUpRight } from "lucide-react";
 import InstagramIcon from "./InstagramIcon";
 import { GYM_INFO, INSTAGRAM_HIGHLIGHTS } from "../data/gymData";
@@ -9,7 +10,6 @@ export default function InstagramFeed() {
       <div className="tf-container">
         <div className="tf-section-header center">
           <span className="tf-eyebrow">
-            <InstagramIcon size={14} />
             Community & Live Energy
           </span>
           <h2 className="tf-section-title">
@@ -19,13 +19,12 @@ export default function InstagramFeed() {
             Catch real-time member PRs, coach technique tutorials, daily gym vibe, and transformational journeys directly from the training floor in Kurla.
           </p>
 
-          <div style={{ marginTop: "16px" }}>
+          <div className="tf-ig-cta-wrap">
             <a
               href={GYM_INFO.socials.instagram}
               target="_blank"
               rel="noreferrer"
-              className="tf-btn tf-btn-secondary tf-btn-sm"
-              style={{ display: "inline-flex" }}
+              className="tf-btn tf-btn-secondary tf-btn-sm tf-ig-follow-btn"
             >
               <InstagramIcon size={15} />
               <span>Follow Us on Instagram</span>

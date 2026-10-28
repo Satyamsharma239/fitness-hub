@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import TrialModal from './components/TrialModal';
+import WhatsAppIcon from './components/WhatsAppIcon';
 import useScrollReveal from './hooks/useScrollReveal';
 import { GYM_INFO } from './data/gymData';
 
@@ -16,15 +17,23 @@ import ContactPage from './pages/ContactPage';
 function AppContent() {
   const location = useLocation();
   const [trialModalOpen, setTrialModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState('General Facility Walkthrough & Trial');
 
   useScrollReveal();
 
-  const openTrial = () => setTrialModalOpen(true);
+  const openTrial = (planName) => {
+    if (typeof planName === 'string' && planName.trim().length > 0) {
+      setSelectedPlan(planName);
+    } else {
+      setSelectedPlan('General Facility Walkthrough & Trial');
+    }
+    setTrialModalOpen(true);
+  };
+
   const closeTrial = () => setTrialModalOpen(false);
 
   return (
     <div className="tf-app">
-      
       <Navbar onOpenTrial={openTrial} />
 
       <main id="main-content" key={location.pathname} className="tf-page-enter">
@@ -44,7 +53,11 @@ function AppContent() {
 
       <Footer onOpenTrial={openTrial} />
 
-      <TrialModal isOpen={trialModalOpen} onClose={closeTrial} />
+      <TrialModal
+        isOpen={trialModalOpen}
+        initialGoal={selectedPlan}
+        onClose={closeTrial}
+      />
 
       <a
         href={GYM_INFO.contact.whatsappLink}
@@ -54,9 +67,7 @@ function AppContent() {
         aria-label="Chat with The Fitness Hub Kurla on WhatsApp"
       >
         <span className="tf-pulse-dot" />
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.09c-.24.68-1.4 1.3-1.93 1.35-.53.05-1.02.24-3.46-.72-2.94-1.16-4.8-4.21-4.95-4.41-.14-.2-1.17-1.56-1.17-2.98 0-1.41.74-2.11 1-2.4.26-.29.56-.36.75-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.8 1.98.87 2.12.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.14-.3.3-.13.59.17.29.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.33 1.45.29.15.46.12.63-.07.17-.19.73-.85.93-1.14.19-.29.39-.24.65-.14.26.1 1.66.78 1.94.92.29.15.48.22.55.34.07.13.07.75-.17 1.43z" />
-        </svg>
+        <WhatsAppIcon size={22} />
         <span>WhatsApp Reception</span>
       </a>
     </div>

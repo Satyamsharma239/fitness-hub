@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Check, ShieldCheck, MapPin, PhoneCall, Sparkles, Award, Users } from 'lucide-react';
+import { Check, ShieldCheck, MapPin, Award, Users } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
 import { STANDARD_MEMBERSHIPS, PERSONAL_TRAINING_PLANS, GYM_INFO } from '../data/gymData';
 import './MembershipSection.css';
 
@@ -14,8 +15,7 @@ export default function MembershipSection({ onOpenTrial }) {
       <div className="tf-container">
         <div className="tf-section-header center">
           <span className="tf-eyebrow">
-            <ShieldCheck size={14} />
-            Official Pricing & Plans
+            03 / OFFICIAL RATES
           </span>
           <h2 className="tf-section-title">
             Simple, Transparent Rates. <span className="accent">GST Included.</span>
@@ -47,7 +47,6 @@ export default function MembershipSection({ onOpenTrial }) {
 
         {activeTab === 'standard' && (
           <div className="tf-standard-plans-wrap">
-            
             <div className="tf-pricing-grid tf-pricing-grid-4col">
               {individualPlans.map((plan) => (
                 <div
@@ -91,22 +90,12 @@ export default function MembershipSection({ onOpenTrial }) {
                     <button
                       type="button"
                       className={`tf-btn ${plan.highlighted ? 'tf-btn-primary' : 'tf-btn-secondary'}`}
-                      style={{ width: '100%', marginBottom: '10px' }}
-                      onClick={onOpenTrial}
+                      style={{ width: '100%' }}
+                      onClick={() => onOpenTrial(`Standard ${plan.duration} (${plan.price})`)}
                     >
                       <MapPin size={15} />
                       <span>{plan.ctaText}</span>
                     </button>
-
-                    <a
-                      href={`https://wa.me/918108884757?text=Hi%20The%20Fitness%20Hub%20Kurla%2C%20I%20would%20like%20to%20enroll%20for%20the%20${encodeURIComponent(plan.duration)}%20(${encodeURIComponent(plan.price)})%20membership%20plan.`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="tf-pricing-wa-link"
-                    >
-                      <PhoneCall size={13} />
-                      <span>Inquire on WhatsApp</span>
-                    </a>
                   </div>
                 </div>
               ))}
@@ -140,7 +129,7 @@ export default function MembershipSection({ onOpenTrial }) {
                     <button
                       type="button"
                       className="tf-btn tf-btn-primary"
-                      onClick={onOpenTrial}
+                      onClick={() => onOpenTrial('Annual Couples Package (₹10,000/person)')}
                     >
                       <MapPin size={15} />
                       <span>Claim Couple Pass</span>
@@ -152,7 +141,7 @@ export default function MembershipSection({ onOpenTrial }) {
                       rel="noreferrer"
                       className="tf-btn tf-btn-secondary"
                     >
-                      <PhoneCall size={14} />
+                      <WhatsAppIcon size={14} />
                       <span>WhatsApp Inquire</span>
                     </a>
                   </div>
@@ -165,7 +154,7 @@ export default function MembershipSection({ onOpenTrial }) {
         {activeTab === 'pt' && (
           <div>
             <div className="tf-pt-intro-banner">
-              <Sparkles size={18} className="accent" />
+              <Award size={18} className="accent" />
               <div>
                 <strong>All Personal Trainer Plans are Monthly on Alternate Days (3 Sessions/Week)</strong>
                 <span>Direct 1-on-1 certified coaching tailored to your physical capabilities and goals.</span>
@@ -222,22 +211,12 @@ export default function MembershipSection({ onOpenTrial }) {
                     <button
                       type="button"
                       className={`tf-btn ${plan.highlighted ? 'tf-btn-primary' : 'tf-btn-secondary'}`}
-                      style={{ width: '100%', marginBottom: '10px' }}
-                      onClick={onOpenTrial}
+                      style={{ width: '100%' }}
+                      onClick={() => onOpenTrial(`Personal Training: ${plan.tier} (${plan.price}/mo)`)}
                     >
                       <Award size={15} />
                       <span>Book {plan.tier} Assessment</span>
                     </button>
-
-                    <a
-                      href={`https://wa.me/918108884757?text=Hi%20The%20Fitness%20Hub%20Kurla%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(plan.tier)}%20Personal%20Training%20plan%20(${encodeURIComponent(plan.price)}%2Fmo).`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="tf-pricing-wa-link"
-                    >
-                      <PhoneCall size={13} />
-                      <span>Chat with Head Trainer</span>
-                    </a>
                   </div>
                 </div>
               ))}
@@ -249,16 +228,24 @@ export default function MembershipSection({ onOpenTrial }) {
           <div className="tf-visit-guarantee-box">
             <div className="tf-visit-guarantee-header">
               <ShieldCheck size={18} className="accent" />
-              <strong>The Fitness Hub Kurla Membership Highlights</strong>
+              <strong>Have Questions Before Enrolling?</strong>
             </div>
             <p>
-              Located at First Floor, Serene Shelter, Mass Building, Nehru Nagar, Kurla. All memberships include full air-conditioned floor access, clean lockers, and general trainer spotting.
+              Located at First Floor, Serene Shelter, Mass Building, Nehru Nagar, Kurla. Chat directly with our reception desk on WhatsApp for instant guidance on any membership or training plan.
             </p>
             <div className="tf-visit-perk-pills">
               <span>Daily 6:00 AM – 12:00 AM Midnight</span>
               <span>Ladies Only Batch: 2:00 PM – 4:00 PM</span>
               <span>Sunday Session: 6:00 PM – 10:00 PM</span>
-              <span>Direct Reception: {GYM_INFO.contact.phone}</span>
+              <a
+                href={GYM_INFO.contact.whatsappLink}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: '#34d399', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '5px' }}
+              >
+                <WhatsAppIcon size={14} />
+                <span>WhatsApp: {GYM_INFO.contact.phone}</span>
+              </a>
             </div>
           </div>
         </div>

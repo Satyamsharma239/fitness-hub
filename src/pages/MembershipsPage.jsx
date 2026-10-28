@@ -23,7 +23,7 @@ export default function MembershipsPage({ onOpenTrial }) {
 
       <MembershipSection onOpenTrial={onOpenTrial} />
 
-      <section className="tf-section tf-faq-section" style={{ borderTop: '1px solid var(--border-dark)' }}>
+      <section className="tf-section tf-faq-section tf-faq-section-bordered">
         <div className="tf-container">
           <div className="tf-section-header center">
             <span className="tf-eyebrow">
@@ -38,7 +38,7 @@ export default function MembershipsPage({ onOpenTrial }) {
             </p>
           </div>
 
-          <div style={{ maxWidth: '820px', margin: '0 auto' }}>
+          <div className="tf-faq-wrapper">
             <div className="tf-accordion">
               {FAQS.map((faq, index) => {
                 const isOpen = openFaq === index;

@@ -7,8 +7,6 @@ import {
   ShieldCheck,
   CheckCircle2,
   Phone,
-  Compass,
-  Sparkles,
   ChevronRight
 } from "lucide-react";
 import Hero from "../components/Hero";
@@ -18,6 +16,7 @@ import MembershipSection from "../components/MembershipSection";
 import InstagramFeed from "../components/InstagramFeed";
 import TestimonialsSection from "../components/TestimonialsSection";
 import FAQSection from "../components/FAQSection";
+import WhatsAppIcon from "../components/WhatsAppIcon";
 import { GYM_INFO, TRAINING_ZONES } from "../data/gymData";
 import "./HomePage.css";
 
@@ -34,8 +33,7 @@ export default function HomePage({ onOpenTrial }) {
           <div className="tf-intro-editorial-grid">
             <div className="tf-intro-editorial-text">
               <span className="tf-eyebrow">
-                <Compass size={13} />
-                About The Fitness Hub — Kurla
+                01 / ABOUT THE HUB
               </span>
               <h2 className="tf-section-title">
                 BUILT FOR DISCIPLINE. <br />
@@ -125,8 +123,7 @@ export default function HomePage({ onOpenTrial }) {
         <div className="tf-container">
           <div className="tf-section-header center">
             <span className="tf-eyebrow">
-              <Sparkles size={13} />
-              The Training Floor
+              02 / THE TRAINING FLOOR
             </span>
             <h2 className="tf-section-title">
               Designed For Every <span className="accent">Fitness Discipline</span>
@@ -187,15 +184,14 @@ export default function HomePage({ onOpenTrial }) {
           <div className="tf-location-grid">
             <div className="tf-location-card">
               <span className="tf-eyebrow">
-                <MapPin size={13} />
-                Kurla Location
+                05 / KURLA LOCATION
               </span>
               <h2 className="tf-section-title">
                 EASY TO REACH. <br />
                 <span className="accent">IMPOSSIBLE TO SKIP.</span>
               </h2>
 
-              <p style={{ fontSize: "16px", color: "var(--text-silver)", marginBottom: "20px" }}>
+              <p className="tf-location-sub">
                 Conveniently situated in Nehru Nagar, Kurla, just 3-4 minutes walking distance from Kurla Railway Station.
               </p>
 
@@ -213,7 +209,7 @@ export default function HomePage({ onOpenTrial }) {
                   <div>
                     <strong>Operating Hours</strong>
                     <p>{GYM_INFO.contact.hoursDaily}</p>
-                    <p style={{ color: "var(--accent)", fontWeight: 700 }}>{GYM_INFO.contact.hoursLadiesOnly}</p>
+                    <p className="tf-location-ladies-time">{GYM_INFO.contact.hoursLadiesOnly}</p>
                     <p>{GYM_INFO.contact.hoursSunday}</p>
                   </div>
                 </div>
@@ -223,7 +219,7 @@ export default function HomePage({ onOpenTrial }) {
                   <div>
                     <strong>Direct Calling & WhatsApp</strong>
                     <p>
-                      <a href={`tel:${GYM_INFO.contact.phoneRaw}`} style={{ color: "#ffffff", fontWeight: 700 }}>
+                      <a href={`tel:${GYM_INFO.contact.phoneRaw}`} className="tf-location-phone-link">
                         {GYM_INFO.contact.phone}
                       </a>
                     </p>
@@ -231,7 +227,7 @@ export default function HomePage({ onOpenTrial }) {
                 </div>
               </div>
 
-              <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "28px" }}>
+              <div className="tf-location-actions">
                 <a
                   href={GYM_INFO.contact.mapsUrl}
                   target="_blank"
@@ -247,6 +243,7 @@ export default function HomePage({ onOpenTrial }) {
                   rel="noreferrer"
                   className="tf-btn tf-btn-secondary"
                 >
+                  <WhatsAppIcon size={16} />
                   <span>WhatsApp Reception</span>
                 </a>
               </div>
@@ -290,8 +287,7 @@ export default function HomePage({ onOpenTrial }) {
                     href={GYM_INFO.contact.mapsUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="tf-btn tf-btn-primary"
-                    style={{ width: "100%" }}
+                    className="tf-btn tf-btn-primary tf-map-actions-btn"
                   >
                     <span>Launch GPS Directions (Google Maps)</span>
                   </a>
@@ -309,8 +305,7 @@ export default function HomePage({ onOpenTrial }) {
           <div className="tf-final-cta-box">
             <div className="tf-final-cta-glow" />
             <span className="tf-eyebrow">
-              <ShieldCheck size={13} />
-              Join Today. Transform Tomorrow.
+              JOIN TODAY. TRANSFORM TOMORROW.
             </span>
             <h2 className="tf-final-cta-title">
               SEE THE FACILITY. <br />
@@ -334,6 +329,7 @@ export default function HomePage({ onOpenTrial }) {
                 rel="noreferrer"
                 className="tf-btn tf-btn-secondary tf-btn-lg"
               >
+                <WhatsAppIcon size={17} />
                 <span>WhatsApp Front Desk</span>
               </a>
             </div>
