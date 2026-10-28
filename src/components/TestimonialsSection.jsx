@@ -30,7 +30,6 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Testimonials Grid */}
         <div className="tf-testimonials-grid">
           {TESTIMONIALS.map((item) => (
             <div key={item.id} className="tf-testimonial-card">

@@ -1,16 +1,10 @@
-/*
- * FAQ Section Styling
- */
-
 .tf-faq-section {
   background-color: var(--bg-dark);
 }
-
 .tf-faq-wrapper {
   max-width: 820px;
   margin: 0 auto;
 }
-
 .tf-faq-help-box {
   margin-top: 32px;
   background: var(--bg-surface-elevated);
@@ -22,22 +16,18 @@
   gap: 20px;
   flex-wrap: wrap;
 }
-
 .tf-faq-help-box h4 {
   font-size: 16px;
   color: #ffffff;
   margin-bottom: 2px;
 }
-
 .tf-faq-help-box p {
   font-size: 13.5px;
   color: var(--text-muted);
 }
-
 .tf-faq-help-box .tf-btn {
   margin-left: auto;
 }
-
 @media (max-width: 680px) {
   .tf-faq-help-box {
     flex-direction: column;

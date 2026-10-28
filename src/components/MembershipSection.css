@@ -1,12 +1,6 @@
-/*
- * Membership Pricing Card Styling - Clean Rates with GST Included
- */
-
 .tf-membership-section {
   background-color: var(--bg-dark);
 }
-
-/* Tab Switcher */
 .tf-plan-tab-switcher {
   display: flex;
   align-items: center;
@@ -15,7 +9,6 @@
   margin-bottom: 40px;
   flex-wrap: wrap;
 }
-
 .tf-tab-switch-btn {
   display: inline-flex;
   align-items: center;
@@ -33,21 +26,17 @@
   cursor: pointer;
   transition: all var(--transition-fast);
 }
-
 .tf-tab-switch-btn:hover {
   background: #22222e;
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.2);
 }
-
 .tf-tab-switch-btn.active {
   background: var(--accent-gradient);
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.25);
   box-shadow: 0 4px 18px rgba(255, 30, 39, 0.4);
 }
-
-/* PT Intro Banner */
 .tf-pt-intro-banner {
   max-width: 840px;
   margin: 0 auto 36px auto;
@@ -60,38 +49,30 @@
   gap: 14px;
   text-align: left;
 }
-
 .tf-pt-intro-banner strong {
   display: block;
   font-size: 14px;
   color: #ffffff;
   margin-bottom: 2px;
 }
-
 .tf-pt-intro-banner span {
   font-size: 13px;
   color: var(--text-body);
 }
-
-/* Grids */
 .tf-pricing-grid {
   display: grid;
   gap: 24px;
   max-width: 1280px;
   margin: 0 auto;
 }
-
 .tf-pricing-grid-4col {
   grid-template-columns: repeat(4, 1fr);
   margin-bottom: 28px;
 }
-
 .tf-pricing-grid-pt {
   grid-template-columns: repeat(3, 1fr);
   max-width: 1100px;
 }
-
-/* Featured Duo Couple Card */
 .tf-couple-package-card {
   max-width: 1280px;
   margin: 0 auto;
@@ -107,16 +88,13 @@
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
   transition: transform var(--transition-smooth), border-color 0.3s ease;
 }
-
 .tf-couple-package-card:hover {
   transform: translateY(-4px);
   border-color: var(--accent);
 }
-
 .tf-couple-card-left {
   max-width: 650px;
 }
-
 .tf-couple-badge {
   display: inline-flex;
   align-items: center;
@@ -132,21 +110,18 @@
   border-radius: var(--radius-pill);
   margin-bottom: 12px;
 }
-
 .tf-couple-card-left h3 {
   font-size: clamp(22px, 2.5vw, 28px);
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 8px;
 }
-
 .tf-couple-card-left p {
   font-size: 14.5px;
   color: var(--text-body);
   line-height: 1.6;
   margin-bottom: 14px;
 }
-
 .tf-couple-perks {
   display: flex;
   align-items: center;
@@ -156,18 +131,15 @@
   font-weight: 600;
   color: #dedee8;
 }
-
 .tf-couple-card-right {
   display: flex;
   align-items: center;
   gap: 24px;
   flex-wrap: wrap;
 }
-
 .tf-couple-price-box {
   text-align: right;
 }
-
 .tf-couple-price-num {
   font-family: var(--font-display);
   font-size: clamp(34px, 4vw, 42px);
@@ -175,7 +147,6 @@
   color: #ffffff;
   line-height: 1;
 }
-
 .tf-couple-price-lbl {
   font-size: 11px;
   font-weight: 700;
@@ -185,20 +156,17 @@
   display: block;
   margin-top: 4px;
 }
-
 .tf-couple-actions {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
 }
-
 @media (max-width: 1080px) {
   .tf-pricing-grid-4col {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media (max-width: 680px) {
   .tf-pricing-grid-4col {
     grid-template-columns: 1fr;
@@ -218,7 +186,6 @@
     width: 100%;
   }
 }
-
 .tf-pricing-card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-dark);
@@ -229,24 +196,20 @@
   position: relative;
   transition: all var(--transition-smooth);
 }
-
 .tf-pricing-card:hover {
   transform: translateY(-6px);
   border-color: rgba(255, 30, 39, 0.45);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
 }
-
 .tf-pricing-card.featured {
   background: linear-gradient(180deg, #1b171c 0%, #111015 100%);
   border: 2px solid var(--accent);
   box-shadow: 0 0 35px rgba(255, 30, 39, 0.22);
 }
-
 .tf-pricing-card.featured:hover {
   transform: translateY(-6px);
   box-shadow: 0 0 45px rgba(255, 30, 39, 0.38);
 }
-
 .tf-featured-badge {
   position: absolute;
   top: -13px;
@@ -263,11 +226,9 @@
   box-shadow: 0 4px 14px rgba(255, 30, 39, 0.5);
   white-space: nowrap;
 }
-
 .tf-pricing-header {
   margin-bottom: 16px;
 }
-
 .tf-plan-badge-inline {
   display: inline-block;
   font-size: 11px;
@@ -277,21 +238,18 @@
   color: var(--accent);
   margin-bottom: 6px;
 }
-
 .tf-plan-name {
   font-size: 24px;
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 6px;
 }
-
 .tf-plan-ideal {
   font-size: 13px;
   color: var(--text-body);
   line-height: 1.5;
   margin-bottom: 4px;
 }
-
 .tf-pricing-value-box {
   background: rgba(0, 0, 0, 0.4);
   border-radius: var(--radius-sm);
@@ -299,13 +257,11 @@
   margin-bottom: 22px;
   border: 1px solid rgba(255, 255, 255, 0.07);
 }
-
 .tf-plan-price-row {
   display: flex;
   align-items: baseline;
   gap: 8px;
 }
-
 .tf-plan-price-num {
   font-family: var(--font-display);
   font-size: 32px;
@@ -314,7 +270,6 @@
   line-height: 1;
   letter-spacing: -0.01em;
 }
-
 .tf-plan-gst-tag {
   font-size: 11px;
   font-weight: 700;
@@ -325,13 +280,11 @@
   padding: 2px 7px;
   border-radius: 4px;
 }
-
 .tf-price-subtext {
   font-size: 12px;
   color: var(--text-muted);
   margin-top: 6px;
 }
-
 .tf-pricing-features {
   list-style: none;
   padding: 0;
@@ -341,7 +294,6 @@
   gap: 10px;
   flex-grow: 1;
 }
-
 .tf-feature-item {
   display: flex;
   align-items: flex-start;
@@ -350,7 +302,6 @@
   color: #dedee8;
   line-height: 1.45;
 }
-
 .tf-feature-icon {
   width: 17px;
   height: 17px;
@@ -363,13 +314,11 @@
   flex-shrink: 0;
   margin-top: 2px;
 }
-
 .tf-pricing-footer {
   margin-top: auto;
   display: flex;
   flex-direction: column;
 }
-
 .tf-pricing-wa-link {
   display: inline-flex;
   align-items: center;
@@ -383,17 +332,13 @@
   padding: 8px 12px;
   transition: color var(--transition-fast);
 }
-
 .tf-pricing-wa-link:hover {
   color: #10b981;
 }
-
-/* Highlights Callout */
 .tf-pricing-note {
   max-width: 900px;
   margin: 44px auto 0 auto;
 }
-
 .tf-visit-guarantee-box {
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-dark);
@@ -401,19 +346,16 @@
   padding: clamp(24px, 3vw, 32px);
   text-align: center;
 }
-
 .tf-visit-guarantee-header {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 10px;
 }
-
 .tf-visit-guarantee-header strong {
   font-size: 16px;
   color: #ffffff;
 }
-
 .tf-visit-guarantee-box p {
   font-size: 14px;
   color: var(--text-body);
@@ -421,7 +363,6 @@
   margin: 0 auto 18px auto;
   line-height: 1.65;
 }
-
 .tf-visit-perk-pills {
   display: flex;
   align-items: center;
@@ -432,14 +373,12 @@
   font-weight: 700;
   color: #dedee8;
 }
-
 .tf-visit-perk-pills span {
   padding: 5px 14px;
   border-radius: var(--radius-pill);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-dark);
 }
-
 @media (max-width: 960px) {
   .tf-pricing-grid-pt {
     grid-template-columns: 1fr;

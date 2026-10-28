@@ -34,7 +34,6 @@ export default function InstagramFeed() {
           </div>
         </div>
 
-        {/* Instagram Grid */}
         <div className="tf-ig-grid">
           {INSTAGRAM_HIGHLIGHTS.map((item) => (
             <a

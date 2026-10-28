@@ -1,26 +1,15 @@
-/*
- * Flagship HomePage Styling - Luxury Athletic Editorial
- */
-
 .tf-home-page {
   overflow-x: hidden;
 }
-
-/* --------------------------------------------------
-   Editorial Intro Section
--------------------------------------------------- */
-
 .tf-intro-editorial {
   background: #09090c;
 }
-
 .tf-intro-editorial-grid {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: clamp(32px, 5vw, 64px);
   align-items: center;
 }
-
 .tf-intro-lead {
   font-size: clamp(17px, 1.4vw, 21px);
   font-weight: 600;
@@ -28,21 +17,18 @@
   color: #ffffff;
   margin-bottom: 16px;
 }
-
 .tf-intro-p {
   font-size: 15px;
   line-height: 1.75;
   color: var(--text-body);
   margin-bottom: 24px;
 }
-
 .tf-intro-checklist {
   display: flex;
   flex-direction: column;
   gap: 14px;
   margin-bottom: 32px;
 }
-
 .tf-intro-check-row {
   display: flex;
   align-items: flex-start;
@@ -51,27 +37,22 @@
   line-height: 1.5;
   color: #dedee8;
 }
-
 .tf-check-accent {
   color: var(--accent);
   flex-shrink: 0;
   margin-top: 2px;
 }
-
 .tf-intro-actions {
   display: flex;
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
 }
-
-/* Visual Collage */
 .tf-intro-editorial-visuals {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-
 .tf-visual-main-box {
   position: relative;
   border-radius: var(--radius-md);
@@ -79,18 +60,15 @@
   border: 1px solid var(--border-dark);
   aspect-ratio: 16 / 10;
 }
-
 .tf-visual-main-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 600ms var(--tf-ease);
 }
-
 .tf-visual-main-box:hover .tf-visual-main-img {
   transform: scale(1.04);
 }
-
 .tf-visual-floating-badge {
   position: absolute;
   bottom: 16px;
@@ -105,24 +83,20 @@
   align-items: center;
   gap: 12px;
 }
-
 .tf-visual-floating-badge strong {
   display: block;
   font-size: 13px;
   color: #ffffff;
 }
-
 .tf-visual-floating-badge span {
   font-size: 11px;
   color: var(--text-muted);
 }
-
 .tf-visual-sub-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
-
 .tf-visual-sub-box {
   position: relative;
   border-radius: var(--radius-sm);
@@ -130,18 +104,15 @@
   border: 1px solid var(--border-dark);
   aspect-ratio: 16 / 10;
 }
-
 .tf-visual-sub-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 600ms var(--tf-ease);
 }
-
 .tf-visual-sub-box:hover img {
   transform: scale(1.06);
 }
-
 .tf-visual-sub-box span {
   position: absolute;
   bottom: 8px;
@@ -154,23 +125,16 @@
   text-transform: uppercase;
   color: #ffffff;
 }
-
-/* --------------------------------------------------
-   Training Zones Section
--------------------------------------------------- */
-
 .tf-zones-section {
   background: #0d0d12;
   border-top: 1px solid var(--border-dark);
   border-bottom: 1px solid var(--border-dark);
 }
-
 .tf-zones-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 28px;
 }
-
 .tf-zone-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-dark);
@@ -180,31 +144,26 @@
   flex-direction: column;
   transition: all var(--transition-smooth);
 }
-
 .tf-zone-card:hover {
   transform: translateY(-4px);
   border-color: rgba(255, 30, 39, 0.45);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
 }
-
 .tf-zone-media {
   position: relative;
   height: 220px;
   overflow: hidden;
   background: #000;
 }
-
 .tf-zone-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 600ms var(--tf-ease);
 }
-
 .tf-zone-card:hover .tf-zone-img {
   transform: scale(1.06);
 }
-
 .tf-zone-tag {
   position: absolute;
   top: 14px;
@@ -219,28 +178,24 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-
 .tf-zone-body {
   padding: 24px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
-
 .tf-zone-body h3 {
   font-size: 22px;
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 8px;
 }
-
 .tf-zone-body p {
   font-size: 14px;
   line-height: 1.6;
   color: var(--text-body);
   margin-bottom: 16px;
 }
-
 .tf-zone-features {
   list-style: none;
   padding: 0;
@@ -249,7 +204,6 @@
   flex-direction: column;
   gap: 8px;
 }
-
 .tf-zone-features li {
   display: flex;
   align-items: center;
@@ -257,7 +211,6 @@
   font-size: 13px;
   color: #dedee8;
 }
-
 .tf-zone-btn {
   margin-top: auto;
   display: inline-flex;
@@ -274,40 +227,30 @@
   padding: 0;
   transition: all var(--transition-fast);
 }
-
 .tf-zone-btn:hover {
   color: #ffffff;
   gap: 9px;
 }
-
-/* --------------------------------------------------
-   Location & Transit Section
--------------------------------------------------- */
-
 .tf-location-section {
   background: #09090d;
   border-top: 1px solid var(--border-dark);
 }
-
 .tf-location-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(32px, 5vw, 56px);
   align-items: center;
 }
-
 .tf-location-details-list {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
-
 .tf-loc-item {
   display: flex;
   align-items: flex-start;
   gap: 14px;
 }
-
 .tf-loc-icon {
   width: 38px;
   height: 38px;
@@ -320,21 +263,17 @@
   flex-shrink: 0;
   margin-top: 2px;
 }
-
 .tf-loc-item strong {
   display: block;
   font-size: 14px;
   color: #ffffff;
   margin-bottom: 2px;
 }
-
 .tf-loc-item p {
   font-size: 13.5px;
   color: var(--text-muted);
   line-height: 1.5;
 }
-
-/* Transit Map Card */
 .tf-map-visual-card {
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-dark);
@@ -343,7 +282,6 @@
   position: relative;
   overflow: hidden;
 }
-
 .tf-map-header {
   display: flex;
   align-items: center;
@@ -356,7 +294,6 @@
   padding-bottom: 14px;
   border-bottom: 1px solid var(--border-dark);
 }
-
 .tf-map-live-dot {
   width: 8px;
   height: 8px;
@@ -364,20 +301,17 @@
   background: #10b981;
   box-shadow: 0 0 8px #10b981;
 }
-
 .tf-transit-pointers {
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-bottom: 24px;
 }
-
 .tf-transit-step {
   display: flex;
   align-items: flex-start;
   gap: 12px;
 }
-
 .tf-step-badge {
   width: 24px;
   height: 24px;
@@ -391,29 +325,21 @@
   justify-content: center;
   flex-shrink: 0;
 }
-
 .tf-transit-step strong {
   display: block;
   font-size: 13.5px;
   color: #ffffff;
   margin-bottom: 3px;
 }
-
 .tf-transit-step p {
   font-size: 12.5px;
   color: var(--text-muted);
   line-height: 1.45;
 }
-
-/* --------------------------------------------------
-   Closing In-Person Visit Invitation
--------------------------------------------------- */
-
 .tf-final-cta-section {
   background: var(--bg-dark);
   padding-bottom: clamp(72px, 8vw, 120px);
 }
-
 .tf-final-cta-box {
   position: relative;
   background: radial-gradient(circle at 50% 0%, #201416 0%, #0d0d12 80%);
@@ -424,7 +350,6 @@
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
 }
-
 .tf-final-cta-glow {
   position: absolute;
   top: -100px;
@@ -436,7 +361,6 @@
   filter: blur(80px);
   pointer-events: none;
 }
-
 .tf-final-cta-title {
   font-size: clamp(34px, 5.5vw, 68px);
   font-weight: 900;
@@ -446,7 +370,6 @@
   color: #ffffff;
   text-wrap: balance;
 }
-
 .tf-final-cta-sub {
   max-width: 680px;
   margin: 0 auto 36px auto;
@@ -454,7 +377,6 @@
   color: #c4c4d6;
   line-height: 1.7;
 }
-
 .tf-final-cta-actions {
   display: flex;
   align-items: center;
@@ -462,7 +384,6 @@
   gap: 16px;
   flex-wrap: wrap;
 }
-
 @media (max-width: 960px) {
   .tf-intro-editorial-grid,
   .tf-location-grid,

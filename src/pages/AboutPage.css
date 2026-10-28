@@ -1,18 +1,12 @@
-/*
- * About Page Styling
- */
-
 .tf-about-story-section {
   background-color: var(--bg-dark);
 }
-
 .tf-about-story-grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: clamp(32px, 5vw, 64px);
   align-items: center;
 }
-
 .tf-about-lead {
   font-size: clamp(17px, 1.4vw, 21px);
   font-weight: 600;
@@ -20,14 +14,12 @@
   color: #ffffff;
   margin-bottom: 18px;
 }
-
 .tf-about-p {
   font-size: 15px;
   line-height: 1.75;
   color: var(--text-body);
   margin-bottom: 28px;
 }
-
 .tf-about-stat-strip {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -35,7 +27,6 @@
   padding-top: 24px;
   border-top: 1px solid var(--border-dark);
 }
-
 .tf-about-stat-box {
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-dark);
@@ -43,7 +34,6 @@
   padding: 16px;
   text-align: center;
 }
-
 .tf-about-stat-num {
   display: block;
   font-family: var(--font-display);
@@ -52,7 +42,6 @@
   color: #ffffff;
   line-height: 1;
 }
-
 .tf-about-stat-lbl {
   font-size: 11px;
   font-weight: 600;
@@ -61,21 +50,18 @@
   margin-top: 6px;
   display: block;
 }
-
 .tf-about-story-media {
   position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--border-dark);
 }
-
 .tf-about-story-img {
   width: 100%;
   height: 100%;
   min-height: 440px;
   object-fit: cover;
 }
-
 .tf-about-badge-card {
   position: absolute;
   bottom: 20px;
@@ -90,25 +76,20 @@
   align-items: center;
   gap: 12px;
 }
-
 .tf-about-badge-card strong {
   display: block;
   font-size: 13.5px;
   color: #ffffff;
 }
-
 .tf-about-badge-card span {
   font-size: 11.5px;
   color: var(--text-muted);
 }
-
-/* Core Pillars */
 .tf-about-pillars-section {
   background: #0b0b0f;
   border-top: 1px solid var(--border-dark);
   border-bottom: 1px solid var(--border-dark);
 }
-
 .tf-pillar-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-dark);
@@ -116,13 +97,11 @@
   padding: clamp(28px, 4vw, 36px);
   transition: all var(--transition-smooth);
 }
-
 .tf-pillar-card:hover {
   border-color: rgba(255, 30, 39, 0.4);
   transform: translateY(-4px);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
 }
-
 .tf-pillar-icon-box {
   width: 50px;
   height: 50px;
@@ -134,21 +113,17 @@
   justify-content: center;
   margin-bottom: 18px;
 }
-
 .tf-pillar-title {
   font-size: 22px;
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 10px;
 }
-
 .tf-pillar-text {
   font-size: 14.5px;
   line-height: 1.7;
   color: var(--text-body);
 }
-
-/* Visit Box */
 .tf-about-visit-box {
   background: linear-gradient(135deg, #181824 0%, #0d0d12 100%);
   border: 1px solid var(--border-dark);
@@ -159,20 +134,17 @@
   gap: 36px;
   align-items: center;
 }
-
 .tf-about-visit-copy h2 {
   font-size: clamp(28px, 3.5vw, 42px);
   margin-top: 10px;
   margin-bottom: 14px;
   color: #ffffff;
 }
-
 .tf-about-visit-copy p {
   font-size: 15px;
   color: var(--text-body);
   line-height: 1.65;
 }
-
 .tf-about-location-summary {
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-dark);
@@ -182,27 +154,23 @@
   flex-direction: column;
   gap: 20px;
 }
-
 .tf-loc-summary-item {
   display: flex;
   align-items: flex-start;
   gap: 12px;
 }
-
 .tf-loc-summary-item strong {
   display: block;
   font-size: 14px;
   color: #ffffff;
   margin-bottom: 3px;
 }
-
 .tf-loc-summary-item span {
   display: block;
   font-size: 12.5px;
   color: var(--text-muted);
   line-height: 1.45;
 }
-
 @media (max-width: 900px) {
   .tf-about-story-grid,
   .tf-about-visit-box {

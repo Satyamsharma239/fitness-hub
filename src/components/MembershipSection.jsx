@@ -4,7 +4,7 @@ import { STANDARD_MEMBERSHIPS, PERSONAL_TRAINING_PLANS, GYM_INFO } from '../data
 import './MembershipSection.css';
 
 export default function MembershipSection({ onOpenTrial }) {
-  const [activeTab, setActiveTab] = useState('standard'); // 'standard' | 'pt'
+  const [activeTab, setActiveTab] = useState('standard'); 
 
   const individualPlans = STANDARD_MEMBERSHIPS.slice(0, 4);
   const couplePlan = STANDARD_MEMBERSHIPS[4];
@@ -25,7 +25,6 @@ export default function MembershipSection({ onOpenTrial }) {
           </p>
         </div>
 
-        {/* Tab Switcher: Standard Access vs Personal Training */}
         <div className="tf-plan-tab-switcher">
           <button
             type="button"
@@ -46,10 +45,9 @@ export default function MembershipSection({ onOpenTrial }) {
           </button>
         </div>
 
-        {/* TAB 1: STANDARD GYM ACCESS */}
         {activeTab === 'standard' && (
           <div className="tf-standard-plans-wrap">
-            {/* 4 Symmetrical Individual Duration Cards */}
+            
             <div className="tf-pricing-grid tf-pricing-grid-4col">
               {individualPlans.map((plan) => (
                 <div
@@ -70,7 +68,6 @@ export default function MembershipSection({ onOpenTrial }) {
                     <p className="tf-plan-ideal">{plan.description}</p>
                   </div>
 
-                  {/* Price Display */}
                   <div className="tf-pricing-value-box">
                     <div className="tf-plan-price-row">
                       <span className="tf-plan-price-num">{plan.price}</span>
@@ -115,7 +112,6 @@ export default function MembershipSection({ onOpenTrial }) {
               ))}
             </div>
 
-            {/* Featured Duo Card: Annual Couple Package */}
             {couplePlan && (
               <div className="tf-couple-package-card">
                 <div className="tf-couple-card-left">
@@ -166,7 +162,6 @@ export default function MembershipSection({ onOpenTrial }) {
           </div>
         )}
 
-        {/* TAB 2: PERSONAL TRAINING (ALTERNATE DAYS) */}
         {activeTab === 'pt' && (
           <div>
             <div className="tf-pt-intro-banner">
@@ -204,7 +199,6 @@ export default function MembershipSection({ onOpenTrial }) {
                     <p className="tf-plan-ideal">{plan.description}</p>
                   </div>
 
-                  {/* Price Box */}
                   <div className="tf-pricing-value-box">
                     <div className="tf-plan-price-row">
                       <span className="tf-plan-price-num">{plan.price}</span>
@@ -251,7 +245,6 @@ export default function MembershipSection({ onOpenTrial }) {
           </div>
         )}
 
-        {/* Timings & Highlights Summary Callout */}
         <div className="tf-pricing-note">
           <div className="tf-visit-guarantee-box">
             <div className="tf-visit-guarantee-header">

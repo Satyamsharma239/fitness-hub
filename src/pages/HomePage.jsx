@@ -24,13 +24,11 @@ import "./HomePage.css";
 export default function HomePage({ onOpenTrial }) {
   return (
     <div className="tf-home-page">
-      {/* 1. Flagship Hero with Typing Animation & Hero Image */}
+      
       <Hero onOpenTrial={onOpenTrial} />
 
-      {/* 2. High-Energy Marquee Ticker */}
       <MarqueeTicker />
 
-      {/* 3. The Club Story / Introduction */}
       <section className="tf-section tf-intro-editorial">
         <div className="tf-container">
           <div className="tf-intro-editorial-grid">
@@ -83,7 +81,6 @@ export default function HomePage({ onOpenTrial }) {
               </div>
             </div>
 
-            {/* Visual Collage */}
             <div className="tf-intro-editorial-visuals">
               <div className="tf-visual-main-box">
                 <img
@@ -124,7 +121,6 @@ export default function HomePage({ onOpenTrial }) {
         </div>
       </section>
 
-      {/* 4. Training Floor & Zones */}
       <section className="tf-section tf-zones-section">
         <div className="tf-container">
           <div className="tf-section-header center">
@@ -178,19 +174,14 @@ export default function HomePage({ onOpenTrial }) {
         </div>
       </section>
 
-      {/* 5. Why Train Here - 4 Pillars */}
       <WhyChooseUs onOpenTrial={onOpenTrial} />
 
-      {/* 6. Official Memberships & Personal Training (GST Included) */}
       <MembershipSection onOpenTrial={onOpenTrial} />
 
-      {/* 7. Live Instagram Community Showcase */}
       <InstagramFeed />
 
-      {/* 8. Member Testimonials & Ratings */}
       <TestimonialsSection />
 
-      {/* 9. Location & Transit Directions */}
       <section className="tf-section tf-location-section">
         <div className="tf-container">
           <div className="tf-location-grid">
@@ -261,7 +252,6 @@ export default function HomePage({ onOpenTrial }) {
               </div>
             </div>
 
-            {/* Visual Transit Map Card */}
             <div className="tf-location-map-wrap">
               <div className="tf-map-visual-card">
                 <div className="tf-map-header">
@@ -312,10 +302,8 @@ export default function HomePage({ onOpenTrial }) {
         </div>
       </section>
 
-      {/* 10. Visitor FAQs */}
       <FAQSection />
 
-      {/* 11. Closing In-Person Visit Invitation */}
       <section className="tf-section tf-final-cta-section">
         <div className="tf-container">
           <div className="tf-final-cta-box">

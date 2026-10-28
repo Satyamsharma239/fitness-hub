@@ -1,14 +1,9 @@
-/*
- * High-End Luxury Hero Section - Solid Editorial Headline
- */
-
 .tf-hero-section {
   position: relative;
   padding-top: clamp(36px, 5vw, 64px);
   padding-bottom: clamp(40px, 5.5vw, 68px);
   overflow: hidden;
 }
-
 .tf-hero-backdrop-glow {
   position: absolute;
   top: -120px;
@@ -21,7 +16,6 @@
   pointer-events: none;
   z-index: 0;
 }
-
 .tf-hero-editorial-grid {
   display: grid;
   grid-template-columns: 1.18fr 1fr;
@@ -31,16 +25,10 @@
   z-index: 2;
   margin-bottom: clamp(28px, 3.5vw, 44px);
 }
-
-/* --------------------------------------------------
-   Left Text Column
--------------------------------------------------- */
-
 .tf-hero-text-col {
   display: flex;
   flex-direction: column;
 }
-
 .tf-hero-location-pill {
   display: inline-flex;
   align-items: center;
@@ -57,7 +45,6 @@
   margin-bottom: 20px;
   align-self: flex-start;
 }
-
 .tf-hero-title {
   font-family: var(--font-display);
   font-size: clamp(42px, 6vw, 80px);
@@ -68,14 +55,12 @@
   margin-bottom: 20px;
   color: #ffffff;
 }
-
 .tf-hero-title .accent {
   color: var(--accent);
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 .tf-hero-subtext {
   font-size: clamp(15px, 1.15vw, 17px);
   line-height: 1.7;
@@ -83,11 +68,9 @@
   max-width: 580px;
   margin-bottom: 30px;
 }
-
 .tf-hero-subtext strong {
   color: #ffffff;
 }
-
 .tf-hero-cta-group {
   display: flex;
   align-items: center;
@@ -95,7 +78,6 @@
   flex-wrap: wrap;
   margin-bottom: 34px;
 }
-
 .tf-hero-check-points {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -103,7 +85,6 @@
   padding-top: 24px;
   border-top: 1px solid var(--border-dark);
 }
-
 .tf-hero-point {
   display: flex;
   align-items: center;
@@ -112,20 +93,13 @@
   color: #dedee8;
   font-weight: 600;
 }
-
 .tf-hero-point .accent {
   color: var(--accent);
   flex-shrink: 0;
 }
-
-/* --------------------------------------------------
-   Right Hero Visual Image Column
--------------------------------------------------- */
-
 .tf-hero-visual-col {
   position: relative;
 }
-
 .tf-hero-image-frame {
   position: relative;
   border-radius: var(--radius-lg);
@@ -135,7 +109,6 @@
   aspect-ratio: 4 / 4.3;
   background: #000;
 }
-
 .tf-hero-visual-img {
   width: 100%;
   height: 100%;
@@ -143,11 +116,9 @@
   object-position: center 20%;
   transition: transform 700ms var(--tf-ease);
 }
-
 .tf-hero-image-frame:hover .tf-hero-visual-img {
   transform: scale(1.035);
 }
-
 .tf-hero-visual-overlay {
   position: absolute;
   inset: 0;
@@ -159,7 +130,6 @@
   );
   pointer-events: none;
 }
-
 .tf-hero-corner-tag {
   position: absolute;
   top: 18px;
@@ -177,11 +147,9 @@
   color: #ffffff;
   letter-spacing: 0.04em;
 }
-
 .tf-hero-corner-tag svg {
   color: var(--accent);
 }
-
 .tf-hero-floating-card {
   position: absolute;
   bottom: 18px;
@@ -194,7 +162,6 @@
   border-radius: var(--radius-md);
   padding: 14px 18px;
 }
-
 .tf-floating-brand-row {
   display: flex;
   align-items: center;
@@ -205,7 +172,6 @@
   margin-bottom: 3px;
   letter-spacing: 0.03em;
 }
-
 .tf-floating-dot {
   width: 7px;
   height: 7px;
@@ -213,13 +179,11 @@
   background-color: var(--accent);
   box-shadow: 0 0 6px var(--accent);
 }
-
 .tf-hero-floating-card p {
   font-size: 11.5px;
   color: var(--text-muted);
   margin-bottom: 10px;
 }
-
 .tf-floating-footer {
   display: flex;
   align-items: center;
@@ -228,7 +192,6 @@
   padding-top: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
-
 .tf-floating-pill {
   font-size: 10px;
   font-weight: 800;
@@ -236,17 +199,11 @@
   letter-spacing: 0.08em;
   color: #dedee8;
 }
-
 .tf-floating-star {
   font-size: 11px;
   font-weight: 700;
   color: #fbbf24;
 }
-
-/* --------------------------------------------------
-   Bottom Quick Strip
--------------------------------------------------- */
-
 .tf-hero-bottom-bar {
   position: relative;
   z-index: 2;
@@ -260,61 +217,50 @@
   gap: 20px;
   flex-wrap: wrap;
 }
-
 .tf-bottom-item {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-
 .tf-bottom-item .accent {
   color: var(--accent);
   flex-shrink: 0;
 }
-
 .tf-bottom-item strong {
   display: block;
   font-size: 13px;
   color: #ffffff;
 }
-
 .tf-bottom-item span {
   font-size: 12px;
   color: var(--text-muted);
 }
-
 @media (max-width: 960px) {
   .tf-hero-editorial-grid {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-
   .tf-hero-image-frame {
     aspect-ratio: 16 / 11;
   }
-
   .tf-hero-check-points {
     grid-template-columns: 1fr;
   }
 }
-
 @media (max-width: 600px) {
   .tf-hero-cta-group {
     flex-direction: column;
     width: 100%;
   }
-
   .tf-hero-cta-group .tf-btn {
     width: 100%;
   }
-
   .tf-hero-floating-card {
     padding: 10px 14px;
     bottom: 12px;
     left: 12px;
     right: 12px;
   }
-
   .tf-hero-corner-tag {
     display: none;
   }

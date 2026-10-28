@@ -1,7 +1,6 @@
 .tf-contact-page-wrap {
   padding-bottom: 6rem;
 }
-
 .tf-map-placeholder {
   margin-top: 1.75rem;
   background-color: var(--bg-surface);
@@ -12,7 +11,6 @@
   position: relative;
   overflow: hidden;
 }
-
 .tf-map-inner {
   height: 220px;
   background: radial-gradient(circle at center, #1b2230 0%, #10141d 100%);
@@ -24,7 +22,6 @@
   gap: 0.75rem;
   border: 1px dashed var(--border-focus);
 }
-
 .tf-map-pin-icon {
   width: 3rem;
   height: 3rem;
@@ -36,12 +33,10 @@
   justify-content: center;
   box-shadow: 0 0 25px rgba(229, 9, 20, 0.5);
 }
-
 .tf-map-inner h4 {
   font-size: 1.1rem;
   color: var(--text-white);
 }
-
 .tf-map-inner p {
   font-size: 0.85rem;
   color: #FFFFFF;

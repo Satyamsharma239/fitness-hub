@@ -1,18 +1,8 @@
-/*
- * THE FITNESS HUB — KURLA
- * Refined Micro-Interactions & Athletic Animation Layer
- */
-
 :root {
   --tf-motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --tf-fast: 180ms;
   --tf-medium: 320ms;
 }
-
-/* --------------------------------------------------
-   Scroll Reveal Micro-Interactions
--------------------------------------------------- */
-
 .tf-reveal-init {
   opacity: 0;
   transform: translateY(20px);
@@ -20,16 +10,10 @@
               transform 600ms var(--tf-motion-ease);
   will-change: opacity, transform;
 }
-
 .tf-revealed {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* --------------------------------------------------
-   Card Hover Transitions
--------------------------------------------------- */
-
 .tf-zone-card,
 .tf-why-card,
 .tf-pricing-card,
@@ -44,7 +28,6 @@
               border-color var(--tf-medium) ease,
               box-shadow var(--tf-medium) ease;
 }
-
 .tf-zone-card:hover,
 .tf-why-card:hover,
 .tf-pricing-card:hover,
@@ -55,11 +38,6 @@
   border-color: rgba(255, 30, 39, 0.45);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 30, 39, 0.1);
 }
-
-/* --------------------------------------------------
-   Image Zoom on Hover
--------------------------------------------------- */
-
 .tf-zone-media,
 .tf-trainer-photo-wrap,
 .tf-ig-media,
@@ -68,7 +46,6 @@
   overflow: hidden;
   position: relative;
 }
-
 .tf-zone-img,
 .tf-trainer-img,
 .tf-ig-img,
@@ -77,7 +54,6 @@
   transition: transform 700ms var(--tf-motion-ease), filter 400ms ease;
   will-change: transform;
 }
-
 .tf-zone-card:hover .tf-zone-img,
 .tf-trainer-card:hover .tf-trainer-img,
 .tf-ig-card:hover .tf-ig-img,
@@ -86,35 +62,22 @@
   transform: scale(1.05);
   filter: brightness(1.05);
 }
-
-/* --------------------------------------------------
-   Interactive Buttons & Arrows
--------------------------------------------------- */
-
 .tf-btn {
   transition: background var(--tf-fast) ease,
               transform var(--tf-fast) var(--tf-motion-ease),
               box-shadow var(--tf-medium) ease,
               border-color var(--tf-fast) ease;
 }
-
 .tf-btn svg {
   transition: transform var(--tf-fast) var(--tf-motion-ease);
 }
-
 .tf-btn:hover svg {
   transform: translateX(4px);
 }
-
 .tf-btn-primary:active,
 .tf-btn-secondary:active {
   transform: scale(0.98);
 }
-
-/* --------------------------------------------------
-   Hero Section Atmospheric Glow
--------------------------------------------------- */
-
 @keyframes tf-hero-glow-pulse {
   0%, 100% {
     opacity: 0.3;
@@ -125,15 +88,9 @@
     transform: scale(1.06);
   }
 }
-
 .tf-hero-backdrop-glow {
   animation: tf-hero-glow-pulse 8s ease-in-out infinite;
 }
-
-/* --------------------------------------------------
-   FAQ Smooth Accordion
--------------------------------------------------- */
-
 .tf-accordion-item {
   border: 1px solid var(--border-dark);
   border-radius: var(--radius-sm);
@@ -142,12 +99,10 @@
   overflow: hidden;
   transition: all var(--tf-fast);
 }
-
 .tf-accordion-item.open {
   border-color: rgba(255, 30, 39, 0.4);
   background: var(--bg-surface-elevated);
 }
-
 .tf-accordion-trigger {
   width: 100%;
   padding: 20px 24px;
@@ -165,11 +120,9 @@
   gap: 16px;
   transition: color var(--tf-fast) ease;
 }
-
 .tf-accordion-trigger:hover {
   color: #ff5b62;
 }
-
 .tf-accordion-icon {
   display: flex;
   align-items: center;
@@ -178,11 +131,9 @@
   transition: transform var(--tf-fast) ease;
   flex-shrink: 0;
 }
-
 .tf-accordion-item.open .tf-accordion-icon {
   transform: rotate(180deg);
 }
-
 .tf-accordion-content {
   padding: 0 24px 22px 24px;
   color: var(--text-body);
@@ -190,7 +141,6 @@
   line-height: 1.7;
   animation: tf-fade-down 240ms ease;
 }
-
 @keyframes tf-fade-down {
   from {
     opacity: 0;
@@ -201,15 +151,9 @@
     transform: translateY(0);
   }
 }
-
-/* --------------------------------------------------
-   Tab Switchers
--------------------------------------------------- */
-
 .tf-tab-switch-btn {
   transition: all var(--tf-fast) ease;
 }
-
 .tf-tab-switch-btn:hover {
   transform: translateY(-2px);
 }

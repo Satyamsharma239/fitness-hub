@@ -82,7 +82,6 @@ export default function TrainersPage({ onOpenTrial }) {
             ))}
           </div>
 
-          {/* Coaching Standards Guarantee Banner */}
           <div className="tf-coaching-guarantee-banner">
             <div className="tf-guarantee-copy">
               <div className="tf-guarantee-kicker">

@@ -17,7 +17,7 @@ export default function Hero({ onOpenTrial }) {
 
       <div className="tf-container">
         <div className="tf-hero-editorial-grid">
-          {/* Left Column: Bold Headline & CTAs */}
+          
           <div className="tf-hero-text-col">
             <div className="tf-hero-location-pill">
               <span className="tf-status-dot open" />
@@ -34,7 +34,6 @@ export default function Hero({ onOpenTrial }) {
               Kurla’s premier air-conditioned fitness club at Nehru Nagar. Equipped with heavy Olympic free weights, commercial cardio decks, certified personal coaching, and a dedicated daily <strong>Ladies Only batch (2:00 PM – 4:00 PM)</strong>.
             </p>
 
-            {/* Clear Action Buttons */}
             <div className="tf-hero-cta-group">
               <button
                 type="button"
@@ -56,7 +55,6 @@ export default function Hero({ onOpenTrial }) {
               </a>
             </div>
 
-            {/* Verification Points */}
             <div className="tf-hero-check-points">
               <div className="tf-hero-point">
                 <CheckCircle2 size={16} className="accent" />
@@ -77,7 +75,6 @@ export default function Hero({ onOpenTrial }) {
             </div>
           </div>
 
-          {/* Right Column: Hero Visual Image Frame */}
           <div className="tf-hero-visual-col">
             <div className="tf-hero-image-frame">
               <img
@@ -88,7 +85,6 @@ export default function Hero({ onOpenTrial }) {
               />
               <div className="tf-hero-visual-overlay" />
 
-              {/* Floating Badge on Image */}
               <div className="tf-hero-floating-card">
                 <div className="tf-floating-brand-row">
                   <div className="tf-floating-dot" />
@@ -101,7 +97,6 @@ export default function Hero({ onOpenTrial }) {
                 </div>
               </div>
 
-              {/* Corner Tag */}
               <div className="tf-hero-corner-tag">
                 <Sparkles size={13} />
                 <span>Join Today. Transform Tomorrow.</span>
@@ -110,7 +105,6 @@ export default function Hero({ onOpenTrial }) {
           </div>
         </div>
 
-        {/* Quick Location & Timings Bar */}
         <div className="tf-hero-bottom-bar">
           <div className="tf-bottom-item">
             <MapPin size={18} className="accent" />

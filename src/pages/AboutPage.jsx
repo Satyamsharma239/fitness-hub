@@ -46,7 +46,6 @@ export default function AboutPage({ onOpenTrial }) {
         breadcrumb={[{ label: "About", link: null }]}
       />
 
-      {/* Main Philosophy Story */}
       <section className="tf-section tf-about-story-section">
         <div className="tf-container">
           <div className="tf-about-story-grid">
@@ -103,7 +102,6 @@ export default function AboutPage({ onOpenTrial }) {
         </div>
       </section>
 
-      {/* 4 Core Pillars */}
       <section className="tf-section tf-about-pillars-section">
         <div className="tf-container">
           <div className="tf-section-header center">
@@ -131,7 +129,6 @@ export default function AboutPage({ onOpenTrial }) {
         </div>
       </section>
 
-      {/* Facility Walkthrough Banner */}
       <section className="tf-section tf-about-visit-section">
         <div className="tf-container">
           <div className="tf-about-visit-box">

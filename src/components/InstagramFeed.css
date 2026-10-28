@@ -1,17 +1,11 @@
-/*
- * Instagram Feed Grid Styling
- */
-
 .tf-ig-section {
   background: var(--bg-dark);
 }
-
 .tf-ig-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-
 .tf-ig-card {
   display: block;
   border-radius: var(--radius-md);
@@ -21,18 +15,15 @@
   position: relative;
   aspect-ratio: 1 / 1;
 }
-
 .tf-ig-media {
   width: 100%;
   height: 100%;
 }
-
 .tf-ig-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .tf-ig-overlay {
   position: absolute;
   inset: 0;
@@ -43,23 +34,19 @@
   opacity: 0;
   transition: opacity var(--transition-smooth);
 }
-
 .tf-ig-card:hover .tf-ig-overlay {
   opacity: 1;
 }
-
 .tf-ig-overlay-content {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
 }
-
 .tf-ig-icon {
   color: var(--accent);
   margin-bottom: 4px;
 }
-
 .tf-ig-likes {
   display: inline-flex;
   align-items: center;
@@ -68,7 +55,6 @@
   font-weight: 700;
   font-size: 13px;
 }
-
 .tf-ig-tag {
   display: inline-block;
   font-size: 11px;
@@ -76,7 +62,6 @@
   color: #fbbf24;
   letter-spacing: 0.05em;
 }
-
 .tf-ig-caption {
   font-size: 13px;
   color: #ffffff;
@@ -86,13 +71,11 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
 @media (max-width: 900px) {
   .tf-ig-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media (max-width: 540px) {
   .tf-ig-grid {
     grid-template-columns: 1fr;

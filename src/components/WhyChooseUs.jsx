@@ -34,7 +34,6 @@ export default function WhyChooseUs({ onOpenTrial }) {
           </p>
         </div>
 
-        {/* 2x2 Editorial Matrix */}
         <div className="tf-why-grid">
           {WHY_CHOOSE_US.map((item) => (
             <div key={item.id} className="tf-why-card">
@@ -60,7 +59,6 @@ export default function WhyChooseUs({ onOpenTrial }) {
           ))}
         </div>
 
-        {/* Feature Ribbon below cards */}
         <div className="tf-why-ribbon">
           <div className="tf-ribbon-text">
             <h3>Experience the difference firsthand with zero commitment.</h3>

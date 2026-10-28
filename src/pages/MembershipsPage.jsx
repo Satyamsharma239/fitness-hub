@@ -21,10 +21,8 @@ export default function MembershipsPage({ onOpenTrial }) {
         breadcrumb={[{ label: 'Plans & Pricing', link: null }]}
       />
 
-      {/* Main Interactive Membership & PT Section */}
       <MembershipSection onOpenTrial={onOpenTrial} />
 
-      {/* Membership FAQ Accordion */}
       <section className="tf-section tf-faq-section" style={{ borderTop: '1px solid var(--border-dark)' }}>
         <div className="tf-container">
           <div className="tf-section-header center">

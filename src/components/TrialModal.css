@@ -11,7 +11,6 @@
   padding: 1.5rem;
   animation: modalFadeIn 0.2s ease-out;
 }
-
 .tf-modal-container {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-focus);
@@ -25,7 +24,6 @@
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
   animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .tf-modal-close-btn {
   position: absolute;
   top: 1.25rem;
@@ -41,13 +39,11 @@
   justify-content: center;
   cursor: pointer;
 }
-
 .tf-modal-close-btn:hover {
   background-color: var(--accent);
   color: var(--accent-contrast);
   border-color: var(--accent);
 }
-
 .tf-modal-badge {
   display: inline-flex;
   align-items: center;
@@ -58,21 +54,18 @@
   color: var(--accent);
   margin-bottom: 0.5rem;
 }
-
 .tf-modal-title {
   font-size: 1.65rem;
   font-weight: 800;
   color: var(--text-white);
   margin-bottom: 0.4rem;
 }
-
 .tf-modal-desc {
   font-size: 0.875rem;
   color: var(--text-body);
   line-height: 1.5;
   margin-bottom: 1.5rem;
 }
-
 .tf-modal-perks {
   display: flex;
   flex-wrap: wrap;
@@ -81,7 +74,6 @@
   padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--border-dark);
 }
-
 .tf-modal-perk-tag {
   font-size: 0.75rem;
   font-weight: 600;
@@ -91,17 +83,14 @@
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-sm);
 }
-
 @keyframes modalFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-
 @keyframes modalSlideUp {
   from { opacity: 0; transform: translateY(12px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
-
 @media (max-width: 600px) {
   .tf-modal-container {
     padding: 1.75rem 1.25rem;

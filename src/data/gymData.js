@@ -1,9 +1,3 @@
-/**
- * THE FITNESS HUB — KURLA
- * Official Verified Gym Data & Pricing Structure
- * Get Fit. Get Strong. Get Results.
- */
-
 export const GYM_INFO = {
   name: "The Fitness Hub",
   hubName: "The Fitness Hub — Kurla",
@@ -28,14 +22,12 @@ export const GYM_INFO = {
     whatsapp: "+91 81088 84757",
     whatsappLink: "https://wa.me/918108884757?text=Hello%20The%20Fitness%20Hub%20Kurla%2C%20I%20would%20like%20to%20inquire%20about%20gym%20membership%20and%20personal%20training.",
     email: "fitnesshubkurla@gmail.com",
-    
-    // Official Timings
+
     hoursDaily: "Daily: 6:00 AM – 12:00 AM (Midnight)",
     hoursLadiesOnly: "Ladies Only Batch: 2:00 PM – 4:00 PM",
     hoursSunday: "Sunday: 6:00 PM – 10:00 PM",
     hoursSummary: "Open 7 Days • Daily 6 AM – 12 AM • Sunday 6 PM – 10 PM",
-    
-    // Verified Google Maps Link
+
     mapsUrl: "https://maps.app.goo.gl/3xaNj1CDWH3zzTfDA?g_st=ic"
   },
 
@@ -91,10 +83,6 @@ export const INSTAGRAM_HIGHLIGHTS = [
   }
 ];
 
-/**
- * STANDARD GYM ACCESS MEMBERSHIPS (GST INCLUDED)
- * Includes full gym access and general trainer guidance on floor.
- */
 export const STANDARD_MEMBERSHIPS = [
   {
     id: "month-1",
@@ -198,10 +186,6 @@ export const STANDARD_MEMBERSHIPS = [
   }
 ];
 
-/**
- * PERSONAL TRAINING (ALTERNATE DAYS)
- * All Personal trainer plans are monthly.
- */
 export const PERSONAL_TRAINING_PLANS = [
   {
     id: "pt-gold",

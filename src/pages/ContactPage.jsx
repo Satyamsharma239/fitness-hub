@@ -100,9 +100,9 @@ export default function ContactPage() {
 
       <div className="tf-container" style={{ marginTop: '3.5rem' }}>
         <div className="tf-contact-grid">
-          {/* Left Column: Direct Contact & Facility Details */}
+          
           <div className="tf-contact-info-col">
-            {/* Address */}
+            
             <div className="tf-contact-block">
               <div className="tf-contact-block-header">
                 <div className="tf-contact-block-icon">
@@ -141,7 +141,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Operating Hours */}
             <div className="tf-contact-block">
               <div className="tf-contact-block-header">
                 <div className="tf-contact-block-icon">
@@ -168,7 +167,6 @@ export default function ContactPage() {
               </span>
             </div>
 
-            {/* Direct Channels */}
             <div className="tf-contact-block">
               <div className="tf-contact-block-header">
                 <div className="tf-contact-block-icon">
@@ -218,7 +216,6 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right Column: Full Validated Form */}
           <div className="tf-form-card">
             {!submitted ? (
               <>
@@ -386,7 +383,6 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Live Google Maps Embed Container */}
         <div style={{ marginTop: '3.5rem' }}>
           <div style={{
             background: 'var(--bg-surface)',

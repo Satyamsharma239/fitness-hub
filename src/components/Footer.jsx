@@ -39,7 +39,7 @@ export default function Footer({ onOpenTrial }) {
   return (
     <footer className="tf-footer">
       <div className="tf-container">
-        {/* Pre-footer VIP Trial CTA Bar */}
+        
         <div className="tf-footer-cta-strip">
           <div className="tf-footer-cta-text">
             <span className="tf-badge">Complimentary Guest Pass</span>
@@ -59,7 +59,7 @@ export default function Footer({ onOpenTrial }) {
         </div>
 
         <div className="tf-footer-grid">
-          {/* Brand Column */}
+          
           <div className="tf-footer-brand">
             <Link to="/" className="tf-brand-link" aria-label="The Fitness Hub Kurla Home">
               <img src={logoImg} alt="The Fitness Hub Logo" className="tf-brand-logo-img" />
@@ -102,7 +102,6 @@ export default function Footer({ onOpenTrial }) {
             </div>
           </div>
 
-          {/* Quick Nav Links */}
           <div className="tf-footer-col">
             <h4>Club Navigation</h4>
             <ul className="tf-footer-links">
@@ -115,7 +114,6 @@ export default function Footer({ onOpenTrial }) {
             </ul>
           </div>
 
-          {/* Membership Rates */}
           <div className="tf-footer-col">
             <h4>Plans (GST Included)</h4>
             <ul className="tf-footer-links">
@@ -128,7 +126,6 @@ export default function Footer({ onOpenTrial }) {
             </ul>
           </div>
 
-          {/* Contact Summary */}
           <div className="tf-footer-col">
             <h4>Kurla Reception Desk</h4>
             <div className="tf-footer-contact-item">
@@ -169,7 +166,6 @@ export default function Footer({ onOpenTrial }) {
           </div>
         </div>
 
-        {/* Footer Bottom Bar */}
         <div className="tf-footer-bottom">
           <p>
             &copy; {CURRENT_YEAR} The Fitness Hub — Kurla. All rights reserved. Nehru Nagar, Kurla, Mumbai – 400024.

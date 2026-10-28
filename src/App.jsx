@@ -17,7 +17,6 @@ function AppContent() {
   const location = useLocation();
   const [trialModalOpen, setTrialModalOpen] = useState(false);
 
-  // Activate smooth scroll-reveal on route transitions
   useScrollReveal();
 
   const openTrial = () => setTrialModalOpen(true);
@@ -25,10 +24,9 @@ function AppContent() {
 
   return (
     <div className="tf-app">
-      {/* Sticky Premium Navbar with IST Timetable Status */}
+      
       <Navbar onOpenTrial={openTrial} />
 
-      {/* Dynamic Route Pages with Page Transition */}
       <main id="main-content" key={location.pathname} className="tf-page-enter">
         <Routes location={location}>
           <Route path="/" element={<HomePage onOpenTrial={openTrial} />} />
@@ -36,8 +34,7 @@ function AppContent() {
           <Route path="/memberships" element={<MembershipsPage onOpenTrial={openTrial} />} />
           <Route path="/trainers" element={<TrainersPage onOpenTrial={openTrial} />} />
           <Route path="/contact" element={<ContactPage />} />
-          
-          {/* Aliases for backwards compatibility */}
+
           <Route path="/programs" element={<Navigate to="/memberships" replace />} />
           <Route path="/schedule" element={<Navigate to="/memberships" replace />} />
           <Route path="/gallery" element={<Navigate to="/about" replace />} />
@@ -45,13 +42,10 @@ function AppContent() {
         </Routes>
       </main>
 
-      {/* Persistent Footer */}
       <Footer onOpenTrial={openTrial} />
 
-      {/* Global Interactive Free Trial / Visit Modal */}
       <TrialModal isOpen={trialModalOpen} onClose={closeTrial} />
 
-      {/* Floating WhatsApp Live Desk Widget */}
       <a
         href={GYM_INFO.contact.whatsappLink}
         target="_blank"

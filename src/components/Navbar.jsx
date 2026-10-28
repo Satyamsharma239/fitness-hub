@@ -21,20 +21,19 @@ export default function Navbar({ onOpenTrial }) {
 
   const closeMenu = () => setMenuOpen(false);
 
-  // Exact real-time IST schedule calculation
   useEffect(() => {
     const checkOpenStatus = () => {
       const now = new Date();
-      const istOffset = 5.5 * 60; // UTC+5:30 in minutes
+      const istOffset = 5.5 * 60; 
       const utcTime = now.getTime() + now.getTimezoneOffset() * 60000;
       const istTime = new Date(utcTime + istOffset * 60000);
       const hours = istTime.getHours();
       const minutes = istTime.getMinutes();
-      const day = istTime.getDay(); // 0 is Sunday
+      const day = istTime.getDay(); 
       const timeInMinutes = hours * 60 + minutes;
 
       if (day === 0) {
-        // Sunday: 6:00 PM (18:00 = 1080) to 10:00 PM (22:00 = 1320)
+        
         const sunOpen = 18 * 60;
         const sunClose = 22 * 60;
         const isSunOpen = timeInMinutes >= sunOpen && timeInMinutes < sunClose;
@@ -45,13 +44,12 @@ export default function Navbar({ onOpenTrial }) {
           setStatusMessage("OPENS SUNDAY AT 6:00 PM • NEHRU NAGAR");
         }
       } else {
-        // Mon-Sat: 6:00 AM (360) to 12:00 AM Midnight (1440)
+        
         const openTime = 6 * 60;
         const closeTime = 24 * 60;
         const isDailyOpen = timeInMinutes >= openTime && timeInMinutes < closeTime;
         setIsOpenNow(isDailyOpen);
 
-        // Check for Ladies Only Batch: 2:00 PM (14:00 = 840) to 4:00 PM (16:00 = 960)
         const isLadiesBatch = timeInMinutes >= 14 * 60 && timeInMinutes < 16 * 60;
 
         if (isLadiesBatch) {
@@ -92,7 +90,7 @@ export default function Navbar({ onOpenTrial }) {
 
   return (
     <>
-      {/* Top micro-announcement bar */}
+      
       <div className="tf-topbar">
         <div className="tf-container tf-topbar-inner">
           <div className="tf-topbar-left">
@@ -122,7 +120,6 @@ export default function Navbar({ onOpenTrial }) {
         </div>
       </div>
 
-      {/* Main Sticky Navbar */}
       <header className={`tf-navbar ${isScrolled ? "scrolled" : ""}`}>
         <div className="tf-container tf-navbar-inner">
           <Link to="/" className="tf-nav-brand" aria-label="The Fitness Hub Kurla Home">
@@ -137,7 +134,6 @@ export default function Navbar({ onOpenTrial }) {
             </div>
           </Link>
 
-          {/* Desktop Navigation (Streamlined 5 Links) */}
           <nav className="tf-nav-menu" aria-label="Main menu">
             {NAV_LINKS.map((link) => (
               <NavLink
@@ -153,7 +149,6 @@ export default function Navbar({ onOpenTrial }) {
             ))}
           </nav>
 
-          {/* Actions */}
           <div className="tf-nav-actions">
             <button
               type="button"
@@ -176,7 +171,6 @@ export default function Navbar({ onOpenTrial }) {
         </div>
       </header>
 
-      {/* Mobile Drawer */}
       <div className={`tf-mobile-drawer ${menuOpen ? "open" : ""}`}>
         <div className="tf-drawer-backdrop" onClick={closeMenu} />
         <div className="tf-drawer-content">
