@@ -15,7 +15,7 @@ export default function MembershipSection({ onOpenTrial }) {
       <div className="tf-container">
         <div className="tf-section-header center">
           <span className="tf-eyebrow">
-            03 / OFFICIAL RATES
+            Membership & PT Rates
           </span>
           <h2 className="tf-section-title">
             Simple, Transparent Rates. <span className="accent">GST Included.</span>
@@ -89,7 +89,7 @@ export default function MembershipSection({ onOpenTrial }) {
                   <div className="tf-pricing-footer">
                     <button
                       type="button"
-                      className={`tf-btn ${plan.highlighted ? 'tf-btn-primary' : 'tf-btn-secondary'}`}
+                      className="tf-btn tf-btn-secondary"
                       style={{ width: '100%' }}
                       onClick={() => onOpenTrial(`Standard ${plan.duration} (${plan.price})`)}
                     >
@@ -210,7 +210,7 @@ export default function MembershipSection({ onOpenTrial }) {
                   <div className="tf-pricing-footer">
                     <button
                       type="button"
-                      className={`tf-btn ${plan.highlighted ? 'tf-btn-primary' : 'tf-btn-secondary'}`}
+                      className="tf-btn tf-btn-secondary"
                       style={{ width: '100%' }}
                       onClick={() => onOpenTrial(`Personal Training: ${plan.tier} (${plan.price}/mo)`)}
                     >
@@ -244,7 +244,7 @@ export default function MembershipSection({ onOpenTrial }) {
                 style={{ color: '#34d399', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '5px' }}
               >
                 <WhatsAppIcon size={14} />
-                <span>WhatsApp: {GYM_INFO.contact.phone}</span>
+                <span>Chat on WhatsApp</span>
               </a>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ShieldCheck, ArrowRight, Award } from "lucide-react";
 import WhatsAppIcon from "./WhatsAppIcon";
 import { TRAINERS } from "../data/gymData";
@@ -10,7 +11,7 @@ export default function TrainersSection({ onOpenTrial }) {
       <div className="tf-container">
         <div className="tf-section-header center">
           <span className="tf-eyebrow">
-            03 / CERTIFIED COACHING TEAM
+            Certified Coaching Staff
           </span>
           <h2 className="tf-section-title">
             Experienced, Accredited <span className="accent">Trainers</span>
@@ -83,14 +84,20 @@ export default function TrainersSection({ onOpenTrial }) {
               Whether you select our Gold plan (₹6k) for basic technique mastery, Diamond (₹8k) for tailored body recomposition, or Platinum (₹11k) for high-performance training, every session is delivered with 100% focus on your physical safety and progress.
             </p>
           </div>
-          <button
-            type="button"
-            className="tf-btn tf-btn-primary tf-btn-lg"
-            onClick={onOpenTrial}
-          >
-            <span>Book Coach Movement Screen</span>
-            <ArrowRight size={16} />
-          </button>
+          <div className="tf-guarantee-actions">
+            <button
+              type="button"
+              className="tf-btn tf-btn-primary tf-btn-lg"
+              onClick={() => onOpenTrial('Personal Training Consultation')}
+            >
+              <span>Book Free PT Consultation</span>
+              <ArrowRight size={16} />
+            </button>
+            <Link to="/trainers" className="tf-btn tf-btn-secondary tf-btn-lg">
+              <span>View All Coach Profiles</span>
+              <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

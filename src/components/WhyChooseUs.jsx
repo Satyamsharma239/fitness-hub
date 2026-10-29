@@ -24,7 +24,7 @@ export default function WhyChooseUs({ onOpenTrial }) {
       <div className="tf-container">
         <div className="tf-section-header center">
           <span className="tf-eyebrow">
-            The Fitness Hub Standard
+            The Titan Standard
           </span>
           <h2 className="tf-section-title">
             Why Lifters Choose The Fitness Hub

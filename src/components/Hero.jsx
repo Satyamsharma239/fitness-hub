@@ -1,16 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   ArrowRight,
   MapPin,
-  Clock,
-  CheckCircle2,
-  PhoneCall,
   Sparkles
 } from "lucide-react";
+import WhatsAppIcon from "./WhatsAppIcon";
 import { GYM_INFO } from "../data/gymData";
 import "./Hero.css";
 
-export default function Hero({ onOpenTrial }) {
+const LINE1_TARGET = "GET FIT. GET STRONG.";
+const LINE2_TARGET = "BUILD LEAN MUSCLE.";
+
+export default function Hero() {
+  const [line1, setLine1] = useState("");
+  const [line2, setLine2] = useState("");
+  const [isTypingLine1, setIsTypingLine1] = useState(true);
+  const [isTypingLine2, setIsTypingLine2] = useState(false);
+
+  useEffect(() => {
+    let charIdx1 = 0;
+    let charIdx2 = 0;
+    let timer1 = null;
+    let timer2 = null;
+    let gapTimer = null;
+
+    timer1 = setInterval(() => {
+      charIdx1++;
+      setLine1(LINE1_TARGET.slice(0, charIdx1));
+      if (charIdx1 >= LINE1_TARGET.length) {
+        clearInterval(timer1);
+        setIsTypingLine1(false);
+        gapTimer = setTimeout(() => {
+          setIsTypingLine2(true);
+          timer2 = setInterval(() => {
+            charIdx2++;
+            setLine2(LINE2_TARGET.slice(0, charIdx2));
+            if (charIdx2 >= LINE2_TARGET.length) {
+              clearInterval(timer2);
+              setIsTypingLine2(false);
+            }
+          }, 50);
+        }, 160);
+      }
+    }, 50);
+
+    return () => {
+      if (timer1) clearInterval(timer1);
+      if (timer2) clearInterval(timer2);
+      if (gapTimer) clearTimeout(gapTimer);
+    };
+  }, []);
+
   return (
     <section id="hero" className="tf-hero-section">
       <div className="tf-hero-backdrop-glow" aria-hidden="true" />
@@ -21,57 +61,32 @@ export default function Hero({ onOpenTrial }) {
           <div className="tf-hero-text-col">
             <div className="tf-hero-location-pill">
               <span className="tf-status-dot open" />
-              <span>Nehru Nagar, Kurla &bull; Daily 6:00 AM – 12:00 AM</span>
+              <span>Nehru Nagar, Kurla (E) &bull; Open Daily 6:00 AM – 12:00 AM</span>
             </div>
 
             <h1 className="tf-hero-title">
-              GET FIT. GET STRONG.
+              <span>{line1}</span>
+              {isTypingLine1 && <span className="tf-typewriter-cursor white" aria-hidden="true" />}
               <br />
-              <span className="accent">GET REAL RESULTS.</span>
+              <span className="accent">{line2}</span>
+              {isTypingLine2 && <span className="tf-typewriter-cursor" aria-hidden="true" />}
             </h1>
 
             <p className="tf-hero-subtext">
-              Kurla’s premier air-conditioned fitness club at Nehru Nagar. Equipped with heavy Olympic free weights, commercial cardio decks, certified personal coaching, and a dedicated daily <strong>Ladies Only batch (2:00 PM – 4:00 PM)</strong>.
+              Kurla’s premier air-conditioned fitness club at Nehru Nagar. Equipped with heavy Olympic free weights, dual cable crossovers, commercial cardio decks, certified coaches, and a dedicated daily <strong>Ladies Only batch (2:00 PM – 4:00 PM)</strong>.
             </p>
 
             <div className="tf-hero-cta-group">
-              <button
-                type="button"
-                className="tf-btn tf-btn-primary tf-btn-lg"
-                onClick={onOpenTrial}
-              >
-                <span>Book Free Facility Visit</span>
-                <ArrowRight size={17} />
-              </button>
-
               <a
                 href={GYM_INFO.contact.whatsappLink}
                 target="_blank"
                 rel="noreferrer"
-                className="tf-btn tf-btn-secondary tf-btn-lg"
+                className="tf-btn tf-btn-primary tf-btn-lg"
               >
-                <PhoneCall size={16} />
-                <span>WhatsApp: 81088 84757</span>
+                <WhatsAppIcon size={19} />
+                <span>Chat on WhatsApp</span>
+                <ArrowRight size={17} />
               </a>
-            </div>
-
-            <div className="tf-hero-check-points">
-              <div className="tf-hero-point">
-                <CheckCircle2 size={16} className="accent" />
-                <span>Daily 6:00 AM – 12:00 AM Midnight</span>
-              </div>
-              <div className="tf-hero-point">
-                <CheckCircle2 size={16} className="accent" />
-                <span>Ladies Only Batch: 2:00 PM – 4:00 PM</span>
-              </div>
-              <div className="tf-hero-point">
-                <CheckCircle2 size={16} className="accent" />
-                <span>Standard Plans from ₹1,000/mo (GST Included)</span>
-              </div>
-              <div className="tf-hero-point">
-                <CheckCircle2 size={16} className="accent" />
-                <span>Alternate-Day PT: Gold, Diamond & Platinum</span>
-              </div>
             </div>
           </div>
 
@@ -86,40 +101,18 @@ export default function Hero({ onOpenTrial }) {
               <div className="tf-hero-visual-overlay" />
 
               <div className="tf-hero-corner-tag">
-                <Sparkles size={13} />
-                <span>Air Conditioned • Olympic Weights</span>
+                <MapPin size={13} />
+                <span>Nehru Nagar, Kurla (E) &bull; 3 Min from Station</span>
+              </div>
+
+              <div className="tf-hero-float-card">
+                <Sparkles size={18} className="accent" />
+                <div>
+                  <strong>100% Air Conditioned Floor</strong>
+                  <span>Sanitized Hardware & Private Lockers</span>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="tf-hero-bottom-bar">
-          <div className="tf-bottom-item">
-            <MapPin size={18} className="accent" />
-            <div>
-              <strong>Club Location</strong>
-              <span>First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar, Kurla – 400024</span>
-            </div>
-          </div>
-
-          <div className="tf-bottom-item">
-            <Clock size={18} className="accent" />
-            <div>
-              <strong>Operating Hours</strong>
-              <span>Daily: 6:00 AM – 12:00 AM &bull; Ladies: 2:00 PM – 4:00 PM &bull; Sunday: 6:00 PM – 10:00 PM</span>
-            </div>
-          </div>
-
-          <div className="tf-bottom-action">
-            <a
-              href={GYM_INFO.contact.mapsUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="tf-btn tf-btn-secondary tf-btn-sm"
-            >
-              <MapPin size={14} />
-              <span>Open Google Maps</span>
-            </a>
           </div>
         </div>
       </div>

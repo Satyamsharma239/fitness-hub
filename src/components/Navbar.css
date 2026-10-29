@@ -87,7 +87,7 @@
   background: rgba(6, 6, 8, 0.98);
   padding: 10px 0;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  border-bottom-color: rgba(255, 30, 39, 0.2);
+  border-bottom-color: rgba(255, 42, 59, 0.2);
 }
 .tf-navbar-inner {
   display: flex;
@@ -151,25 +151,41 @@
   gap: 4px;
 }
 .tf-nav-link {
+  position: relative;
   padding: 8px 14px;
   font-family: var(--font-body);
   font-size: 13.5px;
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--text-silver);
-  border-radius: var(--radius-pill);
-  transition: all var(--transition-fast);
+  transition: color var(--transition-fast);
   text-decoration: none;
+}
+.tf-nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 240ms var(--tf-ease);
 }
 .tf-nav-link:hover {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
+}
+.tf-nav-link:hover::after {
+  transform: scaleX(0.5);
 }
 .tf-nav-link.active {
   color: #ffffff;
-  background: rgba(255, 30, 39, 0.14);
-  border: 1px solid rgba(255, 30, 39, 0.32);
   font-weight: 700;
+}
+.tf-nav-link.active::after {
+  transform: scaleX(1);
 }
 .tf-nav-actions {
   display: flex;
@@ -261,6 +277,7 @@
   transform: translateX(100%);
   transition: transform var(--transition-smooth);
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .tf-mobile-drawer.open .tf-drawer-content {
   transform: translateX(0);

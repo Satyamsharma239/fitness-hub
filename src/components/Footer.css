@@ -7,7 +7,7 @@
 }
 .tf-footer-cta-strip {
   background: linear-gradient(135deg, #181824 0%, #0e0e14 100%);
-  border: 1px solid rgba(255, 30, 39, 0.35);
+  border: 1px solid rgba(255, 42, 59, 0.35);
   border-radius: var(--radius-lg);
   padding: clamp(28px, 4vw, 40px);
   display: flex;

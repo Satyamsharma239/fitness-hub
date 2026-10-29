@@ -130,7 +130,7 @@ export const STANDARD_MEMBERSHIPS = [
     price: "₹8,000",
     priceNumeric: 8000,
     period: "Half-Yearly Pass (₹1,333/mo)",
-    badge: "Popular Choice",
+    badge: "Most Popular 6M",
     taxNote: "GST Included",
     description: "Sustained muscle building & fat loss consistency with exceptional monthly cost efficiency.",
     features: [
@@ -141,7 +141,7 @@ export const STANDARD_MEMBERSHIPS = [
       "Continuous form correction by on-duty floor trainers",
       "Locker & changing room amenities included"
     ],
-    highlighted: true,
+    highlighted: false,
     ctaText: "Choose 6 Months Pass"
   },
   {
@@ -150,18 +150,18 @@ export const STANDARD_MEMBERSHIPS = [
     price: "₹12,000",
     priceNumeric: 12000,
     period: "12 Months All-Access (₹1,000/mo)",
-    badge: "Best Overall Value",
+    badge: "★ Best Value Annual Pass",
     taxNote: "GST Included",
-    description: "Our premier individual package. Unlimited year-round lifting for just ₹1,000 per month.",
+    description: "Our premier individual package. Unlimited year-round lifting for just ₹1,000/mo (Saves ₹30,000 vs. monthly renewals).",
     features: [
       "Unlimited 365-day access to all gym equipment",
-      "Lowest monthly breakdown (only ₹1,000/month)",
-      "Full access to daily 6 AM – 12 AM + Ladies Batch",
+      "Lowest monthly breakdown: ₹1,000/month",
+      "Full access: daily 6 AM – 12 AM + Ladies Batch",
       "Ongoing trainer guidance & routine revisions",
       "Complimentary locker & changing amenities",
       "Highest priority support at reception desk"
     ],
-    highlighted: false,
+    highlighted: true,
     ctaText: "Choose Annual Pass"
   },
   {
@@ -270,35 +270,127 @@ export const TIMETABLE_SUMMARY = [
 export const TRAINING_ZONES = [
   {
     id: "free-weights",
-    title: "Free Weights & Dumbbells",
+    title: "Heavy Free Weights & Dumbbells",
     tag: "Strength Bay",
-    description: "Complete array of heavy free weights, Olympic barbells, flat/incline/decline benches, and power cages for progressive compound lifting.",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80",
-    features: ["Heavy dumbbells with non-slip grips", "Reinforced Olympic squat cages", "Flat, incline & decline press stations"]
+    badge: "Zone 01",
+    lead: "Engineered for progressive overload, powerlifting, and compound hypertrophy lifting.",
+    description: "Our strength section is anchored by reinforced Olympic squat cages, competition-grade barbells, and heavy dumbbells with textured non-slip knurling. Whether your program calls for 100kg deadlifts or controlled dumbbell benching, the floor provides shock-absorbing rubber mats for safe drops.",
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=85",
+    features: [
+      "Heavy commercial dumbbells with non-slip grips",
+      "Reinforced Olympic squat cages & safety spotter arms",
+      "Flat, incline, and decline utility bench stations"
+    ],
+    equipmentDetailed: [
+      "Commercial calibrated dumbbells ranging from 2.5kg to 40kg+ with knurled steel grips",
+      "Reinforced heavy-gauge steel Olympic power racks with safety spotter arms and J-hooks",
+      "Competition-grade Olympic straight barbells, EZ-curl bars, and deadlift hex bars",
+      "Dense Olympic cast-iron weight plates & shock-absorbing bumper plates",
+      "Multiple independent flat, incline, and decline utility benching stations",
+      "High-density industrial rubber shock floor tiles for noise dampening and safe plate drops"
+    ],
+    targetDisciplines: [
+      "Progressive Hypertrophy & Muscle Density",
+      "Powerlifting (Squat, Bench Press, Deadlift)",
+      "Unilateral Dumbbell Hypertrophy & Symmetry",
+      "Core & Posterior Chain Strength"
+    ],
+    workoutSplit: "Push • Pull • Legs or Upper / Lower Split (3–5 Days/Week)",
+    coachGuidance: "Floor coaches Coach Sameer and Coach Rohan provide hands-on bar path spotting, grip adjustments, and progressive overload tracking.",
+    timings: "Open Daily 6:00 AM – 12:00 AM Midnight (Sunday 6:00 PM – 10:00 PM)"
   },
   {
     id: "machines",
-    title: "Resistance & Cables",
-    tag: "Hypertrophy",
-    description: "Multi-station dual adjustable cable crossover systems, seated cable rows, lat pull-downs, chest press, and targeted lower-body machines.",
-    image: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=900&q=80",
-    features: ["Dual adjustable pulley cable systems", "Biomechanical chest & shoulder press", "Leg press, hack squat & leg extension"]
+    title: "Dual Cables & Hypertrophy Machines",
+    tag: "Hypertrophy Suite",
+    badge: "Zone 02",
+    lead: "Smooth biomechanical cable paths designed for continuous muscle tension and isolated growth.",
+    description: "Every resistance machine is maintained daily to ensure frictionless motion and safe joint mechanics. Target your chest, back, shoulders, and legs with pinpoint accuracy before finishing your workout with high-angle cable crossovers.",
+    image: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=85",
+    features: [
+      "Dual adjustable pulley (DAP) cable crossover systems",
+      "Wide-grip lat pulldowns & low seated cable rows",
+      "45-degree angled leg press & heavy hack squat unit"
+    ],
+    equipmentDetailed: [
+      "Dual adjustable pulley (DAP) multi-angle cable crossover stations with 360° rotating swivels",
+      "Wide-grip lat pulldown towers and low seated row stations with ergonomic attachments",
+      "45-degree heavy linear leg press and reverse hack squat sled",
+      "Pin-loaded chest press, shoulder press, and isolated pec-dec fly units",
+      "Seated quadriceps leg extension and prone hamstring curl machines",
+      "Standing calf raise block and assisted pull-up / dip counterweight tower"
+    ],
+    targetDisciplines: [
+      "Targeted Muscle Isolation & Peak Contraction",
+      "Joint-Friendly Resistance Training & Rehabilitation",
+      "Metabolic Fatigue & High-Rep Drop Sets",
+      "Full-Range Biomechanical Cable Mechanics"
+    ],
+    workoutSplit: "Targeted Upper/Lower or Antagonist Muscle Group Circuits (3–4 Days/Week)",
+    coachGuidance: "Continuous cable tension maximizes mechanical tension without axial spinal load, ideal for lifters recovering from joint strain or seeking hypertrophy.",
+    timings: "Open Daily 6:00 AM – 12:00 AM Midnight (Sunday 6:00 PM – 10:00 PM)"
   },
   {
     id: "cardio",
-    title: "Cardio Fleet",
-    tag: "Conditioning",
-    description: "Commercial motorized treadmills with responsive cushioning, elliptical cross-trainers, and spin bikes to shred fat and boost stamina.",
-    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80",
-    features: ["Motorized running decks with incline", "Low-impact elliptical trainers", "High-cadence spin bicycles"]
+    title: "Commercial Motorized Cardio Fleet",
+    tag: "Conditioning Deck",
+    badge: "Zone 03",
+    lead: "Elevate your stamina, accelerate metabolic fat burn, and protect joint health in climate-controlled air.",
+    description: "Beat Mumbai's outdoor smog and humidity in our clean, climate-controlled cardio bay. Our fleet features shock-absorbing motorized running decks, variable-resistance elliptical cross-trainers, and high-cadence spin bicycles.",
+    image: "https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=1200&q=85",
+    features: [
+      "Commercial motorized treadmills with responsive cushioning",
+      "Low-impact elliptical trainers for joint-friendly stamina",
+      "Heavy-flywheel studio spin bikes for high-intensity intervals"
+    ],
+    equipmentDetailed: [
+      "Commercial motorized running treadmills with active shock-absorption running belts",
+      "Variable-resistance elliptical cross-trainers for low-impact cardiovascular conditioning",
+      "Heavy-flywheel studio stationary bikes with adjustable magnetic resistance",
+      "Integrated digital consoles with real-time speed, incline, heart rate, and calorie tracking",
+      "Targeted high-velocity air-conditioning flow directly across all cardio stations",
+      "Complimentary sanitized sweat-towel stations and filtered drinking water access"
+    ],
+    targetDisciplines: [
+      "Aerobic Base & VO2 Max Endurance",
+      "High-Intensity Interval Training (HIIT) Conditioning",
+      "Metabolic Accelerated Fat Loss",
+      "Active Cardiovascular Recovery & Joint Mobility"
+    ],
+    workoutSplit: "20–35 Minutes Post-Lifting or Dedicated 45-Min Fasted Conditioning (3–5 Days/Week)",
+    coachGuidance: "Perform 10-15 degree incline walking intervals to maximize calorie expenditure while minimizing kneecap impact.",
+    timings: "Open Daily 6:00 AM – 12:00 AM Midnight (Sunday 6:00 PM – 10:00 PM)"
   },
   {
     id: "ladies",
     title: "Dedicated Ladies Only Batch",
-    tag: "2:00 PM – 4:00 PM",
-    description: "Daily dedicated women-only window (2 PM – 4 PM) offering an empowering, private, and fully supportive space for female fitness enthusiasts.",
-    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80",
-    features: ["Private 2-hour daily batch exclusively for women", "Comfortable, respectful and welcoming environment", "Full access to strength, cardio and floor guidance"]
+    tag: "Women's Private Batch",
+    badge: "2:00 PM – 4:00 PM Daily",
+    lead: "An empowering, private training window reserved exclusively for female lifters.",
+    description: "Every single day between 2:00 PM and 4:00 PM, our Nehru Nagar training floor is closed to general members and opened exclusively for women. Guided by certified female trainer Coach Ayesha Khan, members learn barbell lifting, tone safely, and train without distraction.",
+    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=85",
+    features: [
+      "Private 2-hour daily batch exclusively for female members",
+      "Hands-on posture, lifting technique & nutrition guidance",
+      "Full floor access: Olympic weights, cables & cardio fleet"
+    ],
+    equipmentDetailed: [
+      "Exclusive training floor access with zero general public interruptions during 2 PM – 4 PM",
+      "Guided coaching by certified female specialist Coach Ayesha Khan",
+      "Complete availability of all Olympic weight bays, dumbbells, cables, and cardio decks",
+      "Private, sanitized changing rooms, clean washrooms, and individual locker amenities",
+      "Posture correction, pelvic floor strengthening, and metabolic circuit coaching",
+      "Safe, welcoming, and empowering community of Kurla female fitness enthusiasts"
+    ],
+    targetDisciplines: [
+      "Female Body Toning & Lean Muscle Definition",
+      "Confident Free-Weight & Barbell Mastery",
+      "Core Stability, Posture & Glute Hypertrophy",
+      "Sustainable Lifestyle & Metabolic Conditioning"
+    ],
+    workoutSplit: "Daily 2:00 PM – 4:00 PM (Monday to Saturday Dedicated Batch)",
+    coachGuidance: "Coach Ayesha Khan designs progressive weekly routines ensuring each member learns correct movement mechanics with zero intimidation.",
+    timings: "Daily 2:00 PM – 4:00 PM (Dedicated Women-Only Floor Window)"
   }
 ];
 

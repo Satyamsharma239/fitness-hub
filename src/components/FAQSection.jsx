@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HelpCircle, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 import { FAQS, GYM_INFO } from '../data/gymData';
 import './FAQSection.css';
@@ -16,8 +16,7 @@ export default function FAQSection() {
       <div className="tf-container">
         <div className="tf-section-header center">
           <span className="tf-eyebrow">
-            <HelpCircle size={14} />
-            Got Questions?
+            Common Questions Answered
           </span>
           <h2 className="tf-section-title">
             Frequently Asked <span className="accent">Questions</span>

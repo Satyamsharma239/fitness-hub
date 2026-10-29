@@ -20,7 +20,7 @@ export default function TestimonialsSection() {
       <div className="tf-container">
         <div className="tf-section-header center">
           <span className="tf-eyebrow">
-            04 / VERIFIED REVIEWS
+            Verified Member Stories
           </span>
           <h2 className="tf-section-title">
             Real People. <span className="accent">Real Transformations.</span>

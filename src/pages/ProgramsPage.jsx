@@ -1,75 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import { useLocation, Link } from "react-router-dom";
 import {
   ShieldCheck,
   CheckCircle2,
-  ArrowRight
+  ArrowRight,
+  Filter
 } from "lucide-react";
 import PageHero from "../components/PageHero";
 import WhatsAppIcon from "../components/WhatsAppIcon";
+import { TRAINING_ZONES } from "../data/gymData";
 import "./ProgramsPage.css";
 
-const DETAILED_ZONES = [
-  {
-    id: "free-weights",
-    title: "Heavy Free Weights & Barbell Platforms",
-    badge: "Strength Bay",
-    lead: "Engineered for progressive overload, powerlifting, and compound hypertrophy lifting.",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=85",
-    description: "Our strength section is anchored by reinforced Olympic squat cages, competition-grade barbells, and heavy dumbbells with textured non-slip knurling. Whether your program calls for 100kg deadlifts or controlled dumbbell benching, the floor provides shock-absorbing rubber mats for safe drops.",
-    equipmentList: [
-      "Heavy commercial dumbbells with non-slip grips",
-      "Reinforced Olympic squat cages & safety spotter arms",
-      "Flat, incline, and decline utility bench stations",
-      "Calibrated cast-iron & rubber bumper weight plates",
-      "Olympic EZ-curl bars & standard straight barbells"
-    ]
-  },
-  {
-    id: "machines",
-    title: "Dual Cable Crossovers & Hypertrophy Machines",
-    badge: "Hypertrophy Suite",
-    lead: "Smooth biomechanical cable paths designed for continuous muscle tension and isolated growth.",
-    image: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=85",
-    description: "Every resistance machine is maintained daily to ensure frictionless motion and safe joint mechanics. Target your chest, back, shoulders, and legs with pinpoint accuracy before finishing your workout with high-angle cable crossovers.",
-    equipmentList: [
-      "Dual adjustable pulley (DAP) cable crossover stations",
-      "Wide-grip lat pulldowns & low seated cable rows",
-      "Pin-loaded chest press, shoulder press & pec-dec fly",
-      "45-degree angled leg press & heavy hack squat unit",
-      "Seated leg extension and prone hamstring curl stations"
-    ]
-  },
-  {
-    id: "cardio",
-    title: "Commercial Motorized Cardio Fleet",
-    badge: "Conditioning Deck",
-    lead: "Elevate your stamina, accelerate metabolic fat burn, and protect joint health.",
-    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=85",
-    description: "Beat Mumbai's outdoor smog and humidity in our clean, climate-controlled cardio bay. Our fleet features shock-absorbing motorized running decks, variable-resistance elliptical cross-trainers, and high-cadence spin bicycles.",
-    equipmentList: [
-      "Commercial motorized treadmills with responsive shock cushioning",
-      "Low-impact elliptical trainers for joint-friendly stamina",
-      "Heavy-flywheel studio spin bikes for high-intensity intervals",
-      "Real-time heart rate, pace, and calorie display consoles"
-    ]
-  },
-  {
-    id: "ladies",
-    title: "Dedicated Ladies Only Batch (Daily 2 PM – 4 PM)",
-    badge: "2:00 PM – 4:00 PM Daily",
-    lead: "An empowering, private training window reserved exclusively for female lifters.",
-    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=85",
-    description: "Every single day between 2:00 PM and 4:00 PM, our Nehru Nagar training floor is closed to general members and opened exclusively for women. Guided by certified female trainer Coach Ayesha Khan, members learn barbell lifting, tone safely, and train without distraction.",
-    equipmentList: [
-      "Private 2-hour daily batch exclusively for female members",
-      "Hands-on posture and lifting technique coaching",
-      "Full access to strength, resistance machines, and cardio decks",
-      "Comfortable, supportive, and 100% respectful atmosphere"
-    ]
-  }
+const ZONE_PILLS = [
+  { id: "all", label: "All Training Zones" },
+  { id: "free-weights", label: "01 Olympic Strength" },
+  { id: "machines", label: "02 Hypertrophy Cables" },
+  { id: "cardio", label: "03 Cardio Fleet" },
+  { id: "ladies", label: "04 Ladies Only (2–4 PM)" }
 ];
 
 export default function ProgramsPage({ onOpenTrial }) {
+  const location = useLocation();
+  const [selectedPill, setSelectedPill] = useState(null);
+  const activePill = selectedPill || (location.hash ? location.hash.replace("#", "") : "all");
+
+  const handleSelectPill = (id) => {
+    setSelectedPill(id);
+  };
+
+  const displayedZones = activePill === "all"
+    ? TRAINING_ZONES
+    : TRAINING_ZONES.filter((zone) => zone.id === activePill);
+
   return (
     <div className="tf-programs-page">
       <PageHero
@@ -80,73 +42,109 @@ export default function ProgramsPage({ onOpenTrial }) {
 
       <section className="tf-section">
         <div className="tf-container">
-          <div className="tf-programs-list">
-            {DETAILED_ZONES.map((zone, idx) => (
-              <div
-                key={zone.id}
-                className={`tf-zone-detailed-card ${idx % 2 === 1 ? "reversed" : ""}`}
+          <div className="tf-programs-filter-bar">
+            <span className="tf-filter-kicker">
+              <Filter size={14} />
+              <span>Quick Zone Filter:</span>
+            </span>
+            <div className="tf-filter-pills">
+              {ZONE_PILLS.map((pill) => (
+                <button
+                  key={pill.id}
+                  type="button"
+                  className={`tf-filter-pill ${activePill === pill.id ? "active" : ""}`}
+                  onClick={() => handleSelectPill(pill.id)}
+                >
+                  {pill.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {activePill !== "all" && (
+            <div className="tf-filter-status-row">
+              <span>Filtered to <strong>{ZONE_PILLS.find((p) => p.id === activePill)?.label}</strong></span>
+              <button
+                type="button"
+                className="tf-filter-reset-btn"
+                onClick={() => handleSelectPill("all")}
               >
-                <div className="tf-zone-detailed-media">
-                  <img
-                    src={zone.image}
-                    alt={zone.title}
-                    className="tf-zone-detailed-img"
-                    loading="lazy"
-                  />
-                  <div className="tf-zone-detailed-overlay" />
-                  <span className="tf-zone-detailed-badge">
-                    {zone.badge}
-                  </span>
-                </div>
+                Reset & View All 4 Zones &rarr;
+              </button>
+            </div>
+          )}
 
-                <div className="tf-zone-detailed-body">
-                  <span className="tf-zone-detailed-num">
-                    Zone 0{idx + 1}
-                  </span>
-                  <h3 className="tf-zone-detailed-title">
-                    {zone.title}
-                  </h3>
-                  <p className="tf-zone-detailed-lead">
-                    {zone.lead}
-                  </p>
-                  <p className="tf-zone-detailed-desc">
-                    {zone.description}
-                  </p>
+          <div className="tf-programs-list">
+            {displayedZones.map((zone) => {
+              const zoneIndex = TRAINING_ZONES.findIndex((z) => z.id === zone.id) + 1;
+              return (
+                <div
+                  key={zone.id}
+                  id={zone.id}
+                  className="tf-zone-detailed-card"
+                >
+                  <div className="tf-zone-detailed-media">
+                    <img
+                      src={zone.image}
+                      alt={zone.title}
+                      className="tf-zone-detailed-img"
+                      loading="lazy"
+                    />
+                    <div className="tf-zone-detailed-overlay" />
+                    <span className="tf-zone-detailed-badge">
+                      {zone.badge}
+                    </span>
+                  </div>
 
-                  <ul className="tf-zone-detailed-list">
-                    {zone.equipmentList.map((item, itemIdx) => (
-                      <li key={itemIdx} className="tf-zone-detailed-item">
-                        <CheckCircle2
-                          size={15}
-                          className="tf-zone-detailed-check"
-                        />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="tf-zone-detailed-body">
+                    <span className="tf-zone-detailed-num">
+                      Zone 0{zoneIndex}
+                    </span>
+                    <h3 className="tf-zone-detailed-title">
+                      {zone.title}
+                    </h3>
+                    <p className="tf-zone-detailed-lead">
+                      {zone.lead}
+                    </p>
+                    <p className="tf-zone-detailed-desc">
+                      {zone.description}
+                    </p>
 
-                  <div className="tf-zone-detailed-actions">
-                    <button
-                      type="button"
-                      className="tf-btn tf-btn-primary tf-btn-sm"
-                      onClick={onOpenTrial}
-                    >
-                      <span>Tour This Zone</span>
-                      <ArrowRight size={14} />
-                    </button>
-                    <a
-                      href={`https://wa.me/918108884757?text=Hi%20The%20Fitness%20Hub%20Kurla%2C%20I%20am%20interested%20in%20touring%20the%20${encodeURIComponent(zone.title)}.`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="tf-btn tf-btn-secondary tf-btn-sm"
-                    >
-                      <WhatsAppIcon size={14} />
-                      <span>WhatsApp Desk</span>
-                    </a>
+                    <ul className="tf-zone-detailed-list">
+                      {zone.features.map((item, itemIdx) => (
+                        <li key={itemIdx} className="tf-zone-detailed-item">
+                          <CheckCircle2
+                            size={15}
+                            className="tf-zone-detailed-check"
+                          />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="tf-zone-detailed-actions">
+                      <Link
+                        to={`/programs/${zone.id}`}
+                        className="tf-btn tf-btn-primary tf-btn-sm"
+                      >
+                        <span>View Zone Details & Specs</span>
+                        <ArrowRight size={14} />
+                      </Link>
+
+                      <a
+                        href={`https://wa.me/918108884757?text=Hi%20The%20Fitness%20Hub%20Kurla%2C%20I%20am%20interested%20in%20trying%20the%20${encodeURIComponent(zone.title)}.`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="tf-btn tf-btn-secondary tf-btn-sm"
+                      >
+                        <WhatsAppIcon size={14} />
+                        <span>Chat on WhatsApp</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="tf-programs-cta-card">

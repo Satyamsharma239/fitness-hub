@@ -8,7 +8,8 @@ import {
   ShieldCheck,
   Copy,
   Check,
-  ExternalLink
+  ExternalLink,
+  Navigation
 } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 import { GYM_INFO } from '../data/gymData';
@@ -25,22 +26,15 @@ export default function ContactSection() {
     message: ''
   });
 
-  const [copiedPhone, setCopiedPhone] = useState(false);
   const [copiedAddress, setCopiedAddress] = useState(false);
-
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submissionPayload, setSubmissionPayload] = useState(null);
 
-  const copyToClipboard = (text, type) => {
+  const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
-    if (type === 'phone') {
-      setCopiedPhone(true);
-      setTimeout(() => setCopiedPhone(false), 2000);
-    } else {
-      setCopiedAddress(true);
-      setTimeout(() => setCopiedAddress(false), 2000);
-    }
+    setCopiedAddress(true);
+    setTimeout(() => setCopiedAddress(false), 2000);
   };
 
   const validate = () => {
@@ -112,7 +106,7 @@ export default function ContactSection() {
       <div className="tf-container">
         <div className="tf-section-header center">
           <span className="tf-eyebrow">
-            06 / LOCATION & CONTACT DESK
+            Location & Front Desk
           </span>
           <h2 className="tf-section-title">
             Visit The Club in <span className="accent">Nehru Nagar, Kurla</span>
@@ -122,116 +116,152 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="tf-contact-grid">
-          
-          <div className="tf-contact-info-col">
-            <div className="tf-contact-block">
-              <div className="tf-contact-block-header">
-                <div className="tf-contact-block-icon">
-                  <MapPin size={20} />
-                </div>
-                <h3>Gym Address (Kurla)</h3>
+        <div className="tf-contact-top-grid">
+          <div className="tf-contact-top-card">
+            <div className="tf-contact-top-header">
+              <div className="tf-contact-card-icon">
+                <MapPin size={20} />
               </div>
-              <div className="tf-contact-details">
-                <p><strong>{GYM_INFO.contact.building}</strong></p>
-                <p>{GYM_INFO.contact.landmark}</p>
-                <p>{GYM_INFO.contact.city} – {GYM_INFO.contact.pincode}</p>
-                <span className="tf-contact-note-badge">
-                  📍 Just 3–4 minutes walk from Kurla Railway Station (East) & Nehru Nagar Bus Depot.
-                </span>
-
-                <div className="tf-contact-action-row">
-                  <a
-                    href={GYM_INFO.contact.mapsUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="tf-btn tf-btn-primary tf-btn-sm"
-                  >
-                    <ExternalLink size={14} />
-                    <span>Open in Google Maps</span>
-                  </a>
-
-                  <button
-                    type="button"
-                    className="tf-btn tf-btn-secondary tf-btn-sm"
-                    onClick={() => copyToClipboard(GYM_INFO.contact.fullAddress, 'address')}
-                  >
-                    {copiedAddress ? <Check size={14} /> : <Copy size={14} />}
-                    <span>{copiedAddress ? 'Address Copied!' : 'Copy Address'}</span>
-                  </button>
-                </div>
+              <div>
+                <span className="tf-contact-card-kicker">Gym Location</span>
+                <h3>Club Address</h3>
               </div>
             </div>
-
-            <div className="tf-contact-block">
-              <div className="tf-contact-block-header">
-                <div className="tf-contact-block-icon">
-                  <Clock size={20} />
-                </div>
-                <h3>Official Operating Timings</h3>
+            <div className="tf-contact-card-content">
+              <p><strong>{GYM_INFO.contact.building}</strong></p>
+              <p>{GYM_INFO.contact.landmark}</p>
+              <p>{GYM_INFO.contact.city} – {GYM_INFO.contact.pincode}</p>
+              <div className="tf-contact-transit-badge">
+                📍 3–4 min walk from Kurla Station (E) & Nehru Nagar Depot
               </div>
-              <ul className="tf-hours-list">
-                <li className="tf-hours-item">
+            </div>
+            <div className="tf-contact-card-footer">
+              <button
+                type="button"
+                className="tf-btn tf-btn-secondary tf-btn-sm"
+                onClick={() => copyToClipboard(GYM_INFO.contact.fullAddress)}
+              >
+                {copiedAddress ? <Check size={14} /> : <Copy size={14} />}
+                <span>{copiedAddress ? 'Address Copied!' : 'Copy Address'}</span>
+              </button>
+              <a
+                href={GYM_INFO.contact.mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="tf-btn tf-btn-secondary tf-btn-sm"
+              >
+                <ExternalLink size={14} />
+                <span>Google Maps</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="tf-contact-top-card">
+            <div className="tf-contact-top-header">
+              <div className="tf-contact-card-icon">
+                <Clock size={20} />
+              </div>
+              <div>
+                <span className="tf-contact-card-kicker">Operating Hours</span>
+                <h3>Training Timings</h3>
+              </div>
+            </div>
+            <div className="tf-contact-card-content">
+              <ul className="tf-clean-hours-list">
+                <li>
                   <span>Daily General Access:</span>
-                  <strong className="tf-hours-val">6:00 AM – 12:00 AM (Midnight)</strong>
+                  <strong>6:00 AM – 12:00 AM</strong>
                 </li>
-                <li className="tf-hours-item">
+                <li>
                   <span>Ladies Only Batch:</span>
-                  <strong className="tf-hours-val accent">2:00 PM – 4:00 PM</strong>
+                  <strong className="accent">2:00 PM – 4:00 PM</strong>
                 </li>
-                <li className="tf-hours-item">
-                  <span>Sunday Evening Session:</span>
-                  <strong className="tf-hours-val">6:00 PM – 10:00 PM</strong>
+                <li>
+                  <span>Sunday Evening:</span>
+                  <strong>6:00 PM – 10:00 PM</strong>
                 </li>
               </ul>
-              <span className="tf-contact-note-badge highlight">
-                ⚡ 18 hours open daily for early bird lifters, shift workers & late-night athletes.
-              </span>
+              <div className="tf-contact-transit-badge highlight">
+                ⚡ 18 hours daily access for early lifters & night athletes
+              </div>
+            </div>
+          </div>
+
+          <div className="tf-contact-top-card">
+            <div className="tf-contact-top-header">
+              <div className="tf-contact-card-icon">
+                <Phone size={20} />
+              </div>
+              <div>
+                <span className="tf-contact-card-kicker">Direct Desk</span>
+                <h3>Phone & WhatsApp</h3>
+              </div>
+            </div>
+            <div className="tf-contact-card-content">
+              <p>Calling: <strong>{GYM_INFO.contact.phone}</strong></p>
+              <p>WhatsApp: <strong>+91 81088 84757</strong></p>
+              <p>Instagram: <a href={GYM_INFO.socials.instagram} target="_blank" rel="noreferrer" className="tf-insta-link">{GYM_INFO.socials.instagramHandle}</a></p>
+              <p>Email: <span className="tf-contact-email-val">{GYM_INFO.contact.email}</span></p>
+            </div>
+            <div className="tf-contact-card-footer">
+              <a
+                href={GYM_INFO.contact.whatsappLink}
+                target="_blank"
+                rel="noreferrer"
+                className="tf-btn tf-btn-secondary tf-btn-sm"
+              >
+                <WhatsAppIcon size={14} />
+                <span>Chat on WhatsApp</span>
+              </a>
+              <a
+                href={`tel:${GYM_INFO.contact.phoneRaw}`}
+                className="tf-btn tf-btn-secondary tf-btn-sm"
+              >
+                <Phone size={14} />
+                <span>Call Desk</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="tf-contact-main-split">
+          <div className="tf-contact-map-card">
+            <div className="tf-map-card-header">
+              <div>
+                <span className="tf-eyebrow">Verified Google Location • ★ 4.8 Rating (180+ Reviews)</span>
+                <h3>Interactive Facility Map</h3>
+                <p>First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar, Kurla</p>
+              </div>
+              <a
+                href={GYM_INFO.contact.mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="tf-btn tf-btn-secondary tf-btn-sm"
+              >
+                <ExternalLink size={14} />
+                <span>Open in App</span>
+              </a>
             </div>
 
-            <div className="tf-contact-block">
-              <div className="tf-contact-block-header">
-                <div className="tf-contact-block-icon">
-                  <Phone size={20} />
-                </div>
-                <h3>Reception & WhatsApp Desk</h3>
+            <div className="tf-contact-map-frame">
+              <iframe
+                title="The Fitness Hub Kurla Location Map"
+                src="https://maps.google.com/maps?q=Serene+Shelter+Mass+Building+B+Wing+Nehru+Nagar+Kurla+Mumbai+400024&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                className="tf-contact-map-iframe"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+
+            <div className="tf-contact-transit-box">
+              <div className="tf-transit-point">
+                <Navigation size={14} className="accent" />
+                <span><strong>Train:</strong> Kurla Railway Station (East) &bull; 3–4 minutes walking distance (Exit East side towards Nehru Nagar).</span>
               </div>
-              <div className="tf-contact-details">
-                <p className="tf-contact-phone-row">
-                  <span>Calling: <strong className="tf-hours-val">{GYM_INFO.contact.phone}</strong></span>
-                  <button
-                    type="button"
-                    onClick={() => copyToClipboard(GYM_INFO.contact.phoneRaw, 'phone')}
-                    className="tf-copy-mini-btn"
-                  >
-                    {copiedPhone ? <Check size={12} /> : <Copy size={12} />}
-                    {copiedPhone ? 'Copied' : 'Copy'}
-                  </button>
-                </p>
-                <p>
-                  WhatsApp: <strong className="tf-hours-val">{GYM_INFO.contact.phone}</strong>
-                </p>
-                <p>
-                  Instagram: <a href={GYM_INFO.socials.instagram} target="_blank" rel="noreferrer" className="tf-insta-link">{GYM_INFO.socials.instagramHandle}</a>
-                </p>
-                <div className="tf-contact-action-row">
-                  <a
-                    href={GYM_INFO.contact.whatsappLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="tf-btn tf-btn-primary tf-btn-sm"
-                  >
-                    <WhatsAppIcon size={14} />
-                    <span>Instant WhatsApp Chat</span>
-                  </a>
-                  <a
-                    href={`tel:${GYM_INFO.contact.phoneRaw}`}
-                    className="tf-btn tf-btn-secondary tf-btn-sm"
-                  >
-                    <Phone size={14} />
-                    <span>Call 81088 84757</span>
-                  </a>
-                </div>
+              <div className="tf-transit-point">
+                <Navigation size={14} className="accent" />
+                <span><strong>Bus:</strong> Nehru Nagar Bus Depot &bull; 250 meters away. Direct auto-rickshaws available from station.</span>
               </div>
             </div>
           </div>
@@ -242,21 +272,21 @@ export default function ContactSection() {
                 <div className="tf-form-header">
                   <div className="tf-form-header-badge">
                     <ShieldCheck size={16} />
-                    <span>Free Trial & Membership Desk</span>
+                    <span>Free Facility Tour & Trial</span>
                   </div>
                   <h3>Book Free Visit or Inquire</h3>
                   <p>
-                    Submit your contact details and our team will confirm your preferred timing slot via WhatsApp.
+                    Submit your details and our team will confirm your preferred timing slot via WhatsApp.
                   </p>
                 </div>
 
                 <form onSubmit={handleSubmit} noValidate>
                   <div className="tf-form-group">
-                    <label htmlFor="contact-name" className="tf-form-label">
+                    <label htmlFor="name-home" className="tf-form-label">
                       Full Name *
                     </label>
                     <input
-                      id="contact-name"
+                      id="name-home"
                       type="text"
                       className={`tf-form-input ${errors.name ? 'error' : ''}`}
                       placeholder="e.g. Rahul Sharma"
@@ -271,29 +301,11 @@ export default function ContactSection() {
 
                   <div className="tf-form-row-2">
                     <div className="tf-form-group">
-                      <label htmlFor="contact-email" className="tf-form-label">
-                        Email Address *
+                      <label htmlFor="phone-home" className="tf-form-label">
+                        Contact / WhatsApp *
                       </label>
                       <input
-                        id="contact-email"
-                        type="email"
-                        className={`tf-form-input ${errors.email ? 'error' : ''}`}
-                        placeholder="rahul@example.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        aria-required="true"
-                      />
-                      {errors.email && (
-                        <span className="tf-form-error-msg">{errors.email}</span>
-                      )}
-                    </div>
-
-                    <div className="tf-form-group">
-                      <label htmlFor="contact-phone" className="tf-form-label">
-                        Contact / WhatsApp Number *
-                      </label>
-                      <input
-                        id="contact-phone"
+                        id="phone-home"
                         type="tel"
                         className={`tf-form-input ${errors.phone ? 'error' : ''}`}
                         placeholder="+91 98765 43210"
@@ -305,15 +317,33 @@ export default function ContactSection() {
                         <span className="tf-form-error-msg">{errors.phone}</span>
                       )}
                     </div>
+
+                    <div className="tf-form-group">
+                      <label htmlFor="email-home" className="tf-form-label">
+                        Email Address *
+                      </label>
+                      <input
+                        id="email-home"
+                        type="email"
+                        className={`tf-form-input ${errors.email ? 'error' : ''}`}
+                        placeholder="rahul@example.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        aria-required="true"
+                      />
+                      {errors.email && (
+                        <span className="tf-form-error-msg">{errors.email}</span>
+                      )}
+                    </div>
                   </div>
 
                   <div className="tf-form-row-2">
                     <div className="tf-form-group">
-                      <label htmlFor="contact-topic" className="tf-form-label">
+                      <label htmlFor="topic-home" className="tf-form-label">
                         Plan or Inquiry Interest
                       </label>
                       <select
-                        id="contact-topic"
+                        id="topic-home"
                         className="tf-form-select"
                         value={formData.topic}
                         onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
@@ -332,11 +362,11 @@ export default function ContactSection() {
                     </div>
 
                     <div className="tf-form-group">
-                      <label htmlFor="contact-timeSlot" className="tf-form-label">
+                      <label htmlFor="timeSlot-home" className="tf-form-label">
                         Preferred Training Slot
                       </label>
                       <select
-                        id="contact-timeSlot"
+                        id="timeSlot-home"
                         className="tf-form-select"
                         value={formData.timeSlot}
                         onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value })}
@@ -351,11 +381,11 @@ export default function ContactSection() {
                   </div>
 
                   <div className="tf-form-group">
-                    <label htmlFor="contact-message" className="tf-form-label">
+                    <label htmlFor="message-home" className="tf-form-label">
                       Fitness Goals or Past Injuries (Optional)
                     </label>
                     <textarea
-                      id="contact-message"
+                      id="message-home"
                       rows={3}
                       className="tf-form-textarea"
                       placeholder="Tell us about your fitness target or any specific questions you have..."
@@ -369,8 +399,11 @@ export default function ContactSection() {
                     className="tf-btn tf-btn-primary tf-btn-block"
                   >
                     <Send size={16} />
-                    <span>Submit & Open WhatsApp</span>
+                    <span>Submit</span>
                   </button>
+                  <p className="tf-form-footnote">
+                    🔒 100% Free Facility Walkthrough &bull; Zero Obligation &bull; Instant Confirmation
+                  </p>
                 </form>
               </>
             ) : (
@@ -410,38 +443,6 @@ export default function ContactSection() {
                 </div>
               </div>
             )}
-          </div>
-        </div>
-
-        <div className="tf-contact-map-section">
-          <div className="tf-contact-map-box">
-            <div className="tf-contact-map-header">
-              <div className="tf-map-title-group">
-                <span className="tf-eyebrow">Verified Google Location</span>
-                <h3>The Fitness Hub Kurla on Google Maps</h3>
-                <p>First Floor, Serene Shelter, Mass Building, B Wing, Nehru Nagar, Kurla, Mumbai – 400024</p>
-              </div>
-              <a
-                href={GYM_INFO.contact.mapsUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="tf-btn tf-btn-primary tf-btn-sm"
-              >
-                <ExternalLink size={14} />
-                <span>Open in Google Maps App</span>
-              </a>
-            </div>
-
-            <div className="tf-contact-map-frame">
-              <iframe
-                title="The Fitness Hub Kurla Location Map"
-                src="https://maps.google.com/maps?q=Serene+Shelter+Mass+Building+B+Wing+Nehru+Nagar+Kurla+Mumbai+400024&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                className="tf-contact-map-iframe"
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
           </div>
         </div>
       </div>

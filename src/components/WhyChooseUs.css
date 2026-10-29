@@ -1,5 +1,5 @@
 .tf-why-section {
-  background-color: #0b0b0f;
+  background-color: var(--bg-darker);
   border-top: 1px solid var(--border-dark);
   border-bottom: 1px solid var(--border-dark);
 }
@@ -9,19 +9,31 @@
   gap: 28px;
 }
 .tf-why-card {
-  background-color: var(--bg-surface);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0) 100%), var(--bg-surface);
   border: 1px solid var(--border-dark);
+  border-top-color: rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-md);
   padding: clamp(24px, 3vw, 34px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  transition: transform var(--transition-smooth), border-color 0.3s ease, box-shadow var(--transition-smooth);
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+.tf-why-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  pointer-events: none;
 }
 .tf-why-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 30, 39, 0.45);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 30, 39, 0.1);
+  transform: translateY(-6px);
+  border-color: rgba(255, 42, 59, 0.45);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 24px rgba(255, 42, 59, 0.12);
 }
 .tf-why-card-top {
   display: flex;
@@ -33,12 +45,18 @@
   width: 48px;
   height: 48px;
   border-radius: var(--radius-sm);
-  background-color: rgba(255, 30, 39, 0.12);
+  background-color: rgba(255, 42, 59, 0.12);
   color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 30, 39, 0.25);
+  border: 1px solid rgba(255, 42, 59, 0.25);
+  transition: transform var(--transition-smooth), background-color var(--transition-smooth), border-color var(--transition-smooth);
+}
+.tf-why-card:hover .tf-why-icon-box {
+  transform: scale(1.1) rotate(-3deg);
+  background-color: rgba(255, 42, 59, 0.22);
+  border-color: var(--accent);
 }
 .tf-why-tag {
   font-size: 11px;
@@ -47,9 +65,9 @@
   letter-spacing: 0.08em;
   padding: 5px 12px;
   border-radius: var(--radius-pill);
-  background-color: rgba(255, 30, 39, 0.08);
+  background-color: rgba(255, 42, 59, 0.08);
   color: #ff686f;
-  border: 1px solid rgba(255, 30, 39, 0.25);
+  border: 1px solid rgba(255, 42, 59, 0.25);
 }
 .tf-why-title {
   font-size: 22px;
@@ -91,12 +109,12 @@
   background-color: var(--accent);
   margin-top: 6px;
   flex-shrink: 0;
-  box-shadow: 0 0 8px rgba(255, 30, 39, 0.6);
+  box-shadow: 0 0 8px rgba(255, 42, 59, 0.6);
 }
 .tf-why-ribbon {
   margin-top: 40px;
   background: linear-gradient(135deg, #181822 0%, #101015 100%);
-  border: 1px solid rgba(255, 30, 39, 0.35);
+  border: 1px solid rgba(255, 42, 59, 0.35);
   border-radius: var(--radius-md);
   padding: clamp(24px, 3.5vw, 36px);
   display: flex;

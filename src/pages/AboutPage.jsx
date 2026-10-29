@@ -6,8 +6,7 @@ import {
   Users,
   Compass,
   MapPin,
-  Clock,
-  Sparkles
+  Clock
 } from "lucide-react";
 import PageHero from "../components/PageHero";
 import WhatsAppIcon from "../components/WhatsAppIcon";
@@ -44,7 +43,6 @@ export default function AboutPage({ onOpenTrial }) {
         eyebrow="Our Story & Philosophy"
         title="KURLA’S HOME FOR SERIOUS STRENGTH & TRANSFORMATION"
         subtitle="Get Fit. Get Strong. Get Results. Established in Nehru Nagar, Kurla, The Fitness Hub was built with a singular mission: to provide Mumbai with a high-energy, clean, and empowering facility dedicated strictly to authentic physical progress."
-        breadcrumb={[{ label: "About", link: null }]}
       />
 
       <section className="tf-section tf-about-story-section">
@@ -52,8 +50,7 @@ export default function AboutPage({ onOpenTrial }) {
           <div className="tf-about-story-grid">
             <div className="tf-about-story-text">
               <span className="tf-eyebrow">
-                <Sparkles size={13} />
-                The Fitness Hub Standard
+                The Titan Standard
               </span>
               <h2 className="tf-section-title">
                 WE CUT THROUGH THE NOISE OF <span className="accent">COMMERCIAL FITNESS.</span>
@@ -107,7 +104,6 @@ export default function AboutPage({ onOpenTrial }) {
         <div className="tf-container">
           <div className="tf-section-header center">
             <span className="tf-eyebrow">
-              <Award size={14} />
               Our Core Standards
             </span>
             <h2 className="tf-section-title">
@@ -135,7 +131,6 @@ export default function AboutPage({ onOpenTrial }) {
           <div className="tf-about-visit-box">
             <div className="tf-about-visit-copy">
               <span className="tf-eyebrow">
-                <MapPin size={13} />
                 Visit The Club in Person
               </span>
               <h2>See the facility. Test the equipment. Then decide.</h2>

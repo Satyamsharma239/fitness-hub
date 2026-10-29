@@ -86,7 +86,7 @@
   color: var(--text-muted);
 }
 .tf-about-pillars-section {
-  background: #0b0b0f;
+  background: var(--bg-darker);
   border-top: 1px solid var(--border-dark);
   border-bottom: 1px solid var(--border-dark);
 }
@@ -95,23 +95,39 @@
   border: 1px solid var(--border-dark);
   border-radius: var(--radius-md);
   padding: clamp(28px, 4vw, 36px);
-  transition: all var(--transition-smooth);
+  position: relative;
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+.tf-pillar-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  pointer-events: none;
 }
 .tf-pillar-card:hover {
-  border-color: rgba(255, 30, 39, 0.4);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 42, 59, 0.45);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 24px rgba(255, 42, 59, 0.15);
 }
 .tf-pillar-icon-box {
   width: 50px;
   height: 50px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 30, 39, 0.12);
+  background: rgba(255, 42, 59, 0.12);
   color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 18px;
+  transition: transform var(--transition-smooth), background-color var(--transition-smooth);
+}
+.tf-pillar-card:hover .tf-pillar-icon-box {
+  transform: scale(1.1) rotate(-4deg);
+  background: rgba(255, 42, 59, 0.22);
 }
 .tf-pillar-title {
   font-size: 22px;
@@ -125,7 +141,7 @@
   color: var(--text-body);
 }
 .tf-about-visit-box {
-  background: linear-gradient(135deg, #181824 0%, #0d0d12 100%);
+  background: linear-gradient(135deg, var(--bg-surface-elevated) 0%, var(--bg-surface) 100%);
   border: 1px solid var(--border-dark);
   border-radius: var(--radius-lg);
   padding: clamp(32px, 5vw, 56px);

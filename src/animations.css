@@ -35,8 +35,8 @@
 .tf-trainer-card:hover,
 .tf-pillar-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(255, 30, 39, 0.45);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 30, 39, 0.1);
+  border-color: rgba(255, 42, 59, 0.45);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 42, 59, 0.1);
 }
 .tf-zone-media,
 .tf-trainer-photo-wrap,
@@ -100,8 +100,9 @@
   transition: all var(--tf-fast);
 }
 .tf-accordion-item.open {
-  border-color: rgba(255, 30, 39, 0.4);
+  border-color: rgba(255, 42, 59, 0.45);
   background: var(--bg-surface-elevated);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 .tf-accordion-trigger {
   width: 100%;

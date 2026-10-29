@@ -3,16 +3,35 @@
 }
 .tf-trainers-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 .tf-trainer-card {
-  background: var(--bg-surface);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%), var(--bg-surface);
   border: 1px solid var(--border-dark);
+  border-top-color: rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-md);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+.tf-trainer-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+  pointer-events: none;
+  z-index: 5;
+}
+.tf-trainer-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 42, 59, 0.5);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 30px rgba(255, 42, 59, 0.2);
 }
 .tf-trainer-photo-wrap {
   position: relative;
@@ -25,6 +44,10 @@
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  transition: transform 700ms var(--tf-ease);
+}
+.tf-trainer-card:hover .tf-trainer-img {
+  transform: scale(1.06);
 }
 .tf-trainer-photo-overlay {
   position: absolute;
@@ -37,31 +60,39 @@
   right: 14px;
   padding: 5px 12px;
   border-radius: var(--radius-pill);
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.78);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 30, 39, 0.4);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 42, 59, 0.45);
   color: #ffffff;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
+  transition: all var(--transition-fast);
+  z-index: 2;
+}
+.tf-trainer-card:hover .tf-trainer-exp-badge {
+  background: rgba(255, 42, 59, 0.2);
+  border-color: var(--accent);
+  box-shadow: 0 0 14px rgba(255, 42, 59, 0.4);
 }
 .tf-trainer-body {
-  padding: clamp(22px, 3.5vw, 32px);
+  padding: clamp(20px, 2.5vw, 26px);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 .tf-trainer-name {
-  font-size: 26px;
+  font-size: clamp(21px, 1.8vw, 24px);
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 4px;
 }
 .tf-trainer-role {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--accent);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   display: block;
 }
 .tf-trainer-specialty {
@@ -71,39 +102,48 @@
   font-size: 13px;
   color: #dedee8;
   margin-bottom: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: border-color var(--transition-fast);
+}
+.tf-trainer-card:hover .tf-trainer-specialty {
+  border-color: rgba(255, 42, 59, 0.25);
 }
 .tf-trainer-specialty strong {
   display: block;
-  font-size: 10.5px;
+  font-size: 10px;
   text-transform: uppercase;
   color: var(--text-muted);
   letter-spacing: 0.06em;
   margin-bottom: 2px;
 }
 .tf-trainer-bio {
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.65;
   color: var(--text-body);
   margin-bottom: 14px;
 }
 .tf-trainer-quote {
   font-style: italic;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.6;
   color: #ff9a9e;
   border-left: 2px solid var(--accent);
   padding-left: 12px;
   margin: 0 0 16px 0;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.tf-trainer-card:hover .tf-trainer-quote {
+  color: #ffb4b7;
 }
 .tf-trainer-certs {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   color: #f59e0b;
   margin-top: auto;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   padding-top: 12px;
   border-top: 1px solid var(--border-dark);
 }
@@ -113,11 +153,29 @@
 .tf-trainer-wa-btn {
   width: 100%;
   justify-content: center;
+  transition: all var(--transition-smooth);
+}
+.tf-trainer-card:hover .tf-trainer-wa-btn {
+  background: var(--bg-surface-active);
+  border-color: rgba(255, 42, 59, 0.4);
+}
+.tf-trainer-wa-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 42, 59, 0.18) 0%, rgba(255, 42, 59, 0.08) 100%) !important;
+  border-color: var(--accent) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 18px rgba(255, 42, 59, 0.35) !important;
+  transform: translateY(-2px);
+}
+.tf-trainer-wa-btn svg {
+  transition: transform var(--transition-smooth);
+}
+.tf-trainer-wa-btn:hover svg {
+  transform: scale(1.18);
 }
 .tf-coaching-guarantee-banner {
   margin-top: 48px;
   background: linear-gradient(135deg, #181824 0%, #0d0d12 100%);
-  border: 1px solid rgba(255, 30, 39, 0.35);
+  border: 1px solid rgba(255, 42, 59, 0.35);
   border-radius: var(--radius-lg);
   padding: clamp(32px, 5vw, 48px);
   display: flex;
@@ -150,8 +208,27 @@
   color: var(--text-body);
   line-height: 1.65;
 }
-@media (max-width: 900px) {
+.tf-guarantee-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+@media (max-width: 860px) {
   .tf-trainers-grid {
     grid-template-columns: 1fr;
+    gap: 22px;
+    max-width: 520px;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 600px) {
+  .tf-guarantee-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  .tf-guarantee-actions .tf-btn {
+    width: 100%;
+    justify-content: center;
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { UserCheck, ShieldCheck, ArrowRight, Award } from "lucide-react";
+import { ShieldCheck, ArrowRight, Award } from "lucide-react";
 import PageHero from "../components/PageHero";
 import WhatsAppIcon from "../components/WhatsAppIcon";
 import { TRAINERS } from "../data/gymData";
@@ -12,15 +12,13 @@ export default function TrainersPage({ onOpenTrial }) {
         eyebrow="Certified Coaching Staff"
         title="EXPERIENCE, CREDENTIALS & HANDS-ON COACHING"
         subtitle="Our trainers aren't passive floor attendants. Every coach at The Fitness Hub brings accredited certifications, deep practical expertise in lifting form, and genuine dedication to your physical transformation."
-        breadcrumb={[{ label: "Trainers", link: null }]}
       />
 
       <section className="tf-section tf-trainers-section">
         <div className="tf-container">
           <div className="tf-section-header center">
             <span className="tf-eyebrow">
-              <UserCheck size={14} />
-              Senior Coaching Team
+              Certified Coaching Staff
             </span>
             <h2 className="tf-section-title">
               Meet Our Certified <span className="accent">Coaches</span>
@@ -96,9 +94,9 @@ export default function TrainersPage({ onOpenTrial }) {
             <button
               type="button"
               className="tf-btn tf-btn-primary tf-btn-lg"
-              onClick={onOpenTrial}
+              onClick={() => onOpenTrial('Personal Training Consultation')}
             >
-              <span>Book Coach Movement Screen</span>
+              <span>Book Free PT Consultation</span>
               <ArrowRight size={16} />
             </button>
           </div>

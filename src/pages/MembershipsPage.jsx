@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import MembershipSection from '../components/MembershipSection';
 import { FAQS } from '../data/gymData';
@@ -18,7 +18,6 @@ export default function MembershipsPage({ onOpenTrial }) {
         eyebrow="Official Pricing & Plans"
         title="TRANSPARENT MEMBERSHIP & PERSONAL TRAINING RATES"
         subtitle="GST included on all plans. Zero hidden admission fees. Daily access from 6:00 AM to 12:00 AM Midnight, Ladies Only batch (2 PM – 4 PM), and monthly personal training on alternate days."
-        breadcrumb={[{ label: 'Plans & Pricing', link: null }]}
       />
 
       <MembershipSection onOpenTrial={onOpenTrial} />
@@ -27,7 +26,6 @@ export default function MembershipsPage({ onOpenTrial }) {
         <div className="tf-container">
           <div className="tf-section-header center">
             <span className="tf-eyebrow">
-              <HelpCircle size={14} />
               Membership FAQs
             </span>
             <h2 className="tf-section-title">

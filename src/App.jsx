@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -10,11 +10,13 @@ import { GYM_INFO } from './data/gymData';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ProgramsPage from './pages/ProgramsPage';
+import ZoneDetailPage from './pages/ZoneDetailPage';
 import TrainersPage from './pages/TrainersPage';
 import MembershipsPage from './pages/MembershipsPage';
 import ContactPage from './pages/ContactPage';
 
 function AppContent() {
+  const location = useLocation();
   const [trialModalOpen, setTrialModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState('General Facility Walkthrough & Trial');
 
@@ -35,11 +37,12 @@ function AppContent() {
     <div className="tf-app">
       <Navbar onOpenTrial={openTrial} />
 
-      <main id="main-content" className="tf-page-enter">
+      <main id="main-content" key={location.pathname} className="tf-page-enter">
         <Routes>
           <Route path="/" element={<HomePage onOpenTrial={openTrial} />} />
           <Route path="/about" element={<AboutPage onOpenTrial={openTrial} />} />
           <Route path="/programs" element={<ProgramsPage onOpenTrial={openTrial} />} />
+          <Route path="/programs/:zoneId" element={<ZoneDetailPage onOpenTrial={openTrial} />} />
           <Route path="/trainers" element={<TrainersPage onOpenTrial={openTrial} />} />
           <Route path="/memberships" element={<MembershipsPage onOpenTrial={openTrial} />} />
           <Route path="/pricing" element={<Navigate to="/memberships" replace />} />

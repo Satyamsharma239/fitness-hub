@@ -21,7 +21,7 @@ export default function TrialModal({ isOpen, onClose, initialGoal }) {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [goal, setGoal] = useState(initialGoal || DEFAULT_GOALS[0]);
-  const [sessionType, setSessionType] = useState('Facility Walkthrough & Movement Screen');
+  const [sessionType, setSessionType] = useState('Facility Walkthrough & Trial');
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -41,11 +41,16 @@ export default function TrialModal({ isOpen, onClose, initialGoal }) {
       }
     };
 
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose]);
@@ -106,7 +111,17 @@ export default function TrialModal({ isOpen, onClose, initialGoal }) {
     : [goal, ...DEFAULT_GOALS];
 
   return (
-    <div className="tf-modal-backdrop" onClick={handleModalClose} role="dialog" aria-modal="true">
+    <div
+      className="tf-modal-backdrop"
+      onClick={handleModalClose}
+      onWheel={(e) => {
+        if (e.target === e.currentTarget) {
+          e.preventDefault();
+        }
+      }}
+      role="dialog"
+      aria-modal="true"
+    >
       <div className="tf-modal-container" onClick={(e) => e.stopPropagation()}>
         <button
           type="button"
@@ -131,7 +146,7 @@ export default function TrialModal({ isOpen, onClose, initialGoal }) {
 
             <div className="tf-modal-perks">
               <span className="tf-modal-perk-tag">&bull; 100% Free Facility Tour</span>
-              <span className="tf-modal-perk-tag">&bull; 1-on-1 Movement Screen</span>
+              <span className="tf-modal-perk-tag">&bull; 1-on-1 Fitness Guidance</span>
               <span className="tf-modal-perk-tag">&bull; Zero Sales Pressure</span>
             </div>
 
@@ -196,7 +211,7 @@ export default function TrialModal({ isOpen, onClose, initialGoal }) {
                   value={sessionType}
                   onChange={(e) => setSessionType(e.target.value)}
                 >
-                  <option value="Facility Walkthrough & Movement Screen">Facility Walkthrough & Movement Screen</option>
+                  <option value="Facility Walkthrough & Trial">Facility Walkthrough & Trial</option>
                   <option value="Complimentary 1-Day Workout Pass">Complimentary 1-Day Workout Pass</option>
                   <option value="Personal Trainer Consultation">Personal Trainer Consultation</option>
                 </select>
@@ -208,7 +223,7 @@ export default function TrialModal({ isOpen, onClose, initialGoal }) {
                 style={{ width: '100%', marginTop: '0.5rem' }}
               >
                 <Send size={16} />
-                <span>Confirm Visit & Open WhatsApp</span>
+                <span>Confirm Visit on WhatsApp</span>
               </button>
             </form>
           </>

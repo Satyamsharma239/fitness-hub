@@ -31,6 +31,23 @@
   padding: clamp(24px, 3.5vw, 32px);
   display: flex;
   flex-direction: column;
+  position: relative;
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+.tf-testimonial-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  pointer-events: none;
+}
+.tf-testimonial-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 42, 59, 0.35);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 24px rgba(255, 42, 59, 0.08);
 }
 .tf-testimonial-top {
   display: flex;
@@ -115,11 +132,16 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  transition: opacity 0.2s;
+  transition: all var(--transition-fast);
+}
+.tf-author-link svg {
+  transition: transform var(--transition-smooth);
 }
 .tf-author-link:hover {
-  text-decoration: underline;
-  opacity: 0.9;
+  color: #ff686f;
+}
+.tf-author-link:hover svg {
+  transform: translate(2px, -2px);
 }
 @media (max-width: 960px) {
   .tf-testimonials-grid {

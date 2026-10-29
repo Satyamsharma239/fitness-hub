@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
   ShieldCheck,
@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import Hero from "../components/Hero";
 import MarqueeTicker from "../components/MarqueeTicker";
+import GoalFinder from "../components/GoalFinder";
 import TrainersSection from "../components/TrainersSection";
 import WhyChooseUs from "../components/WhyChooseUs";
 import MembershipSection from "../components/MembershipSection";
@@ -20,9 +21,15 @@ import { GYM_INFO, TRAINING_ZONES } from "../data/gymData";
 import "./HomePage.css";
 
 export default function HomePage({ onOpenTrial }) {
+  const navigate = useNavigate();
+
+  const handleZoneTour = (zoneId) => {
+    navigate(`/programs/${zoneId}`);
+  };
+
   return (
     <div className="tf-home-page">
-      <Hero onOpenTrial={onOpenTrial} />
+      <Hero />
 
       <MarqueeTicker />
 
@@ -31,7 +38,7 @@ export default function HomePage({ onOpenTrial }) {
           <div className="tf-intro-editorial-grid">
             <div className="tf-intro-editorial-text">
               <span className="tf-eyebrow">
-                01 / ABOUT THE HUB
+                About The Club
               </span>
               <h2 className="tf-section-title">
                 BUILT FOR DISCIPLINE. <br />
@@ -62,22 +69,23 @@ export default function HomePage({ onOpenTrial }) {
               </div>
 
               <div className="tf-intro-actions">
-                <button
-                  type="button"
-                  className="tf-btn tf-btn-primary"
-                  onClick={onOpenTrial}
-                >
-                  <span>Schedule Club Visit</span>
-                  <ArrowRight size={16} />
-                </button>
-
                 <Link
                   to="/about"
-                  className="tf-btn tf-btn-secondary"
+                  className="tf-btn tf-btn-primary"
                 >
-                  <span>Read Full Story</span>
+                  <span>Explore About The Club</span>
                   <ArrowRight size={16} />
                 </Link>
+
+                <a
+                  href={GYM_INFO.contact.whatsappLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="tf-btn tf-btn-secondary"
+                >
+                  <WhatsAppIcon size={16} />
+                  <span>Chat on WhatsApp</span>
+                </a>
               </div>
             </div>
 
@@ -125,7 +133,7 @@ export default function HomePage({ onOpenTrial }) {
         <div className="tf-container">
           <div className="tf-section-header center">
             <span className="tf-eyebrow">
-              02 / THE TRAINING FLOOR
+              Training Floor & Zones
             </span>
             <h2 className="tf-section-title">
               Designed For Every <span className="accent">Fitness Discipline</span>
@@ -137,7 +145,19 @@ export default function HomePage({ onOpenTrial }) {
 
           <div className="tf-zones-grid">
             {TRAINING_ZONES.map((zone) => (
-              <div key={zone.id} className="tf-zone-card">
+              <div
+                key={zone.id}
+                className="tf-zone-card"
+                onClick={() => handleZoneTour(zone.id)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleZoneTour(zone.id);
+                  }
+                }}
+              >
                 <div className="tf-zone-media">
                   <img
                     src={zone.image}
@@ -158,14 +178,14 @@ export default function HomePage({ onOpenTrial }) {
                       </li>
                     ))}
                   </ul>
-                  <button
-                    type="button"
+                  <Link
+                    to={`/programs/${zone.id}`}
                     className="tf-zone-btn"
-                    onClick={onOpenTrial}
+                    onClick={(e) => e.stopPropagation()}
                   >
-                    <span>Tour this zone</span>
+                    <span>Explore This Zone</span>
                     <ChevronRight size={14} />
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -183,6 +203,8 @@ export default function HomePage({ onOpenTrial }) {
         </div>
       </section>
 
+      <GoalFinder onOpenTrial={onOpenTrial} />
+
       <TrainersSection onOpenTrial={onOpenTrial} />
 
       <MembershipSection onOpenTrial={onOpenTrial} />
@@ -193,16 +215,16 @@ export default function HomePage({ onOpenTrial }) {
 
       <TestimonialsSection />
 
-      <ContactSection />
-
       <FAQSection />
+
+      <ContactSection />
 
       <section className="tf-section tf-final-cta-section">
         <div className="tf-container">
           <div className="tf-final-cta-box">
             <div className="tf-final-cta-glow" />
             <span className="tf-eyebrow">
-              JOIN TODAY. TRANSFORM TOMORROW.
+              Start Your Transformation
             </span>
             <h2 className="tf-final-cta-title">
               SEE THE FACILITY. <br />
